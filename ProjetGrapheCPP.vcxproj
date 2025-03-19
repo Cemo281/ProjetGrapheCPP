@@ -127,7 +127,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CSommet.cpp" />
     <ClCompile Include="ProjetGrapheCPP.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CArc.h" />
+    <ClInclude Include="CSommet.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
