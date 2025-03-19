@@ -133,6 +133,10 @@
   <ItemGroup>
     <ClInclude Include="CArc.h" />
     <ClInclude Include="CSommet.h" />
+    <ClInclude Include="PGrapheOrient.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PGrapheOrient.th" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

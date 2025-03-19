@@ -1,0 +1,6 @@
+#include "PGrapheOrient.h"
+
+template <class T>PGrapheOrient<T>::PGrapheOrient() {
+}
+template <class T>PGrapheOrient<T>::PGrapheOriant(const PCgraphOrient& GROParam){
+}

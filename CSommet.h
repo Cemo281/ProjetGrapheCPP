@@ -151,7 +151,7 @@ public:
     *               partant du sommet
     *************************************************
     */
-    std::vector<CArc*> SOMLireArcPartant() { return vSOMLstArcPartant; }
+    std::vector<CArc*> SOMLireArcPartant(int pos) { return vSOMLstArcPartant; }
 
     /************************************************
     * METHODE : SOMLireArcArrivant
