@@ -108,6 +108,21 @@ public:
     *************************************************
     */
     void ARCModifierIdDepart(unsigned int uiNvIdDepart) { uiARCIdDepart = uiNvIdDepart; }
+
+	/*************************************************
+	* operator==
+    * ************************************************
+	* Entrée : un arc
+	* Nécessite : Rien
+	* Sortie : Booléen
+	* Entrain : Compare si deux arcs sont égaux
+	* ***********************************************
+    */
+	bool operator==(const CArc* pArc) const
+	{
+		if (uiARCIdDepart == pArc->uiARCIdDepart && uiARCIdArrive == pArc->uiARCIdArrive) return true;
+	    return false;
+	}
 };
 
 #endif

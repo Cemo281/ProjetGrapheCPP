@@ -1,6 +1,27 @@
 #include "PGrapheOrient.h"
 
 template <class T>PGrapheOrient<T>::PGrapheOrient() {
+	
 }
-template <class T>PGrapheOrient<T>::PGrapheOriant(const PCgraphOrient& GROParam){
+template <class T>PGrapheOrient<T>::PGrapheOriant(const PGrapheOrient& GROParam){
+	
+}
+
+void GROAjouterArc(CArc* pArc) { 
+	if (ARCEstDansGraphe(pArc)) {
+		exception e("Arc deja dans le graphe");
+		throw e;
+	}
+	vGROLstArc.push_back(pArc); 
+}
+
+bool ARCEstDansGraphe(CArc* pArc) {
+	int iBoucle;
+
+	for (iBoucle = 0; iBoucle < vGROLstArc; iBoucle++) {
+		if (vGROLstArc[iBoucle] == pArc) {
+			return true;
+		}
+	}
+	return false;
 }
