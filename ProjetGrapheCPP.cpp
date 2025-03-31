@@ -2,10 +2,16 @@
 //
 
 #include <iostream>
+#include "CArc.h"
+#include "CSommet.h"
+#include "PGrapheOrient.h"
 
 int main()
-{
-    std::cout << "Hello World!\n";
+{	
+	// testez vos classes ici
+	// CSommet : operateur==
+	
+
 }
 
 // Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage

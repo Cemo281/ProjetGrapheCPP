@@ -35,7 +35,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="PGrapheOrient.th">
-      <Filter>Fichiers de ressources</Filter>
+      <Filter>Fichiers d%27en-tête</Filter>
     </None>
   </ItemGroup>
 </Project>

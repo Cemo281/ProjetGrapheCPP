@@ -48,12 +48,12 @@ public:
     /*************************************************
     * CArc
     * ***********************************************
-    * Entrée : uiIdDepart, naturel, arc de départ
-    *          uiIdArrive, naturel, arc d arrive
+    * Entrée : uiIdDepart, naturel, sommet de départ
+    *          uiIdArrive, naturel, sommet d'arrivé
     * Nécessite : Rien
     * Sortie : Rien
     * Entraîne : Créer un arc à partir de l id de
-                deux autres arc
+                deux sommets
     *************************************************
     */
     CArc(unsigned int uiIdDepart, unsigned int uiIdArrive)
@@ -69,7 +69,7 @@ public:
        * Entrée : Rien
        * Nécessite : Rien
        * Sortie : uiARCIdDepart, naturel
-       * Entraîne : Retourbe l id de l'arc de Depart
+       * Entraîne : Retourbe l'id de l'arc de Depart
        *************************************************
        */
     unsigned int ARCLireIdDepart() { return uiARCIdDepart; }
@@ -80,7 +80,7 @@ public:
     * Entrée : Rien
     * Nécessite : Rien
     * Sortie : uiARCIdArrive, naturel
-    * Entraîne : Retourbe l id de l'arc de Depart
+    * Entraîne : Retourbe l'id de l'arc de Départ
     *************************************************
     */
     unsigned int ARCLireIdArrive() { return uiARCIdArrive; }
@@ -115,7 +115,9 @@ public:
 	* Entrée : un arc
 	* Nécessite : Rien
 	* Sortie : Booléen
-	* Entrain : Compare si deux arcs sont égaux
+	* Entraîne : Compare si deux arcs sont égaux
+	*               True si ils sont égaux, 
+    *               False sinon
 	* ***********************************************
     */
 	bool operator==(const CArc* pArc) const

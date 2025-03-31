@@ -164,6 +164,47 @@ public:
     *************************************************
     */
     CArc* SOMLireArcArrivant(int pos) { return vSOMLstArcArrivant[pos]; }
+
+	/************************************************
+    * METHODE : operateur==
+    * ***********************************************
+	* Entrée : pSommet, un pointeur vers un sommet
+    * Nécessite : rien
+	* Sortie : un booléen
+	* Entraîne : Compare si deux pointeurs vers un sommet sont égaux
+	*               True si ils sont égaux,
+	*               False sinon
+	* ***********************************************
+	*/
+    bool operator==(const CSommet* pSommet) const
+    {
+        return uiSOMId == pSommet->uiSOMId;
+    }
+
+    /************************************************
+    * METHODE : EstDansLstPart
+    * ***********************************************
+    * Entrée : pSommet, un pointeur vers l'arc partant du sommet
+    * Nécessite : rien
+    * Sortie : un booléen
+	* Entraîne : Vérifie si le sommet existe déjà dans 
+                    la liste des sommets partant
+    * ***********************************************
+    */
+    bool EstDansLstPart(CArc* pArcPart);
+
+    /************************************************
+    * METHODE : EstDansLstArrivant
+    * ***********************************************
+    * Entrée : pSommet, un pointeur vers l'arc arrivant au sommet
+    * Nécessite : rien
+    * Sortie : un booléen
+    * Entraîne : Vérifie si le sommet existe déjà 
+                    dans la liste des sommets arrivant
+    * ***********************************************
+    */
+	bool EstDansLstArrivant(CArc* pArcArr);
+	
 };
 
 #endif
