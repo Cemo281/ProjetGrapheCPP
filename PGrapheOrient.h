@@ -56,7 +56,9 @@ template<class T> class PGrapheOrient
 		* Entraine: Créer un graphe orienté à partir d'un autre graphe orienté
 		***************************************************************************************************************************
 		*/
-		PGrapheOrient(const PGrapheOrient& GROParam);
+		PGrapheOrient* PGrapheOrient(const PGrapheOrient& GROParam) {
+			PGrapheOrient GROCopie = new ;
+		}
 
 		/**************************************************************************************************************************
 		* PGrapheOrient
@@ -123,8 +125,6 @@ template<class T> class PGrapheOrient
 		* Entraine : Vérifie si un sommet est dans le graphe
 		* **************************************************************************************************************************
 		*/
-		bool GROARCEstDansGraphe(CArc* pArc);
-
 		bool GROARCEstDansGraphe(CArc* pArc) {
 			int iBoucle;
 
@@ -136,13 +136,16 @@ template<class T> class PGrapheOrient
 			return false;
 		}
 
-		template <class T>PGrapheOrient<T>::GROAjouterArc(CArc* pArc) {
-			if (ARCEstDansGraphe(pArc)) {
-				exception e("Arc deja dans le graphe");
-				throw e;
-			}
-			vGROLstArc.push_back(pArc);
-		}		
+		/***************************************************************************************************************************
+		* METHODE : GROInverserGraphe
+		* **************************************************************************************************************************
+		* Entrée : rien
+		* Nécessite : rien
+		* Sortie : Le graphe orienté inversé
+		* Entraine : Inverse les arcs du graphe
+		* **************************************************************************************************************************
+		*/
+		PGrapheOrient* GROInverserGraphe();
 };
 #include"PGrapheOrient.th"
 
