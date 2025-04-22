@@ -54,6 +54,10 @@ int main()
 	assert(sommet1.EstDansLstArrivant(arc1) == true);
 
 	printf("Tous les tests de CSommet ont réussi.\n");
+
+	// test destruction d'un sommet
+	sommet1.~CSommet();
+
 	return 0;
 }
 

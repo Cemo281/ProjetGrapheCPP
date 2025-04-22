@@ -10,13 +10,8 @@
 *************************************************
 */
 CSommet::~CSommet() {
-	for (auto arc : vSOMLstArcPartant) {
-		delete arc;
-	}
-	for (auto arc : vSOMLstArcArrivant) {
-		delete arc;
-	}
-	delete this;
+	vSOMLstArcArrivant.clear();
+	vSOMLstArcArrivant.clear();
 };
 
 /************************************************

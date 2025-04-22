@@ -62,16 +62,27 @@ public:
         uiARCIdArrive = uiIdArrive;
     }
 
+	/**************************************************
+    * ~CArc
+	* ************************************************
+	* Entrée : Rien
+	* Nécessite : Rien
+	* Sortie : Rien
+	* Entraîne : Détruis un arc
+    * ************************************************
+    */
+    ~CArc() = default;
+
     // METHODES
-       /*************************************************
-       * methode : ARCLireIdDepart
-       * ***********************************************
-       * Entrée : Rien
-       * Nécessite : Rien
-       * Sortie : uiARCIdDepart, naturel
-       * Entraîne : Retourbe l'id de l'arc de Depart
-       *************************************************
-       */
+    /*************************************************
+    * methode : ARCLireIdDepart
+    * ***********************************************
+    * Entrée : Rien
+    * Nécessite : Rien
+    * Sortie : uiARCIdDepart, naturel
+    * Entraîne : Retourbe l'id de l'arc de Depart
+    *************************************************
+    */
     unsigned int ARCLireIdDepart() { return uiARCIdDepart; }
 
     /*************************************************
