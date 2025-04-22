@@ -19,6 +19,7 @@
 */
 #include "CArc.h"
 #include <vector>
+#include <assert.h>
 
 /* TYPES:
 * Pas de type particulier de déclaré
@@ -47,7 +48,12 @@ public:
     * Entraîne : Crée un sommet
     *************************************************
     */
-    CSommet() = default;
+	CSommet() 
+    {
+		uiSOMId = 0;
+		vSOMLstArcPartant = std::vector<CArc*>();
+		vSOMLstArcArrivant = std::vector<CArc*>();
+	}
 
     /************************************************
     * METHODE : CSommet
@@ -58,7 +64,12 @@ public:
     * Entraîne : Crée un sommet à partir de son id
     *************************************************
     */
-    CSommet(unsigned int uiId) { uiSOMId = uiId; }
+    CSommet(unsigned int uiId) 
+    { 
+        uiSOMId = uiId; 
+	    vSOMLstArcPartant = std::vector<CArc*>();
+	    vSOMLstArcArrivant = std::vector<CArc*>();
+    }
 
     /************************************************
     * METHODE : ~CSommet
@@ -115,7 +126,7 @@ public:
     *               arcs arrivant au sommet
     *************************************************
     */
-    void SOMAjouterArcArr(CArc* pArcArr) { vSOMLstArcPartant.push_back(pArcArr); }
+    void SOMAjouterArcArr(CArc* pArcArr) { vSOMLstArcArrivant.push_back(pArcArr); }
 
     /************************************************
     * METHODE : SOMSupprimerArcArr
@@ -141,17 +152,17 @@ public:
     */
     int SOMSupprimerArcArr(CArc* pArcPart);
 
-    /************************************************
+	/************************************************
     * METHODE : SOMLireArcPartant
     * ***********************************************
-    * Entrée : l'arc à lire
+    * Entrée : pos, la position de l'arc à lire
     * Nécessite : l'arc appartient à la liste
     * Sortie : Rien
     * Entraîne : Retournes les informations de l'arc
     *               partant du sommet
     *************************************************
     */
-    std::vector<CArc*> SOMLireArcPartant(int pos) { return vSOMLstArcPartant; }
+    CArc* SOMLireArcPartant(int pos) { return vSOMLstArcPartant.at(pos); }
 
     /************************************************
     * METHODE : SOMLireArcArrivant
@@ -163,7 +174,7 @@ public:
     *               arrivant au sommet
     *************************************************
     */
-    CArc* SOMLireArcArrivant(int pos) { return vSOMLstArcArrivant[pos]; }
+    CArc* SOMLireArcArrivant(int pos) { return vSOMLstArcArrivant.at(pos); }
 
 	/************************************************
     * METHODE : operateur==
@@ -204,7 +215,7 @@ public:
     * ***********************************************
     */
 	bool EstDansLstArrivant(CArc* pArcArr);
-	
+
 };
 
 #endif

@@ -65,3 +65,47 @@ int CSommet::SOMSupprimerArcArr(CArc* pArcPart) {
 	}
 	return 0;
 }
+
+/************************************************
+* METHODE : EstDansLstPart
+* ***********************************************
+* Entrée : pSommet, un pointeur vers l'arc partant du sommet
+* Nécessite : rien
+* Sortie : un booléen
+* Entraîne : Vérifie si le sommet existe déjà dans
+				la liste des sommets partant
+* ***********************************************
+*/
+bool CSommet::EstDansLstPart(CArc* pArcPart) {
+	int iBoucle;
+	for (iBoucle = 0; iBoucle < vSOMLstArcPartant.size(); iBoucle++)
+	{
+		if (vSOMLstArcPartant[iBoucle] == pArcPart)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+/************************************************
+* METHODE : EstDansLstArrivant
+* ***********************************************
+* Entrée : pSommet, un pointeur vers l'arc arrivant au sommet
+* Nécessite : rien
+* Sortie : un booléen
+* Entraîne : Vérifie si le sommet existe déjà
+				dans la liste des sommets arrivant
+* ***********************************************
+*/
+bool CSommet::EstDansLstArrivant(CArc* pArcArr) {
+	int iBoucle;
+	for (iBoucle = 0; iBoucle < vSOMLstArcArrivant.size(); iBoucle++)
+	{
+		if (vSOMLstArcArrivant[iBoucle] == pArcArr)
+		{
+			return true;
+		}
+	}
+	return false;
+}
