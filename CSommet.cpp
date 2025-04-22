@@ -1,4 +1,4 @@
-#include "CSommet.h"
+#include "CSommet.hpp"
 
 /************************************************
 * METHODE : ~CSommet
@@ -10,8 +10,11 @@
 *************************************************
 */
 CSommet::~CSommet() {
-	vSOMLstArcArrivant.clear();
-	vSOMLstArcArrivant.clear();
+	vSOMLstArcArrivant->clear();
+	vSOMLstArcPartant->clear();
+
+	delete vSOMLstArcArrivant;
+	delete vSOMLstArcPartant;
 };
 
 /************************************************
@@ -27,11 +30,11 @@ CSommet::~CSommet() {
 int CSommet::SOMSupprimerArcPart(CArc* pArcArr)
 {
 	int iBoucle;
-	for (iBoucle = 0; iBoucle < vSOMLstArcPartant.size(); iBoucle++)
+	for (iBoucle = 0; iBoucle < vSOMLstArcPartant->size(); iBoucle++)
 	{
-		if (vSOMLstArcPartant[iBoucle] == pArcArr)
+		if (vSOMLstArcPartant->at(iBoucle) == pArcArr)
 		{
-			vSOMLstArcPartant.erase(vSOMLstArcPartant.begin() + iBoucle);
+			vSOMLstArcPartant->erase(vSOMLstArcPartant->begin() + iBoucle);
 			return 0;
 		}
 	}
@@ -50,11 +53,11 @@ int CSommet::SOMSupprimerArcPart(CArc* pArcArr)
 */
 int CSommet::SOMSupprimerArcArr(CArc* pArcPart) {
 	int iBoucle;
-	for (iBoucle = 0; iBoucle < vSOMLstArcArrivant.size(); iBoucle++)
+	for (iBoucle = 0; iBoucle < vSOMLstArcArrivant->size(); iBoucle++)
 	{
-		if (vSOMLstArcArrivant[iBoucle] == pArcPart)
+		if (vSOMLstArcArrivant->at(iBoucle) == pArcPart)
 		{
-			vSOMLstArcArrivant.erase(vSOMLstArcArrivant.begin() + iBoucle);
+			vSOMLstArcArrivant->erase(vSOMLstArcArrivant->begin() + iBoucle);
 			return 0;
 		}
 	}
@@ -73,9 +76,9 @@ int CSommet::SOMSupprimerArcArr(CArc* pArcPart) {
 */
 bool CSommet::EstDansLstPart(CArc* pArcPart) {
 	int iBoucle;
-	for (iBoucle = 0; iBoucle < vSOMLstArcPartant.size(); iBoucle++)
+	for (iBoucle = 0; iBoucle < vSOMLstArcPartant->size(); iBoucle++)
 	{
-		if (vSOMLstArcPartant[iBoucle] == pArcPart)
+		if (vSOMLstArcPartant->at(iBoucle) == pArcPart)
 		{
 			return true;
 		}
@@ -95,9 +98,9 @@ bool CSommet::EstDansLstPart(CArc* pArcPart) {
 */
 bool CSommet::EstDansLstArrivant(CArc* pArcArr) {
 	int iBoucle;
-	for (iBoucle = 0; iBoucle < vSOMLstArcArrivant.size(); iBoucle++)
+	for (iBoucle = 0; iBoucle < vSOMLstArcArrivant->size(); iBoucle++)
 	{
-		if (vSOMLstArcArrivant[iBoucle] == pArcArr)
+		if (vSOMLstArcArrivant->at(iBoucle) == pArcArr)
 		{
 			return true;
 		}

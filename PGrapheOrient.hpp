@@ -13,8 +13,8 @@
 * *************************************************
 * INCLUSIONS EXTERNES :
 */
-#include "CSommet.h"
-#include "CArc.h"
+#include "CSommet.hpp"
+#include "CArc.hpp"
 #include <vector>
 #include <exception>
 

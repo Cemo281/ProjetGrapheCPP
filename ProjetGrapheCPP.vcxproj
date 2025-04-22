@@ -131,12 +131,12 @@
     <ClCompile Include="ProjetGrapheCPP.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CArc.h" />
-    <ClInclude Include="CSommet.h" />
-    <ClInclude Include="PGrapheOrient.h" />
+    <ClInclude Include="CArc.hpp" />
+    <ClInclude Include="CSommet.hpp" />
+    <ClInclude Include="PGrapheOrient.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="PGrapheOrient.th" />
+    <None Include="PGrapheOrient.tpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -23,18 +23,18 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CArc.h">
+    <ClInclude Include="CArc.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="CSommet.h">
+    <ClInclude Include="CSommet.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="PGrapheOrient.h">
+    <ClInclude Include="PGrapheOrient.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="PGrapheOrient.th">
+    <None Include="PGrapheOrient.tpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </None>
   </ItemGroup>
