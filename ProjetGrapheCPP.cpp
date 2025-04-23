@@ -2,19 +2,19 @@
 //
 
 #include <iostream>
-#include "CArc.hpp"
-#include "CSommet.hpp"
+#include "PArc.hpp"
+#include "PSommet.hpp"
 #include "PGrapheOrient.hpp"
 #include <assert.h>
 
 int main()
 {
     // Création de sommets en utilisant des pointeurs
-    CSommet* sommet1 = new CSommet();
+    PSommet* sommet1 = new PSommet();
     assert(sommet1->SOMLireId() == 0); // Par défaut, l'ID devrait être 0
 
     // Test du constructeur avec ID
-    CSommet* sommet2 = new CSommet(42);
+    PSommet* sommet2 = new PSommet(42);
     assert(sommet2->SOMLireId() == 42);
 
     // Test de la modification de l'ID
@@ -22,8 +22,8 @@ int main()
     assert(sommet2->SOMLireId() == 100);
 
     // Création d'arcs pour les tests
-    CArc* arc1 = new CArc();
-    CArc* arc2 = new CArc();
+    PArc<int>* arc1 = new PArc<int>();
+    PArc<int>* arc2 = new PArc<int>();
 
     // Numéroter les arcs
     arc1->ARCModifierIdDepart(1);
@@ -55,7 +55,7 @@ int main()
     assert(sommet1->EstDansLstArrivant(arc2) == true);
     assert(sommet1->EstDansLstArrivant(arc1) == true);
 
-    std::cout << "Tous les tests de CSommet ont réussi." << std::endl;
+    std::cout << "Tous les tests de PSommet ont réussi." << std::endl;
 
     // Libération de la mémoire
     delete sommet1;

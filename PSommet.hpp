@@ -7,7 +7,7 @@
 #define INCLUDE_SOMMET_H 1
 
 /****************************************************
-* Classe : CSommet
+* Classe : PSommet
 * **************************************************
 * ROLE : Cette classe permet gérer et modifier un sommet
 * **************************************************
@@ -17,7 +17,7 @@
 * *************************************************
 * INCLUSIONS EXTERNES :
 */
-#include "CArc.hpp"
+#include "PArc.hpp"
 #include <vector>
 #include <assert.h>
 
@@ -29,18 +29,18 @@
 * Pas de variable globale de déclarée
 */
 
-class CSommet
+template<class TArc> class PSommet
 {
     // ATTRIBUTS
 private:
     unsigned int uiSOMId;
-    std::vector<CArc*>* vSOMLstArcPartant;
-    std::vector<CArc*>* vSOMLstArcArrivant;
+    std::vector<TArc*>* vSOMLstArcPartant;
+    std::vector<TArc*>* vSOMLstArcArrivant;
 
     // CONSTRUCTEURS ET DESTRUCTEURS
 public:
     /************************************************
-    * METHODE : CSommet
+    * METHODE : PSommet
     * ***********************************************
     * Entrée : Rien
     * Nécessite : Rien
@@ -48,15 +48,15 @@ public:
     * Entraîne : Crée un sommet
     *************************************************
     */
-	CSommet() 
+	PSommet() 
     {
 		uiSOMId = 0;
-		vSOMLstArcPartant = new std::vector<CArc*>();
-		vSOMLstArcArrivant = new std::vector<CArc*>();
+		vSOMLstArcPartant = new std::vector<TArc*>();
+		vSOMLstArcArrivant = new std::vector<TArc*>();
 	}
 
     /************************************************
-    * METHODE : CSommet
+    * METHODE : PSommet
     * ***********************************************
     * Entrée : uiId, naturel, l'id du sommet
     * Nécessite : Rien
@@ -64,15 +64,15 @@ public:
     * Entraîne : Crée un sommet à partir de son id
     *************************************************
     */
-    CSommet(unsigned int uiId) 
+    PSommet(unsigned int uiId) 
     { 
         uiSOMId = uiId; 
-	    vSOMLstArcPartant = new std::vector<CArc*>();
-	    vSOMLstArcArrivant = new std::vector<CArc*>();
+	    vSOMLstArcPartant = new std::vector<TArc*>();
+	    vSOMLstArcArrivant = new std::vector<TArc*>();
     }
 
     /************************************************
-    * METHODE : ~CSommet
+    * METHODE : ~PSommet
     * ***********************************************
     * Entrée : Rien
     * Nécessite : Rien
@@ -80,7 +80,7 @@ public:
     * Entraîne : Détruis un sommet
     *************************************************
     */
-    ~CSommet();
+    ~PSommet();
 
     /************************************************
     * METHODE : SOMLireId
@@ -114,7 +114,7 @@ public:
     *               arcs partant du sommet
     *************************************************
     */
-    void SOMAjouterArcPart(CArc* pArcPart) { vSOMLstArcPartant->push_back(pArcPart); }
+    void SOMAjouterArcPart(TArc* pArcPart) { vSOMLstArcPartant->push_back(pArcPart); }
 
     /************************************************
     * METHODE : SOMAjouterArcArr
@@ -126,7 +126,7 @@ public:
     *               arcs arrivant au sommet
     *************************************************
     */
-    void SOMAjouterArcArr(CArc* pArcArr) { vSOMLstArcArrivant->push_back(pArcArr); }
+    void SOMAjouterArcArr(TArc* pArcArr) { vSOMLstArcArrivant->push_back(pArcArr); }
 
     /************************************************
     * METHODE : SOMSupprimerArcArr
@@ -138,7 +138,7 @@ public:
     *               arcs arrivant au sommet
     *************************************************
     */
-    int SOMSupprimerArcPart(CArc* pArcArr);
+    int SOMSupprimerArcPart(TArc* pArcArr);
 
     /************************************************
     * METHODE : SOMSupprimerArcPart
@@ -150,7 +150,7 @@ public:
     *               arcs partant du sommet
     *************************************************
     */
-    int SOMSupprimerArcArr(CArc* pArcPart);
+    int SOMSupprimerArcArr(TArc* pArcPart);
 
 	/************************************************
     * METHODE : SOMLireArcPartant
@@ -162,7 +162,7 @@ public:
     *               partant du sommet
     *************************************************
     */
-    CArc* SOMLireArcPartant(int pos) { return vSOMLstArcPartant->at(pos); }
+    TArc* SOMLireArcPartant(int pos) { return vSOMLstArcPartant->at(pos); }
 
     /************************************************
     * METHODE : SOMLireArcArrivant
@@ -174,7 +174,7 @@ public:
     *               arrivant au sommet
     *************************************************
     */
-    CArc* SOMLireArcArrivant(int pos) { return vSOMLstArcArrivant->at(pos); }
+    TArc* SOMLireArcArrivant(int pos) { return vSOMLstArcArrivant->at(pos); }
 
 	/************************************************
     * METHODE : operateur==
@@ -187,7 +187,7 @@ public:
 	*               False sinon
 	* ***********************************************
 	*/
-    bool operator==(const CSommet* pSommet) const
+    bool operator==(const PSommet* pSommet) const
     {
         return uiSOMId == pSommet->uiSOMId;
     }
@@ -202,7 +202,7 @@ public:
                     la liste des sommets partant
     * ***********************************************
     */
-    bool EstDansLstPart(CArc* pArcPart);
+    bool EstDansLstPart(TArc* pArcPart);
 
     /************************************************
     * METHODE : EstDansLstArrivant
@@ -214,7 +214,7 @@ public:
                     dans la liste des sommets arrivant
     * ***********************************************
     */
-	bool EstDansLstArrivant(CArc* pArcArr);
+	bool EstDansLstArrivant(TArc* pArcArr);
 
 };
 

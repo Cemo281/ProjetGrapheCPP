@@ -1,7 +1,7 @@
-#include "CSommet.hpp"
+#include "PSommet.hpp"
 
 /************************************************
-* METHODE : ~CSommet
+* METHODE : ~PSommet
 * ***********************************************
 * Entrée : Rien
 * Nécessite : Rien
@@ -9,7 +9,7 @@
 * Entraîne : Détruis un sommet
 *************************************************
 */
-CSommet::~CSommet() {
+template <class TArc> PSommet::~PSommet() {
 	vSOMLstArcArrivant->clear();
 	vSOMLstArcPartant->clear();
 
@@ -27,7 +27,7 @@ CSommet::~CSommet() {
 *               arcs arrivant au sommet
 *************************************************
 */
-int CSommet::SOMSupprimerArcPart(CArc* pArcArr)
+int PSommet::SOMSupprimerArcPart(PArc* pArcArr)
 {
 	int iBoucle;
 	for (iBoucle = 0; iBoucle < vSOMLstArcPartant->size(); iBoucle++)
@@ -51,7 +51,7 @@ int CSommet::SOMSupprimerArcPart(CArc* pArcArr)
 *               arcs partant du sommet
 *************************************************
 */
-int CSommet::SOMSupprimerArcArr(CArc* pArcPart) {
+int PSommet::SOMSupprimerArcArr(PArc* pArcPart) {
 	int iBoucle;
 	for (iBoucle = 0; iBoucle < vSOMLstArcArrivant->size(); iBoucle++)
 	{
@@ -74,7 +74,7 @@ int CSommet::SOMSupprimerArcArr(CArc* pArcPart) {
 				la liste des sommets partant
 * ***********************************************
 */
-bool CSommet::EstDansLstPart(CArc* pArcPart) {
+bool PSommet::EstDansLstPart(PArc* pArcPart) {
 	int iBoucle;
 	for (iBoucle = 0; iBoucle < vSOMLstArcPartant->size(); iBoucle++)
 	{
@@ -96,7 +96,7 @@ bool CSommet::EstDansLstPart(CArc* pArcPart) {
 				dans la liste des sommets arrivant
 * ***********************************************
 */
-bool CSommet::EstDansLstArrivant(CArc* pArcArr) {
+bool PSommet::EstDansLstArrivant(PArc* pArcArr) {
 	int iBoucle;
 	for (iBoucle = 0; iBoucle < vSOMLstArcArrivant->size(); iBoucle++)
 	{

@@ -7,7 +7,7 @@
 #define INCLUDE_ARC_H 2
 
 /****************************************************
-* Classe : CArc
+* Classe : PArc
 * **************************************************
 * ROLE : Cette classe permet gérer et modifier un arc
 * **************************************************
@@ -26,16 +26,18 @@
 * Pas de variable globale de déclarée
 */
 
-class CArc
+template<class TData> class PArc
 {
     // ATTRIBUTS
 private:
     unsigned int uiARCIdDepart;
     unsigned int uiARCIdArrive;
+	TData ARCData; // Données de l'arc
+    
     // CONSTRUCTEURS ET DESTRUCTEURS
 public:
     /*************************************************
-    * CArc
+    * PArc
     * ***********************************************
     * Entrée : Rien
     * Nécessite : Rien
@@ -43,10 +45,10 @@ public:
     * Entraîne : Crée un arc
     *************************************************
     */
-    CArc() = default;
+    PArc() = default;
 
     /*************************************************
-    * CArc
+    * PArc
     * ***********************************************
     * Entrée : uiIdDepart, naturel, sommet de départ
     *          uiIdArrive, naturel, sommet d'arrivé
@@ -56,14 +58,15 @@ public:
                 deux sommets
     *************************************************
     */
-    CArc(unsigned int uiIdDepart, unsigned int uiIdArrive)
+    PArc(unsigned int uiIdDepart, unsigned int uiIdArrive, TData Data)
     {
         uiARCIdDepart = uiIdDepart;
         uiARCIdArrive = uiIdArrive;
+		ARCData = Data;
     }
 
 	/**************************************************
-    * ~CArc
+    * ~PArc
 	* ************************************************
 	* Entrée : Rien
 	* Nécessite : Rien
@@ -71,7 +74,7 @@ public:
 	* Entraîne : Détruis un arc
     * ************************************************
     */
-    ~CArc() = default;
+    ~PArc() = default;
 
     // METHODES
     /*************************************************
@@ -80,7 +83,7 @@ public:
     * Entrée : Rien
     * Nécessite : Rien
     * Sortie : uiARCIdDepart, naturel
-    * Entraîne : Retourbe l'id de l'arc de Depart
+    * Entraîne : Retournes l'id de l'arc de Depart
     *************************************************
     */
     unsigned int ARCLireIdDepart() { return uiARCIdDepart; }
@@ -91,10 +94,21 @@ public:
     * Entrée : Rien
     * Nécessite : Rien
     * Sortie : uiARCIdArrive, naturel
-    * Entraîne : Retourbe l'id de l'arc de Départ
+    * Entraîne : Retournes l'id de l'arc de Départ
     *************************************************
     */
     unsigned int ARCLireIdArrive() { return uiARCIdArrive; }
+
+    /*************************************************
+    * methode : ARCLireData
+    * ***********************************************
+    * Entrée : Rien
+    * Nécessite : Rien
+    * Sortie : ARCData, TData
+    * Entraîne : Retournes la donnée de l'arc
+    *************************************************
+    */
+	TData ARCLireData() { return ARCData; }
 
     /*************************************************
     * methode : ARCModifierIdArrive
@@ -120,6 +134,17 @@ public:
     */
     void ARCModifierIdDepart(unsigned int uiNvIdDepart) { uiARCIdDepart = uiNvIdDepart; }
 
+    /*************************************************
+	* methode : ARCModifierData
+    * ***********************************************
+	* Entrée : newData, TData, la nouvelle donnée
+    * Nécessite : Rien
+    * Sortie : Rien
+	* Entraîne : Modifie la donnée de l'arc
+    *************************************************
+    */
+	void ARCModifierData(TData newData) { ARCData = newData; }
+
 	/*************************************************
 	* operator==
     * ************************************************
@@ -131,9 +156,9 @@ public:
     *               False sinon
 	* ***********************************************
     */
-	bool operator==(const CArc* pArc) const
+	bool operator==(const PArc* pArc) const
 	{
-		if (uiARCIdDepart == pArc->uiARCIdDepart && uiARCIdArrive == pArc->uiARCIdArrive) return true;
+		if (uiARCIdDepart == pArc->uiARCIdDepart && uiARCIdArrive == pArc->uiARCIdArrive && ARCData == pArc->ARCData) return true;
 	    return false;
 	}
 };

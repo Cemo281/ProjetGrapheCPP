@@ -13,8 +13,8 @@
 * *************************************************
 * INCLUSIONS EXTERNES :
 */
-#include "CSommet.hpp"
-#include "CArc.hpp"
+#include "PSommet.hpp"
+#include "PArc.hpp"
 #include <vector>
 #include <exception>
 
@@ -28,12 +28,12 @@ using namespace std;
 /* Variables :
 * Pas de variable globale de déclarée
 */
-template<class T> class PGrapheOrient
+template<class TSommet, class TArc> class PGrapheOrient
 {
 	//Attributs:
 	private:
-		vector<T*> vGROLstArc //liste des Arcs
-		vector<T*> vGROLstSommet //liste des Sommets
+		vector<TArc*>* vGROLstArc //liste des Arcs
+		vector<TSommet*>* vGROLstSommet //liste des Sommets
 	//Constructeurs et destructeurs:
 	public:
 		/**************************************************************************************************************************
@@ -45,7 +45,7 @@ template<class T> class PGrapheOrient
 		* Entraine: Créer un graphe orienté
 		***************************************************************************************************************************
 		*/
-		PGrapheOrient() { vGROLstArc = nullptr; vGROLstArc = nullptr; }
+		PGrapheOrient() { vGROLstArc = nullptr; vGROLstSommet = nullptr; }
 
 		/**************************************************************************************************************************
 		* PGrapheOrient
@@ -56,8 +56,15 @@ template<class T> class PGrapheOrient
 		* Entraine: Créer un graphe orienté à partir d'un autre graphe orienté
 		***************************************************************************************************************************
 		*/
-		PGrapheOrient* PGrapheOrient(const PGrapheOrient& GROParam) {
-			PGrapheOrient GROCopie = new ;
+		PGrapheOrient(const PGrapheOrient& GROParam) {
+			vGROLstArc = new vector<TArc*>();
+			vGROLstSommet = new vector<TSommet*>();
+			for (int iBoucle = 0; iBoucle < GROParam.vGROLstArc->size(); iBoucle++) {
+				vGROLstArc->push_back(GROParam.vGROLstArc->at(iBoucle));
+			}
+			for (int iBoucle = 0; iBoucle < GROParam.vGROLstSommet->size(); iBoucle++) {
+				vGROLstSommet->push_back(GROParam.vGROLstSommet->at(iBoucle));
+			}
 		}
 
 		/**************************************************************************************************************************
