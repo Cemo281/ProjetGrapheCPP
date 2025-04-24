@@ -127,16 +127,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="PSommet.tpp" />
+    <ClCompile Include="PGrapheOrient.tpp" />
     <ClCompile Include="ProjetGrapheCPP.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="PArc.hpp" />
-    <ClInclude Include="PSommet.hpp" />
+    <ClInclude Include="TArc.hpp" />
+    <ClInclude Include="TSommet.hpp" />
     <ClInclude Include="PGrapheOrient.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="PGrapheOrient.tpp" />
+    <None Include="TSommet.tpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

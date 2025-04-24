@@ -4,7 +4,7 @@
 /****************************************************
 * Patron de Classe :PGrapheOrient
 * **************************************************
-* ROLE : Cette classe permet de g�rer et modifier un graphe orient�
+* ROLE : Cette classe permet de gerer et modifier un graphe oriente
 * **************************************************
 * VERSION : 1.0
 * AUTEUR : ELAOULA KHAOULA
@@ -21,13 +21,13 @@ using namespace std;
 
 
 /* TYPES:
-* Pas de type particulier de d�clar�
+* Pas de type particulier de declare
 */
 
 /* Variables :
-* Pas de variable globale de d�clar�e
+* Pas de variable globale de declaree
 */
-template<class TData> class PGrapheOrient
+template<typename TData> class PGrapheOrient
 {
 	//Attributs:
 	private:
@@ -38,10 +38,10 @@ template<class TData> class PGrapheOrient
 		/**************************************************************************************************************************
 		* PGrapheOrient
 		* *************************************************************************************************************************
-		* Entr�e: Rien
-		* Nec�ssite : Rien
+		* Entree: Rien
+		* Necessite : Rien
 		* Sortie: Rien
-		* Entraine: Cr�er un graphe orient�
+		* Entraine: Creer un graphe oriente
 		***************************************************************************************************************************
 		*/
 		PGrapheOrient() { vGROLstArc = nullptr; vGROLstSommet = nullptr; }
@@ -49,10 +49,10 @@ template<class TData> class PGrapheOrient
 		/**************************************************************************************************************************
 		* PGrapheOrient
 		* *************************************************************************************************************************
-		* Entr�e: Le graphe orient� � copier
-		* Nec�ssite : Rien
+		* Entree: Le graphe oriente a copier
+		* Necessite : Rien
 		* Sortie: Rien
-		* Entraine: Cr�er un graphe orient� � partir d'un autre graphe orient�
+		* Entraine: Creer un graphe oriente a partir d'un autre graphe oriente
 		***************************************************************************************************************************
 		*/
 		PGrapheOrient(const PGrapheOrient& GROParam) {
@@ -69,31 +69,31 @@ template<class TData> class PGrapheOrient
 		/**************************************************************************************************************************
 		* PGrapheOrient
 		* *************************************************************************************************************************
-		* Entr�e: Fichier, le fichier contenant le graphe orient�
-		* Nec�ssite : Le fichier doit �tre valide et bien form� (.txt)
+		* Entree: Fichier, le fichier contenant le graphe oriente
+		* Necessite : Le fichier doit etre valide et bien forme (.txt)
 		* Sortie: Rien
-		* Entraine: Cr�er un graphe orient� � partir d'un fichier .txt
+		* Entraine: Creer un graphe oriente a partir d'un fichier .txt
 		***************************************************************************************************************************
 		*/
-		PGrapheOrient(ifstream& Fichier);
+		// PGrapheOrient(ifstream& Fichier);
 
 		/**************************************************************************************************************************
 		* PGrapheOrient
 		* *************************************************************************************************************************
-		* Entr�e: Rien
-		* Nec�ssite : Rien
+		* Entree: Rien
+		* Necessite : Rien
 		* Sortie: Rien
-		* Entraine: D�truit un graphe orient�
+		* Entraine: Detruit un graphe oriente
 		***************************************************************************************************************************
 		*/
 		~PGrapheOrient();
 
-	//M�thodes:
+	//Methodes:
 		/**************************************************************************************************************************
 		* GROAjouterArc()
 		* *************************************************************************************************************************
-		* Entr�e: Rien
-		* Nec�ssite : Rien
+		* Entree: Rien
+		* Necessite : Rien
 		* Sortie: Rien
 		* Entraine:Ajoute un arc au graphe
 		***************************************************************************************************************************
@@ -103,8 +103,8 @@ template<class TData> class PGrapheOrient
 		/***************************************************************************************************************************
 		* GROAjouterSommet()
 		* **************************************************************************************************************************
-		* Entr�e:Un pointeur vers un sommet (CSommet*)
-		* Nec�ssite : Un sommet valide
+		* Entree:Un pointeur vers un sommet (CSommet*)
+		* Necessite : Un sommet valide
 		* Sortie: Rien
 		* Entraine:Ajoute un sommet au graphe
 		****************************************************************************************************************************
@@ -114,10 +114,10 @@ template<class TData> class PGrapheOrient
 		/***************************************************************************************************************************
 		* SOMEstDansGraphe
 		* **************************************************************************************************************************
-		* Entr�e : Un pointeur vers un sommet
-		* N�cessite : Rien
-		* Sortie : Bool�en
-		* Entraine : V�rifie si un sommet est dans le graphe
+		* Entree : Un pointeur vers un sommet
+		* Necessite : Rien
+		* Sortie : Booleen
+		* Entraine : Verifie si un sommet est dans le graphe
 		* **************************************************************************************************************************
 		*/
 		bool GROSOMEstDansGraphe(TSommet<TData>& pSommet);
@@ -125,10 +125,10 @@ template<class TData> class PGrapheOrient
 		/***************************************************************************************************************************
 		* ARCestDansGraphe
 		* **************************************************************************************************************************
-		* Entr�e : Un pointeur vers un arc
-		* N�cessite : Rien
-		* Sortie : Bool�en
-		* Entraine : V�rifie si un sommet est dans le graphe
+		* Entree : Un pointeur vers un arc
+		* Necessite : Rien
+		* Sortie : Booleen
+		* Entraine : Verifie si un sommet est dans le graphe
 		* **************************************************************************************************************************
 		*/
 		bool GROARCEstDansGraphe(TArc<TData>& pArc) {
@@ -145,9 +145,9 @@ template<class TData> class PGrapheOrient
 		/***************************************************************************************************************************
 		* METHODE : GROInverserGraphe
 		* **************************************************************************************************************************
-		* Entr�e : rien
-		* N�cessite : rien
-		* Sortie : Le graphe orient� invers�
+		* Entree : rien
+		* Necessite : rien
+		* Sortie : Le graphe oriente inverse
 		* Entraine : Inverse les arcs du graphe
 		* **************************************************************************************************************************
 		*/

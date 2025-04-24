@@ -9,7 +9,7 @@
 /****************************************************
 * Classe : TSommet
 * **************************************************
-* ROLE : Cette classe permet g�rer et modifier un sommet
+* ROLE : Cette classe permet gerer et modifier un sommet
 * **************************************************
 * VERSION : 1.0
 * AUTEUR : OZDEMIR Ali-Cem
@@ -24,31 +24,31 @@
 using namespace std;
 
 /* TYPES:
-* Pas de type particulier de d�clar�
+* Pas de type particulier de declare
 */
 
 /* Variables :
-* Pas de variable globale de d�clar�e
+* Pas de variable globale de declaree
 */
 
-template<class TData> class TSommet
+template<typename TData> class TSommet
 {
     // ATTRIBUTS
 private:
     unsigned int uiSOMId;
     vector<TArc<TData>> vSOMLstArcPartant;
     vector<TArc<TData>> vSOMLstArcArrivant;
-    TData SOMData; // Donn�es du sommet
+    TData SOMData; // Donnees du sommet
 
     // CONSTRUCTEURS ET DESTRUCTEURS
 public:
     /************************************************
     * METHODE : TSommet
     * ***********************************************
-    * Entr�e : Rien
-    * N�cessite : Rien
+    * Entree : Rien
+    * Necessite : Rien
     * Sortie : Rien
-    * Entra�ne : Cr�e un sommet
+    * Entraine : Cree un sommet
     *************************************************
     */
 	TSommet() = default;
@@ -56,27 +56,25 @@ public:
     /************************************************
     * METHODE : TSommet
     * ***********************************************
-    * Entr�e : uiId, naturel, l'id du sommet
-    * N�cessite : Rien
+    * Entree : uiId, naturel, l'id du sommet
+    * Necessite : Rien
     * Sortie : Rien
-    * Entra�ne : Cr�e un sommet � partir de son id
+    * Entraine : Cree un sommet a partir de son id
     *************************************************
     */
-    TSommet(unsigned int uiId, TData &Data)
+    TSommet(unsigned int uiId, TData Data)
     { 
         uiSOMId = uiId; 
-        vSOMLstArcArrivant = vector<TArc<TData>>();
-        vSOMLstArcPartant = vector<TArc<TData>>();
         SOMData = Data;
     }
 
     /************************************************
     * METHODE : ~TSommet
     * ***********************************************
-    * Entr�e : Rien
-    * N�cessite : Rien
+    * Entree : Rien
+    * Necessite : Rien
     * Sortie : Rien
-    * Entra�ne : D�truis un sommet
+    * Entraine : Detruis un sommet
     *************************************************
     */
     ~TSommet() = default;
@@ -84,10 +82,10 @@ public:
     /************************************************
     * METHODE : SOMLireId
     * ***********************************************
-    * Entr�e : Rien
-    * N�cessite : Rien
+    * Entree : Rien
+    * Necessite : Rien
     * Sortie : Rien
-    * Entra�ne : Retournes l'id du sommet
+    * Entraine : Retournes l'id du sommet
     *************************************************
     */
     unsigned int SOMLireId() { return uiSOMId; }
@@ -95,21 +93,32 @@ public:
     /************************************************
     * METHODE : SOMModifierId
     * ***********************************************
-    * Entr�e : uiNvId, naturel, le nouvel id
-    * N�cessite : Rien
+    * Entree : uiNvId, naturel, le nouvel id
+    * Necessite : Rien
     * Sortie : Rien
-    * Entra�ne : Cr�e un sommet
+    * Entraine : Cree un sommet
     *************************************************
     */
     void SOMModifierId(unsigned int uiNvId) { uiSOMId = uiNvId; }
 
     /************************************************
+    * METHODE : SOMLireData
+    * ***********************************************
+    * Entree : Rien
+    * Nicessite : Rien
+    * Sortie : Rien
+    * Entraine : Lit la donnee du sommet
+    *************************************************
+    */
+    TData SOMLireData() { return SOMData; }
+
+    /************************************************
     * METHODE : SOMAjouterArcPart
     * ***********************************************
-    * Entr�e : pArcPart, l'arc � ajouter
-    * N�cessite : Rien
+    * Entree : pArcPart, l'arc a ajouter
+    * Necessite : Rien
     * Sortie : Rien
-    * Entra�ne : Ajoutes un arc � la liste des
+    * Entraine : Ajoutes un arc a la liste des
     *               arcs partant du sommet
     *************************************************
     */
@@ -118,10 +127,10 @@ public:
     /************************************************
     * METHODE : SOMAjouterArcArr
     * ***********************************************
-    * Entr�e : pArcArr, l'arc � ajouter
-    * N�cessite : Rien
+    * Entree : pArcArr, l'arc a ajouter
+    * Necessite : Rien
     * Sortie : Rien
-    * Entra�ne : Ajoutes un arc � la liste des
+    * Entraine : Ajoutes un arc a la liste des
     *               arcs arrivant au sommet
     *************************************************
     */
@@ -130,10 +139,10 @@ public:
 	/************************************************
     * METHODE : SOMLireArcPartant
     * ***********************************************
-    * Entr�e : pos, la position de l'arc � lire
-    * N�cessite : l'arc appartient � la liste
+    * Entree : pos, la position de l'arc a lire
+    * Necessite : l'arc appartient a la liste
     * Sortie : Rien
-    * Entra�ne : Retournes les informations de l'arc
+    * Entraine : Retournes les informations de l'arc
     *               partant du sommet
     *************************************************
     */
@@ -142,10 +151,10 @@ public:
     /************************************************
     * METHODE : SOMLireArcArrivant
     * ***********************************************
-    * Entr�e : l'arc � lire
-    * N�cessite : l'arc appartient � la liste
+    * Entree : l'arc a lire
+    * Necessite : l'arc appartient a la liste
     * Sortie : Rien
-    * Entra�ne : Retournes les informations de l'arc
+    * Entraine : Retournes les informations de l'arc
     *               arrivant au sommet
     *************************************************
     */
@@ -154,11 +163,11 @@ public:
 	/************************************************
     * METHODE : operateur==
     * ***********************************************
-	* Entr�e : tSommet, un pointeur vers un sommet
-    * N�cessite : rien
-	* Sortie : un bool�en
-	* Entra�ne : Compare si deux pointeurs vers un sommet sont �gaux
-	*               True si ils sont �gaux,
+	* Entree : tSommet, un pointeur vers un sommet
+    * Necessite : rien
+	* Sortie : un booleen
+	* Entraine : Compare si deux pointeurs vers un sommet sont egaux
+	*               True si ils sont egaux,
 	*               False sinon
 	* ***********************************************
 	*/
@@ -170,10 +179,10 @@ public:
     /************************************************
     * METHODE : EstDansLstPart
     * ***********************************************
-    * Entr�e : tArcPart, un pointeur vers l'arc partant du sommet
-    * N�cessite : rien
-    * Sortie : un bool�en
-	* Entra�ne : V�rifie si le sommet existe d�j� dans 
+    * Entree : tArcPart, un pointeur vers l'arc partant du sommet
+    * Necessite : rien
+    * Sortie : un booleen
+	* Entraine : Verifie si le sommet existe deja dans 
     *                la liste des sommets partant
     * ***********************************************
     */
@@ -182,15 +191,15 @@ public:
     /************************************************
     * METHODE : EstDansLstArrivant
     * ***********************************************
-    * Entr�e : tArcArr, un pointeur vers l'arc arrivant au sommet
-    * N�cessite : rien
-    * Sortie : un bool�en
-    * Entra�ne : V�rifie si le sommet existe d�j� 
+    * Entree : tArcArr, un pointeur vers l'arc arrivant au sommet
+    * Necessite : rien
+    * Sortie : un booleen
+    * Entraine : Verifie si le sommet existe deja 
                     dans la liste des sommets arrivant
     * ***********************************************
     */
 	bool EstDansLstArrivant(TArc<TData> &tArcArr);
 
 };
-
+#include "TSommet.tpp"
 #endif

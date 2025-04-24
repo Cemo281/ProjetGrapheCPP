@@ -9,7 +9,7 @@
 /****************************************************
 * Classe : TArc
 * **************************************************
-* ROLE : Cette classe permet g�rer et modifier un arc
+* ROLE : Cette classe permet gerer et modifier un arc
 * **************************************************
 * VERSION : 1.0
 * AUTEUR : OZDEMIR Ali-Cem
@@ -19,30 +19,30 @@
 */
 
 /* TYPES:
-* Pas de type particulier de d�clar�
+* Pas de type particulier de declare
 */
 
 /* Variables :
-* Pas de variable globale de d�clar�e
+* Pas de variable globale de declaree
 */
 
-template<class TData> class TArc
+template<typename TData> class TArc
 {
     // ATTRIBUTS
 private:
     unsigned int uiARCIdDepart;
     unsigned int uiARCIdArrive;
-	TData ARCData; // Donn�es de l'arc
+	TData ARCData; // Donnees de l'arc
     
     // CONSTRUCTEURS ET DESTRUCTEURS
 public:
     /*************************************************
     * TArc
     * ***********************************************
-    * Entr�e : Rien
-    * N�cessite : Rien
+    * Entree : Rien
+    * Necessite : Rien
     * Sortie : Rien
-    * Entra�ne : Cr�e un arc
+    * Entraine : Cree un arc
     *************************************************
     */
     TArc() = default;
@@ -50,15 +50,15 @@ public:
     /*************************************************
     * TArc
     * ***********************************************
-    * Entr�e : uiIdDepart, naturel, sommet de d�part
-    *          uiIdArrive, naturel, sommet d'arriv�
-    * N�cessite : Rien
+    * Entree : uiIdDepart, naturel, sommet de depart
+    *          uiIdArrive, naturel, sommet d'arrive
+    * Necessite : Rien
     * Sortie : Rien
-    * Entra�ne : Cr�er un arc � partir de l id de
+    * Entraine : Creer un arc a partir de l id de
                 deux sommets
     *************************************************
     */
-    TArc(unsigned int uiIdDepart, unsigned int uiIdArrive, TData &Data)
+    TArc(unsigned int uiIdDepart, unsigned int uiIdArrive, TData Data)
     {
         uiARCIdDepart = uiIdDepart;
         uiARCIdArrive = uiIdArrive;
@@ -68,10 +68,10 @@ public:
 	/**************************************************
     * ~TArc
 	* ************************************************
-	* Entr�e : Rien
-	* N�cessite : Rien
+	* Entree : Rien
+	* Necessite : Rien
 	* Sortie : Rien
-	* Entra�ne : D�truis un arc
+	* Entraine : Detruis un arc
     * ************************************************
     */
     ~TArc() = default;
@@ -80,10 +80,10 @@ public:
     /*************************************************
     * methode : ARCLireIdDepart
     * ***********************************************
-    * Entr�e : Rien
-    * N�cessite : Rien
+    * Entree : Rien
+    * Necessite : Rien
     * Sortie : uiARCIdDepart, naturel
-    * Entra�ne : Retournes l'id de l'arc de Depart
+    * Entraine : Retournes l'id de l'arc de Depart
     *************************************************
     */
     unsigned int ARCLireIdDepart() { return uiARCIdDepart; }
@@ -91,10 +91,10 @@ public:
     /*************************************************
     * methode : ARCLireIdArrive
     * ***********************************************
-    * Entr�e : Rien
-    * N�cessite : Rien
+    * Entree : Rien
+    * Necessite : Rien
     * Sortie : uiARCIdArrive, naturel
-    * Entra�ne : Retournes l'id de l'arc de D�part
+    * Entraine : Retournes l'id de l'arc de Depart
     *************************************************
     */
     unsigned int ARCLireIdArrive() { return uiARCIdArrive; }
@@ -102,10 +102,10 @@ public:
     /*************************************************
     * methode : ARCLireData
     * ***********************************************
-    * Entr�e : Rien
-    * N�cessite : Rien
+    * Entree : Rien
+    * Necessite : Rien
     * Sortie : ARCData, TData
-    * Entra�ne : Retournes la donn�e de l'arc
+    * Entraine : Retournes la donnee de l'arc
     *************************************************
     */
 	TData ARCLireData() { return ARCData; }
@@ -113,11 +113,11 @@ public:
     /*************************************************
     * methode : ARCModifierIdArrive
     * ***********************************************
-    * Entr�e : uiNvIdArrive, naturel, l'id du nouvel
-                arc d'arriv�
-    * N�cessite : Rien
+    * Entree : uiNvIdArrive, naturel, l'id du nouvel
+                arc d'arrive
+    * Necessite : Rien
     * Sortie : Rien
-    * Entra�ne : Modifie l'arc d'arriv�
+    * Entraine : Modifie l'arc d'arrive
     *************************************************
     */
     void ARCModifierIdArrive(unsigned int uiNvIdArrive) { uiARCIdArrive = uiNvIdArrive; }
@@ -125,11 +125,11 @@ public:
     /*************************************************
     * methode : ARCModifierIdDepart
     * ***********************************************
-    * Entr�e : uiNvIdDepart, naturel, l'id du nouvel
+    * Entree : uiNvIdDepart, naturel, l'id du nouvel
     *            arc de depart
-    * N�cessite : Rien
+    * Necessite : Rien
     * Sortie : Rien
-    * Entra�ne : Modifie l'arc de d�part
+    * Entraine : Modifie l'arc de depart
     *************************************************
     */
     void ARCModifierIdDepart(unsigned int uiNvIdDepart) { uiARCIdDepart = uiNvIdDepart; }
@@ -137,10 +137,10 @@ public:
     /*************************************************
 	* methode : ARCModifierData
     * ***********************************************
-	* Entr�e : newData, TData, la nouvelle donn�e
-    * N�cessite : Rien
+	* Entree : newData, TData, la nouvelle donnee
+    * Necessite : Rien
     * Sortie : Rien
-	* Entra�ne : Modifie la donn�e de l'arc
+	* Entraine : Modifie la donnee de l'arc
     *************************************************
     */
 	void ARCModifierData(TData &nvData) { ARCData = nvData; }
@@ -148,11 +148,11 @@ public:
 	/*************************************************
 	* methode : operator==
     * ************************************************
-	* Entr�e : un arc
-	* N�cessite : Rien
-	* Sortie : Bool�en
-	* Entra�ne : Compare si deux arcs sont �gaux
-	*               True si ils sont �gaux, 
+	* Entree : un arc
+	* Necessite : Rien
+	* Sortie : Booleen
+	* Entraine : Compare si deux arcs sont egaux
+	*               True si ils sont egaux, 
     *               False sinon
 	* ***********************************************
     */

@@ -9,9 +9,26 @@
 
 int main()
 {    // Test de la classe TArc avec des arcs de type TArc<int>
-    TSommet<int> sommet1(1, 10);
-    TSommet<int> sommet2(2, 20);
-    TArc<int> arc1(1, 2, 30);
+    TSommet<int> sommet(1u, 10);
+    TSommet<int> sommet2(2u, 20);
+    TArc<int> arc1(1u, 2u, 30);
+
+    // Test des  methodes de la classe TArc
+    assert(arc1.ARCLireIdDepart() == 1u);
+    assert(arc1.ARCLireIdArrive() == 2u);
+    assert(arc1.ARCLireData() == 30);
+
+    // Test de la classe TSommet avec des sommets de type TSommet<int>
+    TSommet<int> sommet3(3u, 40);
+    TSommet<int> sommet4(4u, 50);
+
+    // Test des methodes de la classe TSommet
+    assert(sommet3.SOMLireId() == 3u);
+    assert(sommet3.SOMLireData() == 40);
+
+    assert(sommet3.EstDansLstPart(arc1) == false); // Le sommet ne doit pas contenir l'arc1
+    sommet3.SOMAjouterArcPart(arc1); // Ajout de l'arc au sommet
+    assert(sommet3.EstDansLstPart(arc1) == true); // Le sommet doit contenir l'arc1
 
     std::cout << "Graphe orienté créé avec succès." << std::endl;
     return 0;
