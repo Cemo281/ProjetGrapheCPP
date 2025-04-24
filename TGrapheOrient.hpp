@@ -27,12 +27,14 @@ using namespace std;
 /* Variables :
 * Pas de variable globale de declaree
 */
+
 template<typename TData> class TGrapheOrient
 {
 	//Attributs:
 	private:
 		vector<TArc<TData>> vGROLstArc; //liste des Arcs
 		vector<TSommet<TData>> vGROLstSommet; //liste des Sommets
+		TData tGROData; //donnees du graphe
 	//Constructeurs et destructeurs:
 	public:
 		/**************************************************************************************************************************
@@ -44,7 +46,7 @@ template<typename TData> class TGrapheOrient
 		* Entraine: Creer un graphe oriente
 		***************************************************************************************************************************
 		*/
-		TGrapheOrient() { vGROLstArc = nullptr; vGROLstSommet = nullptr; }
+		TGrapheOrient() = default;
 
 		/**************************************************************************************************************************
 		* TGrapheOrient
@@ -55,16 +57,7 @@ template<typename TData> class TGrapheOrient
 		* Entraine: Creer un graphe oriente a partir d'un autre graphe oriente
 		***************************************************************************************************************************
 		*/
-		TGrapheOrient(const TGrapheOrient& GROParam) {
-			vGROLstArc = new vector<TArc<TData>>();
-			vGROLstSommet = new vector<TSommet<TData>>();
-			for (int iBoucle = 0; iBoucle < GROParam.vGROLstArc->size(); iBoucle++) {
-				vGROLstArc->push_back(GROParam.vGROLstArc->at(iBoucle));
-			}
-			for (int iBoucle = 0; iBoucle < GROParam.vGROLstSommet->size(); iBoucle++) {
-				vGROLstSommet->push_back(GROParam.vGROLstSommet->at(iBoucle));
-			}
-		}
+		TGrapheOrient(const TGrapheOrient &GROParam);
 
 		/**************************************************************************************************************************
 		* TGrapheOrient
@@ -75,7 +68,7 @@ template<typename TData> class TGrapheOrient
 		* Entraine: Creer un graphe oriente a partir d'un fichier .txt
 		***************************************************************************************************************************
 		*/
-		// TGrapheOrient(ifstream& Fichier);
+		// TGrapheOrient(ifstream &Fichier);
 
 		/**************************************************************************************************************************
 		* TGrapheOrient
@@ -86,61 +79,52 @@ template<typename TData> class TGrapheOrient
 		* Entraine: Detruit un graphe oriente
 		***************************************************************************************************************************
 		*/
-		~TGrapheOrient();
+		~TGrapheOrient() = default;
 
 	//Methodes:
 		/**************************************************************************************************************************
 		* GROAjouterArc()
 		* *************************************************************************************************************************
-		* Entree: Rien
+		* Entree: tArc, l'arc a ajouter
 		* Necessite : Rien
 		* Sortie: Rien
-		* Entraine:Ajoute un arc au graphe
+		* Entraine: Ajoute l'arc au graphe
 		***************************************************************************************************************************
 		*/
-		void GROAjouterArc(TArc<TData>& tArc);
+		void GROAjouterArc(TArc<TData> &tArc);
 
 		/***************************************************************************************************************************
 		* GROAjouterSommet()
 		* **************************************************************************************************************************
-		* Entree:Un pointeur vers un sommet (CSommet*)
-		* Necessite : Un sommet valide
+		* Entree: tSommet, le sommet a ajouter
+		* Necessite : Rien
 		* Sortie: Rien
-		* Entraine:Ajoute un sommet au graphe
+		* Entraine: Ajoute le sommet au graphe
 		****************************************************************************************************************************
 		*/
-		void GROAjouterSommet(TSommet<TData>& pSom) { vGROLstSommet.push_back(pSom); }
+		void GROAjouterSommet(TSommet<TData>& tSom);
 
 		/***************************************************************************************************************************
 		* SOMEstDansGraphe
 		* **************************************************************************************************************************
-		* Entree : Un pointeur vers un sommet
+		* Entree : tSommet, le sommet a verifier
 		* Necessite : Rien
 		* Sortie : Booleen
-		* Entraine : Verifie si un sommet est dans le graphe
+		* Entraine : Verifie si le sommet appartient au graphe
 		* **************************************************************************************************************************
 		*/
-		bool GROSOMEstDansGraphe(TSommet<TData>& pSommet);
+		bool GROSOMEstDansGraphe(TSommet<TData> &tSommet);
 
 		/***************************************************************************************************************************
-		* ARCestDansGraphe
+		* GROARCEstDansGraphe
 		* **************************************************************************************************************************
-		* Entree : Un pointeur vers un arc
+		* Entree : tArc, l'arc a verifier
 		* Necessite : Rien
 		* Sortie : Booleen
-		* Entraine : Verifie si un sommet est dans le graphe
+		* Entraine : Verifie si l'arc appartient au graphe
 		* **************************************************************************************************************************
 		*/
-		bool GROARCEstDansGraphe(TArc<TData>& pArc) {
-			int iBoucle;
-
-			for (iBoucle = 0; iBoucle < vGROLstArc; iBoucle++) {
-				if (vGROLstArc[iBoucle] == pArc) {
-					return true;
-				}
-			}
-			return false;
-		}
+		bool GROARCEstDansGraphe(TArc<TData> &tArc);
 
 		/***************************************************************************************************************************
 		* METHODE : GROInverserGraphe
@@ -151,8 +135,8 @@ template<typename TData> class TGrapheOrient
 		* Entraine : Inverse les arcs du graphe
 		* **************************************************************************************************************************
 		*/
-		TGrapheOrient* GROInverserGraphe();
+		TGrapheOrient<TData> InverserGraphe();
 };
-#include"TGrapheOrient.tpp"
+#include "TGrapheOrient.tpp"
 
 #endif

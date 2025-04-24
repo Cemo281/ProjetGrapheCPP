@@ -8,29 +8,30 @@
 #include <assert.h>
 
 int main()
-{    // Test de la classe TArc avec des arcs de type TArc<int>
-    TSommet<int> sommet(1u, 10);
-    TSommet<int> sommet2(2u, 20);
-    TArc<int> arc1(1u, 2u, 30);
+{    
+    // Test InverserSommet()
+    TArc<int> arc1(1, 2, 5);
+    TArc<int> arc2(2, 3, 10);
+    TArc<int> arc3(3, 4, 15);
+    TArc<int> arc4(4, 5, 20);
 
-    // Test des  methodes de la classe TArc
-    assert(arc1.ARCLireIdDepart() == 1u);
-    assert(arc1.ARCLireIdArrive() == 2u);
-    assert(arc1.ARCLireData() == 30);
+    TSommet<int> sommet1(1, 100);
 
-    // Test de la classe TSommet avec des sommets de type TSommet<int>
-    TSommet<int> sommet3(3u, 40);
-    TSommet<int> sommet4(4u, 50);
+    sommet1.SOMAjouterArcPart(arc1);
+    sommet1.SOMAjouterArcPart(arc2);
+    sommet1.SOMAjouterArcPart(arc3);
 
-    // Test des methodes de la classe TSommet
-    assert(sommet3.SOMLireId() == 3u);
-    assert(sommet3.SOMLireData() == 40);
+    sommet1.SOMAjouterArcArr(arc4);
 
-    assert(sommet3.EstDansLstPart(arc1) == false); // Le sommet ne doit pas contenir l'arc1
-    sommet3.SOMAjouterArcPart(arc1); // Ajout de l'arc au sommet
-    assert(sommet3.EstDansLstPart(arc1) == true); // Le sommet doit contenir l'arc1
+    // Inverser les arcs du sommet1
+    sommet1.InverserSommet();
 
-    std::cout << "Graphe orienté créé avec succès." << std::endl;
+    // Vérifier que les arcs partant sont maintenant arrivants et vice versa
+    assert(sommet1.EstDansLstArrivant(arc1) == true);
+    assert(sommet1.EstDansLstArrivant(arc2) == true);
+    assert(sommet1.EstDansLstArrivant(arc3) == true);
+    assert(sommet1.EstDansLstPart(arc4) == true);
+    
     return 0;
 }
 // Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage

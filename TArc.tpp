@@ -102,3 +102,18 @@ template <typename TData> bool TArc<TData>::operator==(const TArc &tArc) const
     if (uiARCIdDepart == tArc.uiARCIdDepart && uiARCIdArrive == tArc.uiARCIdArrive && ARCData == tArc.ARCData) return true;
     return false;
 }
+
+/*************************************************
+ * Methode : InverserArc
+ * ***********************************************
+ * Entree : tArc, l'arc a inverser
+ * Necessite : Rien
+ * Sortie : Rien
+ * Entraine : Inverse l'arc
+ * ***********************************************
+ */
+template <typename TData> void TArc<TData>::InverserArc() {
+    unsigned int uiTemp = uiARCIdDepart;
+    uiARCIdDepart = uiARCIdArrive;
+    uiARCIdArrive = uiTemp;
+}

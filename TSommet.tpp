@@ -1,5 +1,8 @@
 #include "TSommet.hpp"
 #include "TArc.hpp"
+#include <vector>
+
+using namespace std;
 
 /************************************************
 * METHODE : SOMLireId
@@ -35,6 +38,17 @@ template <typename TData> void TSommet<TData>::SOMModifierId(unsigned int uiNvId
 template <typename TData> TData TSommet<TData>::SOMLireData() { return SOMData; }
 
 /************************************************
+* METHODE : SOMModifierData
+* ***********************************************
+* Entree : Data, la nouvelle donnee
+* Necessite : Rien
+* Sortie : Rien
+* Entraine : Modifie la donnee du sommet
+* *************************************************
+*/
+template <typename TData> void TSommet<TData>::SOMModifierData(TData nvData) { SOMData = nvData; }
+
+/************************************************
 * METHODE : SOMAjouterArcPart
 * ***********************************************
 * Entree : pArcPart, l'arc a ajouter
@@ -44,7 +58,7 @@ template <typename TData> TData TSommet<TData>::SOMLireData() { return SOMData; 
 *               arcs partant du sommet
 *************************************************
 */
-template <typename TData> void TSommet<TData>::SOMAjouterArcPart(TArc<TData> &pArcPart) { vSOMLstArcPartant.push_back(pArcPart); }
+template <typename TData> void TSommet<TData>::SOMAjouterArcPart(TArc<TData> &tArcPart) { vSOMLstArcPartant.push_back(tArcPart); }
 
 /************************************************
 * METHODE : SOMAjouterArcArr
@@ -56,7 +70,7 @@ template <typename TData> void TSommet<TData>::SOMAjouterArcPart(TArc<TData> &pA
 *               arcs arrivant au sommet
 *************************************************
 */
-template <typename TData> void TSommet<TData>::SOMAjouterArcArr(TArc<TData> &pArcArr) { vSOMLstArcArrivant.push_back(pArcArr); }
+template <typename TData> void TSommet<TData>::SOMAjouterArcArr(TArc<TData> &tArcArr) { vSOMLstArcArrivant.push_back(tArcArr); }
 
 /************************************************
 * METHODE : SOMLireArcPartant
@@ -140,4 +154,22 @@ template <typename TData> bool TSommet<TData>::EstDansLstArrivant(TArc<TData> &t
 		}
 	}
 	return false;
+}
+
+/************************************************
+* METHODE : InverserSommet
+* ***********************************************
+* Entree : rien
+* Necessite : rien
+* Sortie : rien
+* Entraine : Inverse les arcs du sommet c'est à dire
+*               les arcs partant deviennent des arcs
+*              arrivant et vice versa
+* ***********************************************
+*/
+template <typename TData> void TSommet<TData>::InverserSommet() {
+	vector<TArc<TData>> vTmp = vSOMLstArcPartant;
+
+	vSOMLstArcPartant = vSOMLstArcArrivant;
+	vSOMLstArcArrivant = vTmp;
 }

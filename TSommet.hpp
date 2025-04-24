@@ -113,28 +113,39 @@ public:
     TData SOMLireData();
 
     /************************************************
+    * METHODE : SOMModifierData
+    * ***********************************************
+    * Entree : Data, la nouvelle donnee
+    * Necessite : Rien
+    * Sortie : Rien
+    * Entraine : Modifie la donnee du sommet
+    * *************************************************
+    */
+    void SOMModifierData(TData nvData);
+
+    /************************************************
     * METHODE : SOMAjouterArcPart
     * ***********************************************
-    * Entree : pArcPart, l'arc a ajouter
+    * Entree : tArcPart, l'arc a ajouter
     * Necessite : Rien
     * Sortie : Rien
     * Entraine : Ajoutes un arc a la liste des
     *               arcs partant du sommet
     *************************************************
     */
-    void SOMAjouterArcPart(TArc<TData> &pArcPart);
+    void SOMAjouterArcPart(TArc<TData> &tArcPart);
 
     /************************************************
     * METHODE : SOMAjouterArcArr
     * ***********************************************
-    * Entree : pArcArr, l'arc a ajouter
+    * Entree : tArcArr, l'arc a ajouter
     * Necessite : Rien
     * Sortie : Rien
     * Entraine : Ajoutes un arc a la liste des
     *               arcs arrivant au sommet
     *************************************************
     */
-    void SOMAjouterArcArr(TArc<TData> &pArcArr);
+    void SOMAjouterArcArr(TArc<TData> &tArcArr);
 
 	/************************************************
     * METHODE : SOMLireArcPartant
@@ -197,6 +208,18 @@ public:
     */
 	bool EstDansLstArrivant(TArc<TData> &tArcArr);
 
+    /************************************************
+    * METHODE : InverserSommet
+    * ***********************************************
+    * Entree : rien
+    * Necessite : rien
+    * Sortie : rien
+    * Entraine : Inverse les arcs du sommet c'est à dire
+    *               les arcs partant deviennent des arcs
+    *              arrivant et vice versa
+    * ***********************************************
+    */
+    void InverserSommet();
 };
 #include "TSommet.tpp"
 
