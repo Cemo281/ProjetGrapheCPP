@@ -55,15 +55,10 @@ public:
     * Necessite : Rien
     * Sortie : Rien
     * Entraine : Creer un arc a partir de l id de
-                deux sommets
+    *            deux sommets
     *************************************************
     */
-    TArc(unsigned int uiIdDepart, unsigned int uiIdArrive, TData Data)
-    {
-        uiARCIdDepart = uiIdDepart;
-        uiARCIdArrive = uiIdArrive;
-		ARCData = Data;
-    }
+    TArc(unsigned int uiIdDepart, unsigned int uiIdArrive, TData Data);
 
 	/**************************************************
     * ~TArc
@@ -86,7 +81,7 @@ public:
     * Entraine : Retournes l'id de l'arc de Depart
     *************************************************
     */
-    unsigned int ARCLireIdDepart() { return uiARCIdDepart; }
+    unsigned int ARCLireIdDepart();
 
     /*************************************************
     * methode : ARCLireIdArrive
@@ -97,7 +92,7 @@ public:
     * Entraine : Retournes l'id de l'arc de Depart
     *************************************************
     */
-    unsigned int ARCLireIdArrive() { return uiARCIdArrive; }
+    unsigned int ARCLireIdArrive();
 
     /*************************************************
     * methode : ARCLireData
@@ -108,7 +103,7 @@ public:
     * Entraine : Retournes la donnee de l'arc
     *************************************************
     */
-	TData ARCLireData() { return ARCData; }
+	TData ARCLireData();
 
     /*************************************************
     * methode : ARCModifierIdArrive
@@ -120,7 +115,7 @@ public:
     * Entraine : Modifie l'arc d'arrive
     *************************************************
     */
-    void ARCModifierIdArrive(unsigned int uiNvIdArrive) { uiARCIdArrive = uiNvIdArrive; }
+    void ARCModifierIdArrive(unsigned int uiNvIdArrive);
 
     /*************************************************
     * methode : ARCModifierIdDepart
@@ -132,7 +127,7 @@ public:
     * Entraine : Modifie l'arc de depart
     *************************************************
     */
-    void ARCModifierIdDepart(unsigned int uiNvIdDepart) { uiARCIdDepart = uiNvIdDepart; }
+    void ARCModifierIdDepart(unsigned int uiNvIdDepart);
 
     /*************************************************
 	* methode : ARCModifierData
@@ -143,7 +138,7 @@ public:
 	* Entraine : Modifie la donnee de l'arc
     *************************************************
     */
-	void ARCModifierData(TData &nvData) { ARCData = nvData; }
+	void ARCModifierData(TData &nvData);
 
 	/*************************************************
 	* methode : operator==
@@ -156,12 +151,9 @@ public:
     *               False sinon
 	* ***********************************************
     */
-	bool operator==(const TArc &tArc) const
-	{
-		if (uiARCIdDepart == tArc.uiARCIdDepart && uiARCIdArrive == tArc.uiARCIdArrive && ARCData == tArc.ARCData) return true;
-	    return false;
-	}
+	bool operator==(const TArc &tArc) const;
 };
+#include "TArc.tpp"
 
 #endif
 

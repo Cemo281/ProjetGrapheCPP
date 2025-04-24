@@ -37,5 +37,8 @@
     <None Include="TSommet.tpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </None>
+    <None Include="TArc.tpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </None>
   </ItemGroup>
 </Project>

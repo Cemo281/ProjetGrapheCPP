@@ -88,7 +88,7 @@ public:
     * Entraine : Retournes l'id du sommet
     *************************************************
     */
-    unsigned int SOMLireId() { return uiSOMId; }
+    unsigned int SOMLireId();
 
     /************************************************
     * METHODE : SOMModifierId
@@ -99,7 +99,7 @@ public:
     * Entraine : Cree un sommet
     *************************************************
     */
-    void SOMModifierId(unsigned int uiNvId) { uiSOMId = uiNvId; }
+    void SOMModifierId(unsigned int uiNvId);
 
     /************************************************
     * METHODE : SOMLireData
@@ -110,7 +110,7 @@ public:
     * Entraine : Lit la donnee du sommet
     *************************************************
     */
-    TData SOMLireData() { return SOMData; }
+    TData SOMLireData();
 
     /************************************************
     * METHODE : SOMAjouterArcPart
@@ -122,7 +122,7 @@ public:
     *               arcs partant du sommet
     *************************************************
     */
-    void SOMAjouterArcPart(TArc<TData> &pArcPart) { vSOMLstArcPartant.push_back(pArcPart); }
+    void SOMAjouterArcPart(TArc<TData> &pArcPart);
 
     /************************************************
     * METHODE : SOMAjouterArcArr
@@ -134,7 +134,7 @@ public:
     *               arcs arrivant au sommet
     *************************************************
     */
-    void SOMAjouterArcArr(TArc<TData> &pArcArr) { vSOMLstArcArrivant.push_back(pArcArr); }
+    void SOMAjouterArcArr(TArc<TData> &pArcArr);
 
 	/************************************************
     * METHODE : SOMLireArcPartant
@@ -146,7 +146,7 @@ public:
     *               partant du sommet
     *************************************************
     */
-    TArc<TData> SOMLireArcPartant(int pos) { return vSOMLstArcPartant.at(pos); }
+    TArc<TData> SOMLireArcPartant(int pos);
 
     /************************************************
     * METHODE : SOMLireArcArrivant
@@ -158,7 +158,7 @@ public:
     *               arrivant au sommet
     *************************************************
     */
-   TArc<TData> SOMLireArcArrivant(int pos) { return vSOMLstArcArrivant.at(pos); }
+   TArc<TData> SOMLireArcArrivant(int pos);
 
 	/************************************************
     * METHODE : operateur==
@@ -171,10 +171,7 @@ public:
 	*               False sinon
 	* ***********************************************
 	*/
-    bool operator==(const TSommet &tSommet) const
-    {
-        return uiSOMId == tSommet.uiSOMId && SOMData == tSommet.SOMData;
-    }
+    bool operator==(const TSommet &tSommet) const;
 
     /************************************************
     * METHODE : EstDansLstPart
@@ -202,4 +199,5 @@ public:
 
 };
 #include "TSommet.tpp"
+
 #endif
