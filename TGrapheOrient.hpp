@@ -2,7 +2,7 @@
 #define INCLUDE_GRAPHO_H 3
 
 /****************************************************
-* Patron de Classe :PGrapheOrient
+* Patron de Classe :TGrapheOrient
 * **************************************************
 * ROLE : Cette classe permet de gerer et modifier un graphe oriente
 * **************************************************
@@ -27,7 +27,7 @@ using namespace std;
 /* Variables :
 * Pas de variable globale de declaree
 */
-template<typename TData> class PGrapheOrient
+template<typename TData> class TGrapheOrient
 {
 	//Attributs:
 	private:
@@ -36,7 +36,7 @@ template<typename TData> class PGrapheOrient
 	//Constructeurs et destructeurs:
 	public:
 		/**************************************************************************************************************************
-		* PGrapheOrient
+		* TGrapheOrient
 		* *************************************************************************************************************************
 		* Entree: Rien
 		* Necessite : Rien
@@ -44,10 +44,10 @@ template<typename TData> class PGrapheOrient
 		* Entraine: Creer un graphe oriente
 		***************************************************************************************************************************
 		*/
-		PGrapheOrient() { vGROLstArc = nullptr; vGROLstSommet = nullptr; }
+		TGrapheOrient() { vGROLstArc = nullptr; vGROLstSommet = nullptr; }
 
 		/**************************************************************************************************************************
-		* PGrapheOrient
+		* TGrapheOrient
 		* *************************************************************************************************************************
 		* Entree: Le graphe oriente a copier
 		* Necessite : Rien
@@ -55,7 +55,7 @@ template<typename TData> class PGrapheOrient
 		* Entraine: Creer un graphe oriente a partir d'un autre graphe oriente
 		***************************************************************************************************************************
 		*/
-		PGrapheOrient(const PGrapheOrient& GROParam) {
+		TGrapheOrient(const TGrapheOrient& GROParam) {
 			vGROLstArc = new vector<TArc<TData>>();
 			vGROLstSommet = new vector<TSommet<TData>>();
 			for (int iBoucle = 0; iBoucle < GROParam.vGROLstArc->size(); iBoucle++) {
@@ -67,7 +67,7 @@ template<typename TData> class PGrapheOrient
 		}
 
 		/**************************************************************************************************************************
-		* PGrapheOrient
+		* TGrapheOrient
 		* *************************************************************************************************************************
 		* Entree: Fichier, le fichier contenant le graphe oriente
 		* Necessite : Le fichier doit etre valide et bien forme (.txt)
@@ -75,10 +75,10 @@ template<typename TData> class PGrapheOrient
 		* Entraine: Creer un graphe oriente a partir d'un fichier .txt
 		***************************************************************************************************************************
 		*/
-		// PGrapheOrient(ifstream& Fichier);
+		// TGrapheOrient(ifstream& Fichier);
 
 		/**************************************************************************************************************************
-		* PGrapheOrient
+		* TGrapheOrient
 		* *************************************************************************************************************************
 		* Entree: Rien
 		* Necessite : Rien
@@ -86,7 +86,7 @@ template<typename TData> class PGrapheOrient
 		* Entraine: Detruit un graphe oriente
 		***************************************************************************************************************************
 		*/
-		~PGrapheOrient();
+		~TGrapheOrient();
 
 	//Methodes:
 		/**************************************************************************************************************************
@@ -151,8 +151,8 @@ template<typename TData> class PGrapheOrient
 		* Entraine : Inverse les arcs du graphe
 		* **************************************************************************************************************************
 		*/
-		PGrapheOrient* GROInverserGraphe();
+		TGrapheOrient* GROInverserGraphe();
 };
-#include"PGrapheOrient.tpp"
+#include"TGrapheOrient.tpp"
 
 #endif

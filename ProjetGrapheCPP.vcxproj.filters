@@ -18,7 +18,7 @@
     <ClCompile Include="ProjetGrapheCPP.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="PGrapheOrient.tpp">
+    <ClCompile Include="TGrapheOrient.tpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClCompile>
   </ItemGroup>
@@ -29,7 +29,7 @@
     <ClInclude Include="TSommet.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="PGrapheOrient.hpp">
+    <ClInclude Include="TGrapheOrient.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

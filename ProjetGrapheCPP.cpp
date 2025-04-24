@@ -4,7 +4,7 @@
 #include <iostream>
 #include "TArc.hpp"
 #include "TSommet.hpp"
-#include "PGrapheOrient.hpp"
+#include "TGrapheOrient.hpp"
 #include <assert.h>
 
 int main()
