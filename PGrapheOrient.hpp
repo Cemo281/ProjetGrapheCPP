@@ -1,11 +1,10 @@
-#pragma once
-#ifndef INCLUDE_SOMMET_H
-#define INCLUDE_SOMMET_H 3
+#ifndef INCLUDE_GRAPHO_H
+#define INCLUDE_GRAPHO_H 3
 
 /****************************************************
 * Patron de Classe :PGrapheOrient
 * **************************************************
-* ROLE : Cette classe permet de gérer et modifier un graphe orienté
+* ROLE : Cette classe permet de gï¿½rer et modifier un graphe orientï¿½
 * **************************************************
 * VERSION : 1.0
 * AUTEUR : ELAOULA KHAOULA
@@ -13,8 +12,8 @@
 * *************************************************
 * INCLUSIONS EXTERNES :
 */
-#include "PSommet.hpp"
-#include "PArc.hpp"
+#include "TSommet.hpp"
+#include "TArc.hpp"
 #include <vector>
 #include <exception>
 
@@ -22,27 +21,27 @@ using namespace std;
 
 
 /* TYPES:
-* Pas de type particulier de déclaré
+* Pas de type particulier de dï¿½clarï¿½
 */
 
 /* Variables :
-* Pas de variable globale de déclarée
+* Pas de variable globale de dï¿½clarï¿½e
 */
-template<class TSommet, class TArc> class PGrapheOrient
+template<class TData> class PGrapheOrient
 {
 	//Attributs:
 	private:
-		vector<TArc*>* vGROLstArc //liste des Arcs
-		vector<TSommet*>* vGROLstSommet //liste des Sommets
+		vector<TArc<TData>> vGROLstArc; //liste des Arcs
+		vector<TSommet<TData>> vGROLstSommet; //liste des Sommets
 	//Constructeurs et destructeurs:
 	public:
 		/**************************************************************************************************************************
 		* PGrapheOrient
 		* *************************************************************************************************************************
-		* Entrée: Rien
-		* Necéssite : Rien
+		* Entrï¿½e: Rien
+		* Necï¿½ssite : Rien
 		* Sortie: Rien
-		* Entraine: Créer un graphe orienté
+		* Entraine: Crï¿½er un graphe orientï¿½
 		***************************************************************************************************************************
 		*/
 		PGrapheOrient() { vGROLstArc = nullptr; vGROLstSommet = nullptr; }
@@ -50,15 +49,15 @@ template<class TSommet, class TArc> class PGrapheOrient
 		/**************************************************************************************************************************
 		* PGrapheOrient
 		* *************************************************************************************************************************
-		* Entrée: Le graphe orienté à copier
-		* Necéssite : Rien
+		* Entrï¿½e: Le graphe orientï¿½ ï¿½ copier
+		* Necï¿½ssite : Rien
 		* Sortie: Rien
-		* Entraine: Créer un graphe orienté à partir d'un autre graphe orienté
+		* Entraine: Crï¿½er un graphe orientï¿½ ï¿½ partir d'un autre graphe orientï¿½
 		***************************************************************************************************************************
 		*/
 		PGrapheOrient(const PGrapheOrient& GROParam) {
-			vGROLstArc = new vector<TArc*>();
-			vGROLstSommet = new vector<TSommet*>();
+			vGROLstArc = new vector<TArc<TData>>();
+			vGROLstSommet = new vector<TSommet<TData>>();
 			for (int iBoucle = 0; iBoucle < GROParam.vGROLstArc->size(); iBoucle++) {
 				vGROLstArc->push_back(GROParam.vGROLstArc->at(iBoucle));
 			}
@@ -70,10 +69,10 @@ template<class TSommet, class TArc> class PGrapheOrient
 		/**************************************************************************************************************************
 		* PGrapheOrient
 		* *************************************************************************************************************************
-		* Entrée: Fichier, le fichier contenant le graphe orienté
-		* Necéssite : Le fichier doit être valide et bien formé (.txt)
+		* Entrï¿½e: Fichier, le fichier contenant le graphe orientï¿½
+		* Necï¿½ssite : Le fichier doit ï¿½tre valide et bien formï¿½ (.txt)
 		* Sortie: Rien
-		* Entraine: Créer un graphe orienté à partir d'un fichier .txt
+		* Entraine: Crï¿½er un graphe orientï¿½ ï¿½ partir d'un fichier .txt
 		***************************************************************************************************************************
 		*/
 		PGrapheOrient(ifstream& Fichier);
@@ -81,58 +80,58 @@ template<class TSommet, class TArc> class PGrapheOrient
 		/**************************************************************************************************************************
 		* PGrapheOrient
 		* *************************************************************************************************************************
-		* Entrée: Rien
-		* Necéssite : Rien
+		* Entrï¿½e: Rien
+		* Necï¿½ssite : Rien
 		* Sortie: Rien
-		* Entraine: Détruit un graphe orienté
+		* Entraine: Dï¿½truit un graphe orientï¿½
 		***************************************************************************************************************************
 		*/
 		~PGrapheOrient();
 
-	//Méthodes:
+	//Mï¿½thodes:
 		/**************************************************************************************************************************
 		* GROAjouterArc()
 		* *************************************************************************************************************************
-		* Entrée: Rien
-		* Necéssite : Rien
+		* Entrï¿½e: Rien
+		* Necï¿½ssite : Rien
 		* Sortie: Rien
 		* Entraine:Ajoute un arc au graphe
 		***************************************************************************************************************************
 		*/
-		void GROAjouterArc(CArc* pArc);
+		void GROAjouterArc(TArc<TData>& tArc);
 
 		/***************************************************************************************************************************
 		* GROAjouterSommet()
 		* **************************************************************************************************************************
-		* Entrée:Un pointeur vers un sommet (CSommet*)
-		* Necéssite : Un sommet valide
+		* Entrï¿½e:Un pointeur vers un sommet (CSommet*)
+		* Necï¿½ssite : Un sommet valide
 		* Sortie: Rien
 		* Entraine:Ajoute un sommet au graphe
 		****************************************************************************************************************************
 		*/
-		void GROAjouterSommet(CSommet* pSom) { vGROLstSommet.push_back(pSom); }
+		void GROAjouterSommet(TSommet<TData>& pSom) { vGROLstSommet.push_back(pSom); }
 
 		/***************************************************************************************************************************
 		* SOMEstDansGraphe
 		* **************************************************************************************************************************
-		* Entrée : Un pointeur vers un sommet
-		* Nécessite : Rien
-		* Sortie : Booléen
-		* Entraine : Vérifie si un sommet est dans le graphe
+		* Entrï¿½e : Un pointeur vers un sommet
+		* Nï¿½cessite : Rien
+		* Sortie : Boolï¿½en
+		* Entraine : Vï¿½rifie si un sommet est dans le graphe
 		* **************************************************************************************************************************
 		*/
-		bool GROSOMEstDansGraphe(CSommet* pSommet);
+		bool GROSOMEstDansGraphe(TSommet<TData>& pSommet);
 
 		/***************************************************************************************************************************
 		* ARCestDansGraphe
 		* **************************************************************************************************************************
-		* Entrée : Un pointeur vers un arc
-		* Nécessite : Rien
-		* Sortie : Booléen
-		* Entraine : Vérifie si un sommet est dans le graphe
+		* Entrï¿½e : Un pointeur vers un arc
+		* Nï¿½cessite : Rien
+		* Sortie : Boolï¿½en
+		* Entraine : Vï¿½rifie si un sommet est dans le graphe
 		* **************************************************************************************************************************
 		*/
-		bool GROARCEstDansGraphe(CArc* pArc) {
+		bool GROARCEstDansGraphe(TArc<TData>& pArc) {
 			int iBoucle;
 
 			for (iBoucle = 0; iBoucle < vGROLstArc; iBoucle++) {
@@ -146,14 +145,14 @@ template<class TSommet, class TArc> class PGrapheOrient
 		/***************************************************************************************************************************
 		* METHODE : GROInverserGraphe
 		* **************************************************************************************************************************
-		* Entrée : rien
-		* Nécessite : rien
-		* Sortie : Le graphe orienté inversé
+		* Entrï¿½e : rien
+		* Nï¿½cessite : rien
+		* Sortie : Le graphe orientï¿½ inversï¿½
 		* Entraine : Inverse les arcs du graphe
 		* **************************************************************************************************************************
 		*/
 		PGrapheOrient* GROInverserGraphe();
 };
-#include"PGrapheOrient.th"
+#include"PGrapheOrient.tpp"
 
 #endif

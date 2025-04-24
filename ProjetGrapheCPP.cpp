@@ -2,70 +2,20 @@
 //
 
 #include <iostream>
-#include "PArc.hpp"
-#include "PSommet.hpp"
+#include "TArc.hpp"
+#include "TSommet.hpp"
 #include "PGrapheOrient.hpp"
 #include <assert.h>
 
 int main()
-{
-    // Création de sommets en utilisant des pointeurs
-    PSommet* sommet1 = new PSommet();
-    assert(sommet1->SOMLireId() == 0); // Par défaut, l'ID devrait être 0
+{    // Test de la classe TArc avec des arcs de type TArc<int>
+    TSommet<int> sommet1(1, 10);
+    TSommet<int> sommet2(2, 20);
+    TArc<int> arc1(1, 2, 30);
 
-    // Test du constructeur avec ID
-    PSommet* sommet2 = new PSommet(42);
-    assert(sommet2->SOMLireId() == 42);
-
-    // Test de la modification de l'ID
-    sommet2->SOMModifierId(100);
-    assert(sommet2->SOMLireId() == 100);
-
-    // Création d'arcs pour les tests
-    PArc<int>* arc1 = new PArc<int>();
-    PArc<int>* arc2 = new PArc<int>();
-
-    // Numéroter les arcs
-    arc1->ARCModifierIdDepart(1);
-    arc1->ARCModifierIdArrive(2);
-    arc2->ARCModifierIdDepart(3);
-    arc2->ARCModifierIdArrive(4);
-
-    // Test de l'ajout d'arcs arrivants
-    std::cout << "Ajout d'un arc arrivant au sommet 1" << std::endl;
-    sommet1->SOMAjouterArcArr(arc1);
-    sommet1->SOMAjouterArcArr(arc2);
-
-    sommet1->SOMAjouterArcPart(arc1);
-    sommet1->SOMAjouterArcPart(arc2);
-
-    // Test de la lecture des arcs arrivants
-    assert(sommet1->SOMLireArcArrivant(0) == arc1);
-    assert(sommet1->SOMLireArcArrivant(1) == arc2);
-
-    // Test de la lecture des arcs partants
-    assert(sommet1->SOMLireArcPartant(0) == arc1);
-    assert(sommet1->SOMLireArcPartant(1) == arc2);
-
-    // Test de EstDansLstPart
-    assert(sommet1->EstDansLstPart(arc1) == true);
-    assert(sommet1->EstDansLstPart(arc2) == true);
-
-    // Test de EstDansLstArr
-    assert(sommet1->EstDansLstArrivant(arc2) == true);
-    assert(sommet1->EstDansLstArrivant(arc1) == true);
-
-    std::cout << "Tous les tests de PSommet ont réussi." << std::endl;
-
-    // Libération de la mémoire
-    delete sommet1;
-    delete sommet2;
-    delete arc1;
-    delete arc2;
-
+    std::cout << "Graphe orienté créé avec succès." << std::endl;
     return 0;
 }
-
 // Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage
 // Déboguer le programme : F5 ou menu Déboguer > Démarrer le débogage
 

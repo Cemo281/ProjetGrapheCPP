@@ -18,15 +18,15 @@
     <ClCompile Include="ProjetGrapheCPP.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="CSommet.cpp">
+    <ClCompile Include="PSommet.tpp">
       <Filter>Fichiers de ressources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CArc.hpp">
+    <ClInclude Include="PArc.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="CSommet.hpp">
+    <ClInclude Include="PSommet.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="PGrapheOrient.hpp">

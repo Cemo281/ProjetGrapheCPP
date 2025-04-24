@@ -127,12 +127,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CSommet.cpp" />
+    <ClCompile Include="PSommet.tpp" />
     <ClCompile Include="ProjetGrapheCPP.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CArc.hpp" />
-    <ClInclude Include="CSommet.hpp" />
+    <ClInclude Include="PArc.hpp" />
+    <ClInclude Include="PSommet.hpp" />
     <ClInclude Include="PGrapheOrient.hpp" />
   </ItemGroup>
   <ItemGroup>

@@ -7,9 +7,9 @@
 #define INCLUDE_ARC_H 2
 
 /****************************************************
-* Classe : PArc
+* Classe : TArc
 * **************************************************
-* ROLE : Cette classe permet gérer et modifier un arc
+* ROLE : Cette classe permet gï¿½rer et modifier un arc
 * **************************************************
 * VERSION : 1.0
 * AUTEUR : OZDEMIR Ali-Cem
@@ -19,46 +19,46 @@
 */
 
 /* TYPES:
-* Pas de type particulier de déclaré
+* Pas de type particulier de dï¿½clarï¿½
 */
 
 /* Variables :
-* Pas de variable globale de déclarée
+* Pas de variable globale de dï¿½clarï¿½e
 */
 
-template<class TData> class PArc
+template<class TData> class TArc
 {
     // ATTRIBUTS
 private:
     unsigned int uiARCIdDepart;
     unsigned int uiARCIdArrive;
-	TData ARCData; // Données de l'arc
+	TData ARCData; // Donnï¿½es de l'arc
     
     // CONSTRUCTEURS ET DESTRUCTEURS
 public:
     /*************************************************
-    * PArc
+    * TArc
     * ***********************************************
-    * Entrée : Rien
-    * Nécessite : Rien
+    * Entrï¿½e : Rien
+    * Nï¿½cessite : Rien
     * Sortie : Rien
-    * Entraîne : Crée un arc
+    * Entraï¿½ne : Crï¿½e un arc
     *************************************************
     */
-    PArc() = default;
+    TArc() = default;
 
     /*************************************************
-    * PArc
+    * TArc
     * ***********************************************
-    * Entrée : uiIdDepart, naturel, sommet de départ
-    *          uiIdArrive, naturel, sommet d'arrivé
-    * Nécessite : Rien
+    * Entrï¿½e : uiIdDepart, naturel, sommet de dï¿½part
+    *          uiIdArrive, naturel, sommet d'arrivï¿½
+    * Nï¿½cessite : Rien
     * Sortie : Rien
-    * Entraîne : Créer un arc à partir de l id de
+    * Entraï¿½ne : Crï¿½er un arc ï¿½ partir de l id de
                 deux sommets
     *************************************************
     */
-    PArc(unsigned int uiIdDepart, unsigned int uiIdArrive, TData Data)
+    TArc(unsigned int uiIdDepart, unsigned int uiIdArrive, TData &Data)
     {
         uiARCIdDepart = uiIdDepart;
         uiARCIdArrive = uiIdArrive;
@@ -66,24 +66,24 @@ public:
     }
 
 	/**************************************************
-    * ~PArc
+    * ~TArc
 	* ************************************************
-	* Entrée : Rien
-	* Nécessite : Rien
+	* Entrï¿½e : Rien
+	* Nï¿½cessite : Rien
 	* Sortie : Rien
-	* Entraîne : Détruis un arc
+	* Entraï¿½ne : Dï¿½truis un arc
     * ************************************************
     */
-    ~PArc() = default;
+    ~TArc() = default;
 
     // METHODES
     /*************************************************
     * methode : ARCLireIdDepart
     * ***********************************************
-    * Entrée : Rien
-    * Nécessite : Rien
+    * Entrï¿½e : Rien
+    * Nï¿½cessite : Rien
     * Sortie : uiARCIdDepart, naturel
-    * Entraîne : Retournes l'id de l'arc de Depart
+    * Entraï¿½ne : Retournes l'id de l'arc de Depart
     *************************************************
     */
     unsigned int ARCLireIdDepart() { return uiARCIdDepart; }
@@ -91,10 +91,10 @@ public:
     /*************************************************
     * methode : ARCLireIdArrive
     * ***********************************************
-    * Entrée : Rien
-    * Nécessite : Rien
+    * Entrï¿½e : Rien
+    * Nï¿½cessite : Rien
     * Sortie : uiARCIdArrive, naturel
-    * Entraîne : Retournes l'id de l'arc de Départ
+    * Entraï¿½ne : Retournes l'id de l'arc de Dï¿½part
     *************************************************
     */
     unsigned int ARCLireIdArrive() { return uiARCIdArrive; }
@@ -102,10 +102,10 @@ public:
     /*************************************************
     * methode : ARCLireData
     * ***********************************************
-    * Entrée : Rien
-    * Nécessite : Rien
+    * Entrï¿½e : Rien
+    * Nï¿½cessite : Rien
     * Sortie : ARCData, TData
-    * Entraîne : Retournes la donnée de l'arc
+    * Entraï¿½ne : Retournes la donnï¿½e de l'arc
     *************************************************
     */
 	TData ARCLireData() { return ARCData; }
@@ -113,23 +113,23 @@ public:
     /*************************************************
     * methode : ARCModifierIdArrive
     * ***********************************************
-    * Entrée : uiNvIdArrive, naturel, l'id du nouvel
-                arc d'arrivé
-    * Nécessite : Rien
+    * Entrï¿½e : uiNvIdArrive, naturel, l'id du nouvel
+                arc d'arrivï¿½
+    * Nï¿½cessite : Rien
     * Sortie : Rien
-    * Entraîne : Modifie l'arc d'arrivé
+    * Entraï¿½ne : Modifie l'arc d'arrivï¿½
     *************************************************
     */
     void ARCModifierIdArrive(unsigned int uiNvIdArrive) { uiARCIdArrive = uiNvIdArrive; }
 
     /*************************************************
-    * ARCModifierIdDepart
+    * methode : ARCModifierIdDepart
     * ***********************************************
-    * Entrée : uiNvIdDepart, naturel, l'id du nouvel
+    * Entrï¿½e : uiNvIdDepart, naturel, l'id du nouvel
     *            arc de depart
-    * Nécessite : Rien
+    * Nï¿½cessite : Rien
     * Sortie : Rien
-    * Entraîne : Modifie l'arc de départ
+    * Entraï¿½ne : Modifie l'arc de dï¿½part
     *************************************************
     */
     void ARCModifierIdDepart(unsigned int uiNvIdDepart) { uiARCIdDepart = uiNvIdDepart; }
@@ -137,28 +137,28 @@ public:
     /*************************************************
 	* methode : ARCModifierData
     * ***********************************************
-	* Entrée : newData, TData, la nouvelle donnée
-    * Nécessite : Rien
+	* Entrï¿½e : newData, TData, la nouvelle donnï¿½e
+    * Nï¿½cessite : Rien
     * Sortie : Rien
-	* Entraîne : Modifie la donnée de l'arc
+	* Entraï¿½ne : Modifie la donnï¿½e de l'arc
     *************************************************
     */
-	void ARCModifierData(TData newData) { ARCData = newData; }
+	void ARCModifierData(TData &nvData) { ARCData = nvData; }
 
 	/*************************************************
-	* operator==
+	* methode : operator==
     * ************************************************
-	* Entrée : un arc
-	* Nécessite : Rien
-	* Sortie : Booléen
-	* Entraîne : Compare si deux arcs sont égaux
-	*               True si ils sont égaux, 
+	* Entrï¿½e : un arc
+	* Nï¿½cessite : Rien
+	* Sortie : Boolï¿½en
+	* Entraï¿½ne : Compare si deux arcs sont ï¿½gaux
+	*               True si ils sont ï¿½gaux, 
     *               False sinon
 	* ***********************************************
     */
-	bool operator==(const PArc* pArc) const
+	bool operator==(const TArc &tArc) const
 	{
-		if (uiARCIdDepart == pArc->uiARCIdDepart && uiARCIdArrive == pArc->uiARCIdArrive && ARCData == pArc->ARCData) return true;
+		if (uiARCIdDepart == tArc.uiARCIdDepart && uiARCIdArrive == tArc.uiARCIdArrive && ARCData == tArc.ARCData) return true;
 	    return false;
 	}
 };
