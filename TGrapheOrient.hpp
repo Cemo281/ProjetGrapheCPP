@@ -57,7 +57,7 @@ template<typename TData> class TGrapheOrient
 		* Entraine: Creer un graphe oriente a partir d'un autre graphe oriente
 		***************************************************************************************************************************
 		*/
-		TGrapheOrient(const TGrapheOrient &GROParam);
+		TGrapheOrient(const TGrapheOrient& GROParam);
 
 		/**************************************************************************************************************************
 		* TGrapheOrient
@@ -81,9 +81,9 @@ template<typename TData> class TGrapheOrient
 		*/
 		~TGrapheOrient() = default;
 
-	//Methodes:
+	//METHODES:
 		/**************************************************************************************************************************
-		* GROAjouterArc()
+		* METHODE : GROAjouterArc()
 		* *************************************************************************************************************************
 		* Entree: tArc, l'arc a ajouter
 		* Necessite : Rien
@@ -94,7 +94,7 @@ template<typename TData> class TGrapheOrient
 		void GROAjouterArc(TArc<TData> &tArc);
 
 		/***************************************************************************************************************************
-		* GROAjouterSommet()
+		* METHODE : GROAjouterSommet()
 		* **************************************************************************************************************************
 		* Entree: tSommet, le sommet a ajouter
 		* Necessite : Rien
@@ -105,7 +105,7 @@ template<typename TData> class TGrapheOrient
 		void GROAjouterSommet(TSommet<TData>& tSom);
 
 		/***************************************************************************************************************************
-		* SOMEstDansGraphe
+		* METHODE : SOMEstDansGraphe
 		* **************************************************************************************************************************
 		* Entree : tSommet, le sommet a verifier
 		* Necessite : Rien
@@ -116,7 +116,7 @@ template<typename TData> class TGrapheOrient
 		bool GROSOMEstDansGraphe(TSommet<TData> &tSommet);
 
 		/***************************************************************************************************************************
-		* GROARCEstDansGraphe
+		* METHODE : GROARCEstDansGraphe
 		* **************************************************************************************************************************
 		* Entree : tArc, l'arc a verifier
 		* Necessite : Rien
@@ -127,7 +127,7 @@ template<typename TData> class TGrapheOrient
 		bool GROARCEstDansGraphe(TArc<TData> &tArc);
 
 		/***************************************************************************************************************************
-		* METHODE : GROInverserGraphe
+		* METHODE : InverserGraphe
 		* **************************************************************************************************************************
 		* Entree : rien
 		* Necessite : rien

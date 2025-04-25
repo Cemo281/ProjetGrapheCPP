@@ -73,7 +73,7 @@ public:
 
     // METHODES
     /*************************************************
-    * methode : ARCLireIdDepart
+    * METHODE : ARCLireIdDepart
     * ***********************************************
     * Entree : Rien
     * Necessite : Rien
@@ -84,7 +84,7 @@ public:
     unsigned int ARCLireIdDepart();
 
     /*************************************************
-    * methode : ARCLireIdArrive
+    * METHODE : ARCLireIdArrive
     * ***********************************************
     * Entree : Rien
     * Necessite : Rien
@@ -95,7 +95,7 @@ public:
     unsigned int ARCLireIdArrive();
 
     /*************************************************
-    * methode : ARCLireData
+    * METHODE : ARCLireData
     * ***********************************************
     * Entree : Rien
     * Necessite : Rien
@@ -106,7 +106,7 @@ public:
 	TData ARCLireData();
 
     /*************************************************
-    * methode : ARCModifierIdArrive
+    * METHODE : ARCModifierIdArrive
     * ***********************************************
     * Entree : uiNvIdArrive, naturel, l'id du nouvel
                 arc d'arrive
@@ -118,7 +118,7 @@ public:
     void ARCModifierIdArrive(unsigned int uiNvIdArrive);
 
     /*************************************************
-    * methode : ARCModifierIdDepart
+    * METHODE : ARCModifierIdDepart
     * ***********************************************
     * Entree : uiNvIdDepart, naturel, l'id du nouvel
     *            arc de depart
@@ -130,7 +130,7 @@ public:
     void ARCModifierIdDepart(unsigned int uiNvIdDepart);
 
     /*************************************************
-	* methode : ARCModifierData
+	* METHODE : ARCModifierData
     * ***********************************************
 	* Entree : newData, TData, la nouvelle donnee
     * Necessite : Rien
@@ -141,7 +141,7 @@ public:
 	void ARCModifierData(TData &nvData);
 
 	/*************************************************
-	* methode : operator==
+	* METHODE : operator==
     * ************************************************
 	* Entree : un arc
 	* Necessite : Rien
@@ -154,7 +154,7 @@ public:
 	bool operator==(const TArc &tArc) const;
 
     /*************************************************
-     * Methode : InverserArc
+     * METHODE : InverserArc
      * ***********************************************
      * Entree : tArc, l'arc a inverser
      * Necessite : Rien

@@ -19,7 +19,7 @@ template <typename TData> TArc<TData>::TArc(unsigned int uiIdDepart, unsigned in
 }
 
 /*************************************************
-* methode : ARCLireIdDepart
+* METHODE : ARCLireIdDepart
 * ***********************************************
 * Entree : Rien
 * Necessite : Rien
@@ -30,7 +30,7 @@ template <typename TData> TArc<TData>::TArc(unsigned int uiIdDepart, unsigned in
 template <typename TData> unsigned int TArc<TData>::ARCLireIdDepart() { return uiARCIdDepart; }
 
 /*************************************************
-* methode : ARCLireIdArrive
+* METHODE : ARCLireIdArrive
 * ***********************************************
 * Entree : Rien
 * Necessite : Rien
@@ -39,9 +39,9 @@ template <typename TData> unsigned int TArc<TData>::ARCLireIdDepart() { return u
 *************************************************
 */
 template <typename TData> unsigned int TArc<TData>::ARCLireIdArrive() { return uiARCIdArrive; }
-
+  
 /*************************************************
-* methode : ARCLireData
+* METHODE : ARCLireData
 * ***********************************************
 * Entree : Rien
 * Necessite : Rien
@@ -52,7 +52,7 @@ template <typename TData> unsigned int TArc<TData>::ARCLireIdArrive() { return u
 template <typename TData> TData TArc<TData>::ARCLireData() { return ARCData; }
 
 /*************************************************
-* methode : ARCModifierIdArrive
+* METHODE : ARCModifierIdArrive
 * ***********************************************
 * Entree : uiNvIdArrive, naturel, l'id du nouvel
             arc d'arrive
@@ -64,7 +64,7 @@ template <typename TData> TData TArc<TData>::ARCLireData() { return ARCData; }
 template <typename TData> void TArc<TData>::ARCModifierIdArrive(unsigned int uiNvIdArrive) { uiARCIdArrive = uiNvIdArrive; }
 
 /*************************************************
-* methode : ARCModifierIdDepart
+* METHODE : ARCModifierIdDepart
 * ***********************************************
 * Entree : uiNvIdDepart, naturel, l'id du nouvel
 *            arc de depart
@@ -76,7 +76,7 @@ template <typename TData> void TArc<TData>::ARCModifierIdArrive(unsigned int uiN
 template <typename TData> void TArc<TData>::ARCModifierIdDepart(unsigned int uiNvIdDepart) { uiARCIdDepart = uiNvIdDepart; }
 
 /*************************************************
-* methode : ARCModifierData
+* METHODE : ARCModifierData
 * ***********************************************
 * Entree : newData, TData, la nouvelle donnee
 * Necessite : Rien
@@ -87,7 +87,7 @@ template <typename TData> void TArc<TData>::ARCModifierIdDepart(unsigned int uiN
 template <typename TData> void TArc<TData>::ARCModifierData(TData &nvData) { ARCData = nvData; }
 
 /*************************************************
-* methode : operator==
+* METHODE : operator==
 * ************************************************
 * Entree : un arc
 * Necessite : Rien
@@ -104,7 +104,7 @@ template <typename TData> bool TArc<TData>::operator==(const TArc &tArc) const
 }
 
 /*************************************************
- * Methode : InverserArc
+ * METHODE : InverserArc
  * ***********************************************
  * Entree : tArc, l'arc a inverser
  * Necessite : Rien
