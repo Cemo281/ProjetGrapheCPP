@@ -95,13 +95,13 @@ template<typename TData> class TGrapheOrient
 		/***************************************************************************************************************************
 		* METHODE : GROAjouterSommet()
 		* **************************************************************************************************************************
-		* Entree: tSommet, le sommet a ajouter
+		* Entree: ptSommet, le sommet a ajouter
 		* Necessite : Rien
 		* Sortie: Rien
 		* Entraine: Ajoute le sommet au graphe
 		****************************************************************************************************************************
 		*/
-		void GROAjouterSommet(TSommet<TData> &tSom);
+		void GROAjouterSommet(TSommet<TData>* ptSom);
 
 		/***************************************************************************************************************************
 		* METHODE : SOMEstDansGraphe
