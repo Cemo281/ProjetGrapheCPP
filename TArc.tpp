@@ -11,7 +11,7 @@
 *            deux sommets
 *************************************************
 */
-template <typename TData> TArc<TData>::TArc(unsigned int uiIdDepart, unsigned int uiIdArrive, TData Data) 
+template <typename TData> TArc<TData>::TArc(unsigned int uiIdDepart, unsigned int uiIdArrive, TData Data)
 {
     uiARCIdDepart = uiIdDepart;
     uiARCIdArrive = uiIdArrive;
