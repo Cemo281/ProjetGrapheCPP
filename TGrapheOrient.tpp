@@ -13,7 +13,7 @@ using namespace std;
 * Entraine: Creer un graphe oriente a partir d'un autre graphe oriente
 ***************************************************************************************************************************
 */
-template<typename TData> TGrapheOrient<TData>::TGrapheOrient(const TGrapheOrient& GROParam)
+template<typename TData> TGrapheOrient<TData>::TGrapheOrient(const TGrapheOrient<TData>& GROParam )
 {
     unsigned int uiBoucle;
 
@@ -30,13 +30,13 @@ template<typename TData> TGrapheOrient<TData>::TGrapheOrient(const TGrapheOrient
 /***************************************************************************************************************************
 * METHODE : GROAjouterSommet()
 * **************************************************************************************************************************
-* Entree: le sommet a ajouter
+* Entree: tSommet(référence vers le sommet a verifier)
 * Necessite : Rien
 * Sortie: Rien
-* Entraine: Ajoute le sommet au graphe
+* Entraine: Ajoute le sommet au graphe orienté
 ****************************************************************************************************************************
 */
-template<typename TData> void TGrapheOrient<TData>::GROAjouterSommet(TSommet<TData> &tSommet) {
+template<typename TData> void TGrapheOrient<TData>::GROAjouterSommet(TSommet<TData> &pSommet) {
     vGROLstSommet.push_back(tSommet);
 }
 

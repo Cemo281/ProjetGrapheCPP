@@ -42,7 +42,8 @@ template<typename TData> class TGrapheOrient
 		* Entree: Rien
 		* Necessite : Rien
 		* Sortie: Rien
-		* Entraine: Creer un graphe oriente
+		* Entraine: Initialise un graphe orienté vide
+		
 		***************************************************************************************************************************
 		*/
 		TGrapheOrient() = default;
@@ -56,7 +57,7 @@ template<typename TData> class TGrapheOrient
 		* Entraine: Creer un graphe oriente a partir d'un autre graphe oriente
 		***************************************************************************************************************************
 		*/
-		TGrapheOrient(const TGrapheOrient& GROParam);
+		TGrapheOrient(const TGrapheOrient<TData>& GROParam);
 
 		/**************************************************************************************************************************
 		* TGrapheOrient
@@ -84,21 +85,21 @@ template<typename TData> class TGrapheOrient
 		/**************************************************************************************************************************
 		* METHODE : GROAjouterArc()
 		* *************************************************************************************************************************
-		* Entree: ptArc, pointeur vers l'arc a ajouter
+		* Entree:ptArc, un pointeur vers l'arc a ajouter
 		* Necessite : Rien
 		* Sortie: Rien
-		* Entraine: Ajoute l'arc au graphe
+		* Entraine: Ajoute l'arc au graphe orienté
 		***************************************************************************************************************************
 		*/
-		void GROAjouterArc(TArc<TData> &tArc);
+		void GROAjouterArc(TArc<TData>* ptArc);
 
 		/***************************************************************************************************************************
 		* METHODE : GROAjouterSommet()
 		* **************************************************************************************************************************
-		* Entree: ptSommet, le sommet a ajouter
+		* Entree: ptSommet,un pointeur vers le sommet a ajouter
 		* Necessite : Rien
 		* Sortie: Rien
-		* Entraine: Ajoute le sommet au graphe
+		* Entraine: Ajoute le sommet au graphe orienté
 		****************************************************************************************************************************
 		*/
 		void GROAjouterSommet(TSommet<TData>* ptSom);
@@ -106,24 +107,24 @@ template<typename TData> class TGrapheOrient
 		/***************************************************************************************************************************
 		* METHODE : SOMEstDansGraphe
 		* **************************************************************************************************************************
-		* Entree : tSommet, le sommet a verifier
+		* Entree : ptSommet ,un pointeur vers le sommet a ajouter
 		* Necessite : Rien
 		* Sortie : Booleen
-		* Entraine : Verifie si le sommet appartient au graphe
+		* Entraine : Verifie si le sommet appartient au graphe orienté
 		* **************************************************************************************************************************
 		*/
-		bool GROSOMEstDansGraphe(TSommet<TData> &tSommet);
+		bool GROSOMEstDansGraphe(TSommet<TData>* ptSommet);
 
 		/***************************************************************************************************************************
 		* METHODE : GROARCEstDansGraphe
 		* **************************************************************************************************************************
-		* Entree : tArc, l'arc a verifier
+		* Entree : ptArc pinteur vers l'arc à ajouter 
 		* Necessite : Rien
 		* Sortie : Booleen
 		* Entraine : Verifie si l'arc appartient au graphe
 		* **************************************************************************************************************************
 		*/
-		bool GROARCEstDansGraphe(TArc<TData> &tArc);
+		bool GROARCEstDansGraphe(TArc<TData>* ptArc);
 };
 #include "TGrapheOrient.tpp"
 
