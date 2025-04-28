@@ -9,30 +9,39 @@
 
 int main()
 {    
-    // Test InverserSommet()
-    TArc<int>* arc1 = new TArc<int>(1, 2, 0);
+    // Test Arc
 
-    TSommet<int> sommet1(1, 100);
+	TArc<int> arc1(1, 2, 5);
+	assert(arc1.ARCLireIdDepart() == 1);
+	assert(arc1.ARCLireIdArrive() == 2);
+	assert(arc1.ARCLireData() == 5);
 
-    sommet1.SOMAjouterArcPart(arc1);
+	// Test Sommet
+	TSommet<int> sommet1;
+	sommet1.SOMModifierId(1);
+	sommet1.SOMModifierData(10);
+	assert(sommet1.SOMLireId() == 1);
+	assert(sommet1.SOMLireData() == 10);
 
-    assert(sommet1.EstDansLstArrivant(arc1) == false);
+	// Test Arc Partant
+	TArc<int>* arcPartant = new TArc<int>(1, 2, 5);
+	sommet1.SOMAjouterArcPart(arcPartant);	
+	assert(sommet1.SOMEstDansLstPart(arcPartant) == true);
 
-    // Vérifier que les arcs partant sont maintenant arrivants et vice versa
-    assert(sommet1.EstDansLstArrivant(arc1) == true);
+	// Test Arc Arrivant
+	TArc<int>* arcArrivant = new TArc<int>(2, 1, 5);
+	sommet1.SOMAjouterArcArr(arcArrivant);
+	assert(sommet1.SOMEstDansLstArrivant(arcArrivant) == true);
+
+	// Test Supprimer Arc Partant
+
+	sommet1.SOMSupprimerArcPart(arcPartant);
+	assert(sommet1.SOMEstDansLstPart(arcPartant) == false);
+
+	// Test Supprimer Arc Arrivant
+	sommet1.SOMSupprimerArcArr(arcArrivant);
+	assert(sommet1.SOMEstDansLstArrivant(arcArrivant) == false);
     
-    // Test Inverser Arc
-	assert(arc1->ARCLireIdArrive() == 1);
-	assert(arc1->ARCLireIdDepart() == 2);
-
-	// Afficher les infos de l'arc
-	std::cout << "Arc inversé : " << std::endl;
-	std::cout << "Id de départ : " << arc1->ARCLireIdDepart() << std::endl;
-	std::cout << "Id d'arrivée : " << arc1->ARCLireIdArrive() << std::endl;
-
-	// Afficher le premier arc arrivant au sommet
-	std::cout << "Premier arc arrivant au sommet : " << std::endl;
-
     return 0;
 }
 // Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage

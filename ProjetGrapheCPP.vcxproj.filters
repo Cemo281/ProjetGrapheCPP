@@ -29,6 +29,9 @@
     <ClInclude Include="TGrapheOrient.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="GrapheNonOrient.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="TSommet.tpp">

@@ -54,7 +54,7 @@ public:
     *          uiIdArrive, naturel, sommet d'arrive
     * Necessite : Rien
     * Sortie : Rien
-    * Entraine : Creer un arc a partir de l id de
+    * Entraine : Creer un arc a partir de l'id de
     *            deux sommets
     *************************************************
     */

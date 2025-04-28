@@ -174,7 +174,7 @@ public:
 	/************************************************
     * METHODE : operateur==
     * ***********************************************
-	* Entree : tSommet, un pointeur vers un sommet
+	* Entree : ptSommet, un pointeur vers un sommet
     * Necessite : rien
 	* Sortie : un booleen
 	* Entraine : Compare si deux pointeurs vers un sommet sont egaux
@@ -185,28 +185,28 @@ public:
     bool operator==(const TSommet* ptSommet) const;
 
     /************************************************
-    * METHODE : EstDansLstPart
+    * METHODE : SOMEstDansLstPart
     * ***********************************************
-    * Entree : tArcPart, un pointeur vers l'arc partant du sommet
+    * Entree : ptArcPart, un pointeur vers l'arc partant du sommet
     * Necessite : rien
     * Sortie : un booleen
 	* Entraine : Verifie si le sommet existe deja dans 
     *                la liste des sommets partant
     * ***********************************************
     */
-    bool EstDansLstPart(TArc<TData>* ptArcPart);
+	bool SOMEstDansLstPart(TArc<TData>* ptArcPart);
 
     /************************************************
-    * METHODE : EstDansLstArrivant
+    * METHODE : SomEstDansLstArrivant
     * ***********************************************
-    * Entree : tArcArr, un pointeur vers l'arc arrivant au sommet
+    * Entree : ptArcArr, un pointeur vers l'arc arrivant au sommet
     * Necessite : rien
     * Sortie : un booleen
     * Entraine : Verifie si le sommet existe deja 
                     dans la liste des sommets arrivant
     * ***********************************************
     */
-	bool EstDansLstArrivant(TArc<TData>* ptArcArr);
+	bool SOMEstDansLstArrivant(TArc<TData>* ptArcArr);
 };
 #include "TSommet.tpp"
 

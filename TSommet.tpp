@@ -117,7 +117,7 @@ template <typename TData> void TSommet<TData>::SOMSupprimerArcArr(TArc<TData>* p
 /************************************************
 * METHODE : operateur==
 * ***********************************************
-* Entree : tSommet, un pointeur vers un sommet
+* Entree : ptSommet, un pointeur vers un sommet
 * Necessite : rien
 * Sortie : un booleen
 * Entraine : Compare si deux pointeurs vers un sommet sont egaux
@@ -131,16 +131,16 @@ template <typename TData> bool TSommet<TData>::operator==(const TSommet* ptSomme
 }
 
 /************************************************
-* METHODE : EstDansLstPart
+* METHODE : SOMEstDansLstPart
 * ***********************************************
-* Entree : tArcPart, un pointeur vers l'arc partant du sommet
+* Entree : ptArcPart, un pointeur vers l'arc partant du sommet
 * Necessite : rien
 * Sortie : un booleen
 * Entraine : Verifie si le sommet existe deja dans 
 *                la liste des sommets partant
 * ***********************************************
 */
-template <typename TData> bool TSommet<TData>::EstDansLstPart(TArc<TData>* ptArcPart) {
+template <typename TData> bool TSommet<TData>::SOMEstDansLstPart(TArc<TData>* ptArcPart) {
 	int iBoucle;
 	for (iBoucle = 0; iBoucle < vSOMLstArcPartant.size(); iBoucle++)
 	{
@@ -153,16 +153,16 @@ template <typename TData> bool TSommet<TData>::EstDansLstPart(TArc<TData>* ptArc
 }
 
 /************************************************
-* METHODE : EstDansLstArrivant
+* METHODE : SOMEstDansLstArrivant
 * ***********************************************
-* Entree : tArcArr, un pointeur vers l'arc arrivant au sommet
+* Entree : ptArcArr, un pointeur vers l'arc arrivant au sommet
 * Necessite : rien
 * Sortie : un booleen
 * Entraine : Verifie si le sommet existe deja 
 				dans la liste des sommets arrivant
 * *************************************************
 */
-template <typename TData> bool TSommet<TData>::EstDansLstArrivant(TArc<TData>* ptArcArr) {
+template <typename TData> bool TSommet<TData>::SOMEstDansLstArrivant(TArc<TData>* ptArcArr) {
 	int iBoucle;
 	for (iBoucle = 0; iBoucle < vSOMLstArcArrivant.size(); iBoucle++)
 	{

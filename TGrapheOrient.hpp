@@ -42,7 +42,7 @@ template<typename TData> class TGrapheOrient
 		* Entree: Rien
 		* Necessite : Rien
 		* Sortie: Rien
-		* Entraine: Initialise un graphe orienté vide
+		* Entraine: Initialise un graphe orientï¿½ vide
 		
 		***************************************************************************************************************************
 		*/
@@ -85,10 +85,10 @@ template<typename TData> class TGrapheOrient
 		/**************************************************************************************************************************
 		* METHODE : GROAjouterArc()
 		* *************************************************************************************************************************
-		* Entree:ptArc, un pointeur vers l'arc a ajouter
+		* Entree: ptArc, un pointeur vers l'arc a ajouter
 		* Necessite : Rien
 		* Sortie: Rien
-		* Entraine: Ajoute l'arc au graphe orienté
+		* Entraine: Ajoute l'arc au graphe orientï¿½
 		***************************************************************************************************************************
 		*/
 		void GROAjouterArc(TArc<TData>* ptArc);
@@ -99,10 +99,10 @@ template<typename TData> class TGrapheOrient
 		* Entree: ptSommet,un pointeur vers le sommet a ajouter
 		* Necessite : Rien
 		* Sortie: Rien
-		* Entraine: Ajoute le sommet au graphe orienté
+		* Entraine: Ajoute le sommet au graphe orientï¿½
 		****************************************************************************************************************************
 		*/
-		void GROAjouterSommet(TSommet<TData>* ptSom);
+		void GROAjouterSommet(TSommet<TData>* ptSommet);
 
 		/***************************************************************************************************************************
 		* METHODE : SOMEstDansGraphe
@@ -110,7 +110,7 @@ template<typename TData> class TGrapheOrient
 		* Entree : ptSommet ,un pointeur vers le sommet a ajouter
 		* Necessite : Rien
 		* Sortie : Booleen
-		* Entraine : Verifie si le sommet appartient au graphe orienté
+		* Entraine : Verifie si le sommet appartient au graphe orientï¿½
 		* **************************************************************************************************************************
 		*/
 		bool GROSOMEstDansGraphe(TSommet<TData>* ptSommet);
@@ -118,7 +118,7 @@ template<typename TData> class TGrapheOrient
 		/***************************************************************************************************************************
 		* METHODE : GROARCEstDansGraphe
 		* **************************************************************************************************************************
-		* Entree : ptArc pinteur vers l'arc à ajouter 
+		* Entree : ptArc pinteur vers l'arc ï¿½ ajouter 
 		* Necessite : Rien
 		* Sortie : Booleen
 		* Entraine : Verifie si l'arc appartient au graphe

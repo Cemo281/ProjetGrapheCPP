@@ -130,6 +130,7 @@
     <ClCompile Include="ProjetGrapheCPP.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GrapheNonOrient.hpp" />
     <ClInclude Include="TArc.hpp" />
     <ClInclude Include="TSommet.hpp" />
     <ClInclude Include="TGrapheOrient.hpp" />
