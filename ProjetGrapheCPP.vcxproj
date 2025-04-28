@@ -127,7 +127,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="TGrapheOrient.tpp" />
     <ClCompile Include="ProjetGrapheCPP.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -137,6 +136,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="TArc.tpp" />
+    <None Include="TGrapheOrient.tpp" />
     <None Include="TSommet.tpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

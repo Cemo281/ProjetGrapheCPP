@@ -58,7 +58,28 @@ template <typename TData> void TSommet<TData>::SOMModifierData(TData nvData) { S
 *               arcs partant du sommet
 *************************************************
 */
-template <typename TData> void TSommet<TData>::SOMAjouterArcPart(TArc<TData> &tArcPart) { vSOMLstArcPartant.push_back(tArcPart); }
+template <typename TData> void TSommet<TData>::SOMAjouterArcPart(TArc<TData>* ptArcPart) { vSOMLstArcPartant.push_back(ptArcPart); }
+
+/************************************************
+* METHODE : SOMAjouterArcPart
+* ***********************************************
+* Entree : pArcPart, l'arc a ajouter
+* Necessite : Rien
+* Sortie : Rien
+* Entraine : Ajoutes un arc a la liste des
+*               arcs partant du sommet
+*************************************************
+*/
+template <typename TData> void TSommet<TData>::SOMSupprimerArcPart(TArc<TData>* ptArcPart) {
+	for (int iBoucle = 0; iBoucle < vSOMLstArcPartant.size(); iBoucle++)
+	{
+		if (vSOMLstArcPartant.at(iBoucle) == ptArcPart)
+		{
+			vSOMLstArcPartant.erase(vSOMLstArcPartant.begin() + iBoucle);
+			return;
+		}
+	}
+}
 
 /************************************************
 * METHODE : SOMAjouterArcArr
@@ -70,31 +91,28 @@ template <typename TData> void TSommet<TData>::SOMAjouterArcPart(TArc<TData> &tA
 *               arcs arrivant au sommet
 *************************************************
 */
-template <typename TData> void TSommet<TData>::SOMAjouterArcArr(TArc<TData> &tArcArr) { vSOMLstArcArrivant.push_back(tArcArr); }
+template <typename TData> void TSommet<TData>::SOMAjouterArcArr(TArc<TData>* ptArcArr) { vSOMLstArcArrivant.push_back(ptArcArr); }
 
 /************************************************
-* METHODE : SOMLireArcPartant
+* METHODE : SOMSupprimerArcArr
 * ***********************************************
-* Entree : pos, la position de l'arc a lire
-* Necessite : l'arc appartient a la liste
+* Entree : ptArcArr, l'arc a ajouter
+* Necessite : Rien
 * Sortie : Rien
-* Entraine : Retournes les informations de l'arc
-*               partant du sommet
+* Entraine : Ajoutes un arc a la liste des
+*               arcs arrivant au sommet
 *************************************************
 */
-template <typename TData> TArc<TData> TSommet<TData>::SOMLireArcPartant(int pos) { return vSOMLstArcPartant.at(pos); }
-
-/************************************************
-* METHODE : SOMLireArcArrivant
-* ***********************************************
-* Entree : l'arc a lire
-* Necessite : l'arc appartient a la liste
-* Sortie : Rien
-* Entraine : Retournes les informations de l'arc
-*               arrivant au sommet
-*************************************************
-*/
-template <typename TData> TArc<TData> TSommet<TData>::SOMLireArcArrivant(int pos) { return vSOMLstArcArrivant.at(pos); }
+template <typename TData> void TSommet<TData>::SOMSupprimerArcArr(TArc<TData>* ptArcArr) {
+	for (int iBoucle = 0; iBoucle < vSOMLstArcArrivant.size(); iBoucle++)
+	{
+		if (vSOMLstArcArrivant.at(iBoucle) == ptArcArr)
+		{
+			vSOMLstArcArrivant.erase(vSOMLstArcArrivant.begin() + iBoucle);
+			return;
+		}
+	}
+}
 
 /************************************************
 * METHODE : operateur==
@@ -107,9 +125,9 @@ template <typename TData> TArc<TData> TSommet<TData>::SOMLireArcArrivant(int pos
 *               False sinon
 * ***********************************************
 */
-template <typename TData> bool TSommet<TData>::operator==(const TSommet &tSommet) const
+template <typename TData> bool TSommet<TData>::operator==(const TSommet* ptSommet) const
 {
-	return uiSOMId == tSommet.uiSOMId && SOMData == tSommet.SOMData;
+	return uiSOMId == ptSommet->uiSOMId && SOMData == ptSommet->SOMData;
 }
 
 /************************************************
@@ -122,11 +140,11 @@ template <typename TData> bool TSommet<TData>::operator==(const TSommet &tSommet
 *                la liste des sommets partant
 * ***********************************************
 */
-template <typename TData> bool TSommet<TData>::EstDansLstPart(TArc<TData> &tArcPart) {
+template <typename TData> bool TSommet<TData>::EstDansLstPart(TArc<TData>* ptArcPart) {
 	int iBoucle;
 	for (iBoucle = 0; iBoucle < vSOMLstArcPartant.size(); iBoucle++)
 	{
-		if (vSOMLstArcPartant.at(iBoucle) == tArcPart)
+		if (vSOMLstArcPartant.at(iBoucle) == ptArcPart)
 		{
 			return true;
 		}
@@ -144,32 +162,14 @@ template <typename TData> bool TSommet<TData>::EstDansLstPart(TArc<TData> &tArcP
 				dans la liste des sommets arrivant
 * *************************************************
 */
-template <typename TData> bool TSommet<TData>::EstDansLstArrivant(TArc<TData> &tArcArr) {
+template <typename TData> bool TSommet<TData>::EstDansLstArrivant(TArc<TData>* ptArcArr) {
 	int iBoucle;
 	for (iBoucle = 0; iBoucle < vSOMLstArcArrivant.size(); iBoucle++)
 	{
-		if (vSOMLstArcArrivant.at(iBoucle) == tArcArr)
+		if (vSOMLstArcArrivant.at(iBoucle) == ptArcArr)
 		{
 			return true;
 		}
 	}
 	return false;
-}
-
-/************************************************
-* METHODE : InverserSommet
-* ***********************************************
-* Entree : rien
-* Necessite : rien
-* Sortie : rien
-* Entraine : Inverse les arcs du sommet c'est à dire
-*               les arcs partant deviennent des arcs
-*              arrivant et vice versa
-* ***********************************************
-*/
-template <typename TData> void TSommet<TData>::InverserSommet() {
-	vector<TArc<TData>> vTmp = vSOMLstArcPartant;
-
-	vSOMLstArcPartant = vSOMLstArcArrivant;
-	vSOMLstArcArrivant = vTmp;
 }

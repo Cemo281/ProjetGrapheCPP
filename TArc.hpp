@@ -151,18 +151,7 @@ public:
     *               False sinon
 	* ***********************************************
     */
-	bool operator==(const TArc &tArc) const;
-
-    /*************************************************
-     * METHODE : InverserArc
-     * ***********************************************
-     * Entree : tArc, l'arc a inverser
-     * Necessite : Rien
-     * Sortie : Rien
-     * Entraine : Inverse l'arc
-     * ***********************************************
-     */
-    void InverserArc();
+	bool operator==(const TArc* ptArc) const;
 };
 #include "TArc.tpp"
 

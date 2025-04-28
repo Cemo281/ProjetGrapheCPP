@@ -97,23 +97,8 @@ template <typename TData> void TArc<TData>::ARCModifierData(TData &nvData) { ARC
 *               Faux sinon
 * ***********************************************
 */
-template <typename TData> bool TArc<TData>::operator==(const TArc &tArc) const
+template <typename TData> bool TArc<TData>::operator==(const TArc* ptArc) const
 {
-    if (uiARCIdDepart == tArc.uiARCIdDepart && uiARCIdArrive == tArc.uiARCIdArrive && ARCData == tArc.ARCData) return true;
+    if (uiARCIdDepart == ptArc->uiARCIdDepart && uiARCIdArrive == ptArc->uiARCIdArrive && ARCData == ptArc->ARCData) return true;
     return false;
-}
-
-/*************************************************
- * METHODE : InverserArc
- * ***********************************************
- * Entree : tArc, l'arc a inverser
- * Necessite : Rien
- * Sortie : Rien
- * Entraine : Inverse l'arc
- * ***********************************************
- */
-template <typename TData> void TArc<TData>::InverserArc() {
-    unsigned int uiTemp = uiARCIdDepart;
-    uiARCIdDepart = uiARCIdArrive;
-    uiARCIdArrive = uiTemp;
 }

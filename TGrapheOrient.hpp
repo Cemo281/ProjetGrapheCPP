@@ -19,7 +19,6 @@
 
 using namespace std;
 
-
 /* TYPES:
 * Pas de type particulier de declare
 */
@@ -32,8 +31,8 @@ template<typename TData> class TGrapheOrient
 {
 	//Attributs:
 	private:
-		vector<TArc<TData>> vGROLstArc; //liste des Arcs
-		vector<TSommet<TData>> vGROLstSommet; //liste des Sommets
+		vector<TArc<TData>*> vGROLstArc; //liste des Arcs
+		vector<TSommet<TData>*> vGROLstSommet; //liste des Sommets
 		TData tGROData; //donnees du graphe
 	//Constructeurs et destructeurs:
 	public:
@@ -85,7 +84,7 @@ template<typename TData> class TGrapheOrient
 		/**************************************************************************************************************************
 		* METHODE : GROAjouterArc()
 		* *************************************************************************************************************************
-		* Entree: tArc, l'arc a ajouter
+		* Entree: ptArc, pointeur vers l'arc a ajouter
 		* Necessite : Rien
 		* Sortie: Rien
 		* Entraine: Ajoute l'arc au graphe
@@ -102,7 +101,7 @@ template<typename TData> class TGrapheOrient
 		* Entraine: Ajoute le sommet au graphe
 		****************************************************************************************************************************
 		*/
-		void GROAjouterSommet(TSommet<TData>& tSom);
+		void GROAjouterSommet(TSommet<TData> &tSom);
 
 		/***************************************************************************************************************************
 		* METHODE : SOMEstDansGraphe
@@ -125,17 +124,6 @@ template<typename TData> class TGrapheOrient
 		* **************************************************************************************************************************
 		*/
 		bool GROARCEstDansGraphe(TArc<TData> &tArc);
-
-		/***************************************************************************************************************************
-		* METHODE : InverserGraphe
-		* **************************************************************************************************************************
-		* Entree : rien
-		* Necessite : rien
-		* Sortie : Le graphe oriente inverse
-		* Entraine : Inverse les arcs du graphe
-		* **************************************************************************************************************************
-		*/
-		TGrapheOrient<TData> InverserGraphe();
 };
 #include "TGrapheOrient.tpp"
 

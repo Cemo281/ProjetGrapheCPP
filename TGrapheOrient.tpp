@@ -2,6 +2,8 @@
 #include "TSommet.hpp"
 #include "TGrapheOrient.hpp"
 
+using namespace std;
+
 /**************************************************************************************************************************
 * TGrapheOrient
 * *************************************************************************************************************************
@@ -11,11 +13,11 @@
 * Entraine: Creer un graphe oriente a partir d'un autre graphe oriente
 ***************************************************************************************************************************
 */
-template <typename TData> TGrapheOrient<TData>::TGrapheOrient(const TGrapheOrient& GROParam)
+template<typename TData> TGrapheOrient<TData>::TGrapheOrient(const TGrapheOrient& GROParam)
 {
     unsigned int uiBoucle;
 
-    vGROLstArc = new vector<TArc<TData>>();
+    vGROLstArc = vector<TArc<TData>>();
     vGROLstSommet = new vector<TSommet<TData>>();
     for (uiBoucle = 0; uiBoucle < GROParam.vGROLstArc.size(); uiBoucle++) {
         vGROLstArc.push_back(GROParam.vGROLstArc.at(uiBoucle));
@@ -23,7 +25,7 @@ template <typename TData> TGrapheOrient<TData>::TGrapheOrient(const TGrapheOrien
     for (uiBoucle = 0; uiBoucle < GROParam.vGROLstSommet.size(); uiBoucle++) {
         vGROLstSommet.push_back(GROParam.vGROLstSommet.at(uiBoucle));
     }
-}
+};
 
 /***************************************************************************************************************************
 * METHODE : GROAjouterSommet()
@@ -34,7 +36,7 @@ template <typename TData> TGrapheOrient<TData>::TGrapheOrient(const TGrapheOrien
 * Entraine: Ajoute le sommet au graphe
 ****************************************************************************************************************************
 */
-template <typename TData> void TGrapheOrient<TData>::GROAjouterSommet(TSommet<TData> &tSommet) {
+template<typename TData> void TGrapheOrient<TData>::GROAjouterSommet(TSommet<TData> &tSommet) {
     vGROLstSommet.push_back(tSommet);
 }
 
@@ -89,17 +91,4 @@ template <typename TData> bool TGrapheOrient<TData>::GROARCEstDansGraphe(TArc<TD
         }
     }
     return false;
-}
-
-/***************************************************************************************************************************
-* METHODE : InverserGraphe
-* **************************************************************************************************************************
-* Entree : rien
-* Necessite : rien
-* Sortie : Le graphe oriente inverse
-* Entraine : Inverse les arcs du graphe
-* **************************************************************************************************************************
-*/
-template <typename TData> TGrapheOrient<TData> TGrapheOrient<TData>::InverserGraphe() {
-    return;
 }

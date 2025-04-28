@@ -18,9 +18,6 @@
     <ClCompile Include="ProjetGrapheCPP.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="TGrapheOrient.tpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TArc.hpp">
@@ -38,6 +35,9 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </None>
     <None Include="TArc.tpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </None>
+    <None Include="TGrapheOrient.tpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </None>
   </ItemGroup>

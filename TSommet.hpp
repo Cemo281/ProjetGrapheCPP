@@ -36,8 +36,8 @@ template<typename TData> class TSommet
     // ATTRIBUTS
 private:
     unsigned int uiSOMId;
-    vector<TArc<TData>> vSOMLstArcPartant;
-    vector<TArc<TData>> vSOMLstArcArrivant;
+    vector<TArc<TData>*> vSOMLstArcPartant;
+    vector<TArc<TData>*> vSOMLstArcArrivant;
     TData SOMData; // Donnees du sommet
 
     // CONSTRUCTEURS ET DESTRUCTEURS
@@ -133,7 +133,19 @@ public:
     *               arcs partant du sommet
     *************************************************
     */
-    void SOMAjouterArcPart(TArc<TData> &tArcPart);
+    void SOMAjouterArcPart(TArc<TData>* ptArcPart);
+
+    /************************************************
+    * METHODE : SOMSupprimerArcPart
+    * ***********************************************
+    * Entree : ptArcPart, l'arc a ajouter
+    * Necessite : Rien
+    * Sortie : Rien
+    * Entraine : Ajoutes un arc a la liste des
+    *               arcs partant du sommet
+    *************************************************
+    */
+    void SOMSupprimerArcPart(TArc<TData>* ptArcPart);
 
     /************************************************
     * METHODE : SOMAjouterArcArr
@@ -145,31 +157,19 @@ public:
     *               arcs arrivant au sommet
     *************************************************
     */
-    void SOMAjouterArcArr(TArc<TData> &tArcArr);
-
-	/************************************************
-    * METHODE : SOMLireArcPartant
-    * ***********************************************
-    * Entree : pos, la position de l'arc a lire
-    * Necessite : l'arc appartient a la liste
-    * Sortie : Rien
-    * Entraine : Retournes les informations de l'arc
-    *               partant du sommet
-    *************************************************
-    */
-    TArc<TData> SOMLireArcPartant(int pos);
+    void SOMAjouterArcArr(TArc<TData>* ptArcArr);
 
     /************************************************
-    * METHODE : SOMLireArcArrivant
+    * METHODE : SOMSupprimerArcArr
     * ***********************************************
-    * Entree : l'arc a lire
-    * Necessite : l'arc appartient a la liste
+    * Entree : ptArcPart, l'arc a ajouter
+    * Necessite : Rien
     * Sortie : Rien
-    * Entraine : Retournes les informations de l'arc
-    *               arrivant au sommet
+    * Entraine : Ajoutes un arc a la liste des
+    *               arcs arrivant au sommet
     *************************************************
     */
-   TArc<TData> SOMLireArcArrivant(int pos);
+    void SOMSupprimerArcArr(TArc<TData>* ptArcPart);
 
 	/************************************************
     * METHODE : operateur==
@@ -182,7 +182,7 @@ public:
 	*               False sinon
 	* ***********************************************
 	*/
-    bool operator==(const TSommet &tSommet) const;
+    bool operator==(const TSommet* ptSommet) const;
 
     /************************************************
     * METHODE : EstDansLstPart
@@ -194,7 +194,7 @@ public:
     *                la liste des sommets partant
     * ***********************************************
     */
-    bool EstDansLstPart(TArc<TData> &tArcPart);
+    bool EstDansLstPart(TArc<TData>* ptArcPart);
 
     /************************************************
     * METHODE : EstDansLstArrivant
@@ -206,20 +206,7 @@ public:
                     dans la liste des sommets arrivant
     * ***********************************************
     */
-	bool EstDansLstArrivant(TArc<TData> &tArcArr);
-
-    /************************************************
-    * METHODE : InverserSommet
-    * ***********************************************
-    * Entree : rien
-    * Necessite : rien
-    * Sortie : rien
-    * Entraine : Inverse les arcs du sommet c'est à dire
-    *               les arcs partant deviennent des arcs
-    *              arrivant et vice versa
-    * ***********************************************
-    */
-    void InverserSommet();
+	bool EstDansLstArrivant(TArc<TData>* ptArcArr);
 };
 #include "TSommet.tpp"
 

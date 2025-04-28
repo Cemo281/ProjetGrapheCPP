@@ -10,28 +10,29 @@
 int main()
 {    
     // Test InverserSommet()
-    TArc<int> arc1(1, 2, 5);
-    TArc<int> arc2(2, 3, 10);
-    TArc<int> arc3(3, 4, 15);
-    TArc<int> arc4(4, 5, 20);
+    TArc<int>* arc1 = new TArc<int>(1, 2, 0);
 
     TSommet<int> sommet1(1, 100);
 
     sommet1.SOMAjouterArcPart(arc1);
-    sommet1.SOMAjouterArcPart(arc2);
-    sommet1.SOMAjouterArcPart(arc3);
 
-    sommet1.SOMAjouterArcArr(arc4);
-
-    // Inverser les arcs du sommet1
-    sommet1.InverserSommet();
+    assert(sommet1.EstDansLstArrivant(arc1) == false);
 
     // Vérifier que les arcs partant sont maintenant arrivants et vice versa
     assert(sommet1.EstDansLstArrivant(arc1) == true);
-    assert(sommet1.EstDansLstArrivant(arc2) == true);
-    assert(sommet1.EstDansLstArrivant(arc3) == true);
-    assert(sommet1.EstDansLstPart(arc4) == true);
     
+    // Test Inverser Arc
+	assert(arc1->ARCLireIdArrive() == 1);
+	assert(arc1->ARCLireIdDepart() == 2);
+
+	// Afficher les infos de l'arc
+	std::cout << "Arc inversé : " << std::endl;
+	std::cout << "Id de départ : " << arc1->ARCLireIdDepart() << std::endl;
+	std::cout << "Id d'arrivée : " << arc1->ARCLireIdArrive() << std::endl;
+
+	// Afficher le premier arc arrivant au sommet
+	std::cout << "Premier arc arrivant au sommet : " << std::endl;
+
     return 0;
 }
 // Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage
