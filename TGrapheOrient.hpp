@@ -91,7 +91,7 @@ template<typename TData> class TGrapheOrient
 		* Entraine: Retournes les donnees du graphe
 		***************************************************************************************************************************
 		*/
-		TData GROLireData() const;
+		TData GROLireData();
 
 		/**************************************************************************************************************************
 		* METHODE : GROModifierData

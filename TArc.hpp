@@ -152,6 +152,17 @@ public:
 	* ***********************************************
     */
 	bool operator==(const TArc* ptArc) const;
+
+    /*************************************************
+    * METHODE : ARCInverser
+    * ************************************************
+    * Entree : Rien
+    * Necessite : Rien
+    * Sortie : Rien
+	* Entraine : Inverse l'arc
+    * ***********************************************
+    */
+	void ARCInverser();
 };
 #include "TArc.tpp"
 

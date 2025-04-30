@@ -29,7 +29,7 @@
     <ClInclude Include="TGrapheOrient.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="GrapheNonOrient.hpp">
+    <ClInclude Include="TGrapheNonOrient.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

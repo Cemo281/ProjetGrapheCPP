@@ -231,6 +231,18 @@ public:
     * ***********************************************
     */
 	bool SOMEstDansLstArrivant(TArc<TData>* ptArcArr);
+
+    /*************************************************
+    * METHODE : SOMInverser
+    * ************************************************
+    * Entree : Rien
+    * Necessite : Rien
+    * Sortie : Rien
+	* Entraine : Inverse le sommet c'est à dire qu'il 
+    *			place tout les sommet arrivant dans ceux partant et vice versa
+    * ***********************************************
+    */
+	void SOMInverser();
 };
 #include "TSommet.tpp"
 

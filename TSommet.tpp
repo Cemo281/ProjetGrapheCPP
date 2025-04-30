@@ -207,3 +207,17 @@ template <typename TData> bool TSommet<TData>::SOMEstDansLstArrivant(TArc<TData>
 	}
 	return false;
 }
+
+/******************************************************************
+* METHODE : SOMInverser
+* *****************************************************************
+* Entree : Rien
+* Necessite : Rien
+* Sortie : Rien
+* Entraine : Inverse le sommet c'est à dire qu'il 
+*			place tout les sommet arrivant dans ceux partant et vice versa
+* *****************************************************************
+*/
+template <typename TData> void TSommet<TData>::SOMInverser() {
+	vSOMLstArcPartant.swap(vSOMLstArcArrivant);
+}

@@ -10,7 +10,6 @@
 int main()
 {    
     // Test Arc
-
 	TArc<int> arc1(1, 2, 5);
 	assert(arc1.ARCLireIdDepart() == 1);
 	assert(arc1.ARCLireIdArrive() == 2);

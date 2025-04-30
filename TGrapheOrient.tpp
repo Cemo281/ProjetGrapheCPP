@@ -36,7 +36,7 @@ template<typename TData> TGrapheOrient<TData>::TGrapheOrient(const TGrapheOrient
 * Entraine: Retournes les donnees du graphe
 ***************************************************************************************************************************
 */
-template<typename TData> TData TGrapheOrient<TData>::GROLireData() const { return tGROData; }
+template<typename TData> TData TGrapheOrient<TData>::GROLireData() { return tGROData; }
 
 /**************************************************************************************************************************
 * METHODE : GROModifierData
