@@ -13,7 +13,7 @@ using namespace std;
 * Entraine: Creer un graphe oriente a partir d'un autre graphe oriente
 ***************************************************************************************************************************
 */
-template<typename TData> TGrapheOrient<TData>::TGrapheOrient(const TGrapheOrient<TData>& GROParam )
+template<typename TData> TGrapheOrient<TData>::TGrapheOrient(const TGrapheOrient<TData>& GROParam)
 {
     unsigned int uiBoucle;
 
@@ -27,13 +27,35 @@ template<typename TData> TGrapheOrient<TData>::TGrapheOrient(const TGrapheOrient
     }
 };
 
+/**************************************************************************************************************************
+* METHODE : GROLireData
+* *************************************************************************************************************************
+* Entree: Rien
+* Necessite : Rien
+* Sortie: tData, les donnees du graphe
+* Entraine: Retournes les donnees du graphe
+***************************************************************************************************************************
+*/
+template<typename TData> TData TGrapheOrient<TData>::GROLireData() const { return tGROData; }
+
+/**************************************************************************************************************************
+* METHODE : GROModifierData
+* *************************************************************************************************************************
+* Entree: tNvData, les nouvelles donnees du graphe
+* Necessite : Les données doivent être du même type que le graphe
+* Sortie: tData, les donnees du graphe
+* Entraine: Retournes les donnees du graphe
+***************************************************************************************************************************
+*/
+template<typename TData> void TGrapheOrient<TData>::GROModiferData(TData tNvData) { tGROData = tNvData; }
+
 /***************************************************************************************************************************
 * METHODE : GROAjouterSommet()
 * **************************************************************************************************************************
 * Entree: ptSommet, un pointeur vers le sommet a ajouter
 * Necessite : Rien
 * Sortie: Rien
-* Entraine: Ajoute le sommet au graphe orient�
+* Entraine: Ajoute le sommet au graphe oriente
 ****************************************************************************************************************************
 */
 template<typename TData> void TGrapheOrient<TData>::GROAjouterSommet(TSommet<TData>* ptSommet) {
@@ -50,7 +72,41 @@ template<typename TData> void TGrapheOrient<TData>::GROAjouterSommet(TSommet<TDa
 ***************************************************************************************************************************
 */
 template <typename TData> void TGrapheOrient<TData>::GROAjouterArc(TArc<TData>* ptArc) {
-    vGROLstArc.push_back(tArc);
+    vGROLstArc.push_back(ptArc);
+}
+
+/**************************************************************************************************************************
+* METHODE : GROLireArc
+* *************************************************************************************************************************
+* Entree: uiPos, la position de l'arc a lire
+* Necessite : uiPos doit etre valide
+* Sortie: Un pointeur vers l'arc a la position uiPos
+* Entraine: Renvoie l'arc a la position uiPos
+***************************************************************************************************************************
+*/
+template <typename TData> TArc<TData>* TGrapheOrient<TData>::GROLireArc(unsigned int uiPos) const
+{
+    if (uiPos < vGROLstArc.size())
+        return vGROLstArc.at(uiPos);
+    else
+        throw out_of_range("Position invalide dans la liste des arcs.");
+}
+
+/**************************************************************************************************************************
+* METHODE : GROLireArc
+* *************************************************************************************************************************
+* Entree: uiPos, la position de l'arc a lire
+* Necessite : uiPos doit etre valide
+* Sortie: Un pointeur vers l'arc a la position uiPos
+* Entraine: Renvoie l'arc a la position uiPos
+***************************************************************************************************************************
+*/
+template <typename TData> TSommet<TData>* TGrapheOrient<TData>::GROLireSommet(unsigned int uiPos) const
+{
+    if (uiPos < vGROLstSommet.size())
+        return vGROLstSommet.at(uiPos);
+    else
+        throw out_of_range("Position invalide dans la liste des sommets.");
 }
 
 /***************************************************************************************************************************
@@ -86,7 +142,7 @@ template <typename TData> bool TGrapheOrient<TData>::GROARCEstDansGraphe(TArc<TD
     int uiBoucle;
 
     for (uiBoucle = 0; uiBoucle < vGROLstArc; uiBoucle++) {
-        if (vGROLstArc.at(uiBoucle) == tArc) {
+        if (vGROLstArc.at(uiBoucle) == ptArc) {
             return true;
         }
     }

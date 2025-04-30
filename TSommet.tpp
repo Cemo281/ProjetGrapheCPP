@@ -61,6 +61,40 @@ template <typename TData> void TSommet<TData>::SOMModifierData(TData nvData) { S
 template <typename TData> void TSommet<TData>::SOMAjouterArcPart(TArc<TData>* ptArcPart) { vSOMLstArcPartant.push_back(ptArcPart); }
 
 /************************************************
+* METHODE : SOMLireArcPart
+* ***********************************************
+* Entree : uiPos, Naturel, la position de l'arc
+* Necessite : Rien
+* Sortie : Un pointeur vers l'arc
+* Entraine : Retournes un pointeur vers l'arc 
+				partant du sommet
+*************************************************
+*/
+template <typename TData> TArc<TData>* TSommet<TData>::SOMLireArcPart(unsigned int uiPos) {
+	if (uiPos < vSOMLstArcPartant.size())
+		return vSOMLstArcPartant.at(uiPos);
+	else
+		throw out_of_range("Position invalide dans la liste des arcs partant.");
+}
+
+/************************************************
+ * METHODE : SOMLireArcArr
+ * ***********************************************
+ * Entree : uiPos, Naturel, la position de l'arc
+ * Necessite : Rien
+ * Sortie : Un pointeur vers l'arc
+ * Entraine : Retournes un pointeur vers l'arc
+ *               arrivant au sommet
+ *************************************************
+*/
+template <typename TData> TArc<TData>* TSommet<TData>::SOMLireArcArr(unsigned int uiPos) {
+	if (uiPos < vSOMLstArcArrivant.size())
+		return vSOMLstArcArrivant.at(uiPos);
+	else
+		throw out_of_range("Position invalide dans la liste des arcs arrivant.");
+}
+
+/************************************************
 * METHODE : SOMAjouterArcPart
 * ***********************************************
 * Entree : pArcPart, l'arc a ajouter

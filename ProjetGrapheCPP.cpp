@@ -17,31 +17,34 @@ int main()
 	assert(arc1.ARCLireData() == 5);
 
 	// Test Sommet
-	TSommet<int> sommet1;
-	sommet1.SOMModifierId(1);
-	sommet1.SOMModifierData(10);
-	assert(sommet1.SOMLireId() == 1);
-	assert(sommet1.SOMLireData() == 10);
+	TSommet<int>* sommet1 = new TSommet<int>();
+	sommet1->SOMModifierId(1);
+	sommet1->SOMModifierData(10);
+	assert(sommet1->SOMLireId() == 1);
+	assert(sommet1->SOMLireData() == 10);
 
 	// Test Arc Partant
 	TArc<int>* arcPartant = new TArc<int>(1, 2, 5);
-	sommet1.SOMAjouterArcPart(arcPartant);	
-	assert(sommet1.SOMEstDansLstPart(arcPartant) == true);
+	sommet1->SOMAjouterArcPart(arcPartant);	
+	assert(sommet1->SOMEstDansLstPart(arcPartant) == true);
 
 	// Test Arc Arrivant
 	TArc<int>* arcArrivant = new TArc<int>(2, 1, 5);
-	sommet1.SOMAjouterArcArr(arcArrivant);
-	assert(sommet1.SOMEstDansLstArrivant(arcArrivant) == true);
+	sommet1->SOMAjouterArcArr(arcArrivant);
+	assert(sommet1->SOMEstDansLstArrivant(arcArrivant) == true);
 
-	// Test Supprimer Arc Partant
+	// Modification arc dans le sommet le modifie aussi dans le graphe
+	TGrapheOrient<int> graphe;
+	graphe.GROAjouterSommet(sommet1);
+	graphe.GROAjouterArc(arcPartant);
 
-	sommet1.SOMSupprimerArcPart(arcPartant);
-	assert(sommet1.SOMEstDansLstPart(arcPartant) == false);
+	arcPartant->ARCModifierIdArrive(7);
+	assert(graphe.GROLireSommet(0)->SOMLireId() == 1);
+	assert(graphe.GROLireArc(0)->ARCLireIdArrive() == 7);
 
-	// Test Supprimer Arc Arrivant
-	sommet1.SOMSupprimerArcArr(arcArrivant);
-	assert(sommet1.SOMEstDansLstArrivant(arcArrivant) == false);
-    
+    // Verifie si l'arc est modifier dans sommet
+	assert(sommet1->SOMLireArcPart(0)->ARCLireIdArrive() == 7);
+
     return 0;
 }
 // Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage

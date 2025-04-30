@@ -105,7 +105,7 @@ public:
     * METHODE : SOMLireData
     * ***********************************************
     * Entree : Rien
-    * Nicessite : Rien
+    * Necessite : Rien
     * Sortie : Rien
     * Entraine : Lit la donnee du sommet
     *************************************************
@@ -134,6 +134,30 @@ public:
     *************************************************
     */
     void SOMAjouterArcPart(TArc<TData>* ptArcPart);
+
+    /************************************************
+	* METHODE : SOMLireArcPart
+    * ***********************************************
+	* Entree : uiPos, Naturel, la position de l'arc
+    * Necessite : Rien
+	* Sortie : Un pointeur vers l'arc
+	* Entraine : Retournes un pointeur vers l'arc 
+                    partant du sommet
+    *************************************************
+    */
+	TArc<TData>* SOMLireArcPart(unsigned int uiPos);
+
+    /************************************************
+    * METHODE : SOMLireArcArr
+    * ***********************************************
+    * Entree : uiPos, Naturel, la position de l'arc
+    * Necessite : Rien
+    * Sortie : Un pointeur vers l'arc
+    * Entraine : Retournes un pointeur vers l'arc
+	*               arrivant au sommet
+    *************************************************
+	*/
+    TArc<TData>* SOMLireArcArr(unsigned int uiPos);
 
     /************************************************
     * METHODE : SOMSupprimerArcPart
