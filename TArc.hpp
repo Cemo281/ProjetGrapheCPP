@@ -163,6 +163,18 @@ public:
     * ***********************************************
     */
 	void ARCInverser();
+
+    /*************************************************
+	* METHODE : ARCAfficher
+    * ************************************************
+    * Entree : Rien
+    * Necessite : Rien
+    * Sortie : Rien
+	* Entraine : Affiches l'arc dans la console, son sommet de depart,
+	*               son sommet d'arrivee ainsi que sa donnee
+    * ***********************************************
+    */
+    void ARCAfficher();
 };
 #include "TArc.tpp"
 

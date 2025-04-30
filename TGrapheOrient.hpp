@@ -149,7 +149,7 @@ template<typename TData> class TGrapheOrient
 		TSommet<TData>* GROLireSommet(unsigned int uiPos) const;
 
 		/***************************************************************************************************************************
-		* METHODE : SOMEstDansGraphe
+		* METHODE : GROSOMEstDansGraphe
 		* **************************************************************************************************************************
 		* Entree : ptSommet ,un pointeur vers le sommet a ajouter
 		* Necessite : Rien
@@ -172,12 +172,25 @@ template<typename TData> class TGrapheOrient
 
 		/***************************************************************************************************************************
 		* METHODE : GROInverser
+		* **************************************************************************************************************************
 		* Entree : Rien
+		* Necessite : Rien
 		* Sortie : Rien
 		* Entraine : Inverse le graphe oriente, c'est à dire inverse tous ses arcs et ses sommets
 		* ***************************************************************************************************************************
 		*/
 		void GROInverser();
+
+		/***************************************************************************************************************************
+		* METHODE : GROAfficher
+		* **************************************************************************************************************************
+		* Entree : Rien
+		* Necessite : Rien
+		* Sortie : Rien
+		* Entraine : Affiches le graphe oriente dans la console
+		* ***************************************************************************************************************************
+		*/
+		void GROAfficher();
 };
 #include "TGrapheOrient.tpp"
 

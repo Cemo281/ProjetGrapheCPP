@@ -110,7 +110,7 @@ template <typename TData> TSommet<TData>* TGrapheOrient<TData>::GROLireSommet(un
 }
 
 /***************************************************************************************************************************
-* METHODE : SOMEstDansGraphe
+* METHODE : GROSOMEstDansGraphe
 * **************************************************************************************************************************
 * Entree : ptSommet, un pointeur vers le sommet a verifier
 * Necessite : Rien
@@ -151,9 +151,10 @@ template <typename TData> bool TGrapheOrient<TData>::GROARCEstDansGraphe(TArc<TD
 
 /***************************************************************************************************************************
 * METHODE : GROInverser
+* **************************************************************************************************************************
 * Entree : Rien
 * Sortie : Rien
-* Entraine : Inverse le graphe oriente, c'est à dire inverse tous ses arcs et ses sommets
+* Entraine : Inverse le graphe oriente, c'est a dire inverse tous ses arcs et ses sommets
 * ***************************************************************************************************************************
 */
 template<typename TData> void TGrapheOrient<TData>::GROInverser() {
@@ -163,5 +164,28 @@ template<typename TData> void TGrapheOrient<TData>::GROInverser() {
     }
     for (uiBoucle = 0; uiBoucle < vGROLstSommet.size(); uiBoucle++) {
         vGROLstSommet.at(uiBoucle)->SOMInverser();
+    }
+}
+
+/***************************************************************************************************************************
+* METHODE : GROAfficher
+* **************************************************************************************************************************
+* Entree : Rien
+* Necessite : Rien
+* Sortie : Rien
+* Entraine : Affiches le graphe oriente dans la console
+* ***************************************************************************************************************************
+*/
+template<typename TData> void TGrapheOrient<TData>::GROAfficher() {
+    unsigned int uiBoucle;
+    cout << "Graphe orienté : " << endl;
+    cout << "Liste des sommets : " << endl;
+    for (uiBoucle = 0; uiBoucle < vGROLstSommet.size(); uiBoucle++) {
+        cout << "Sommet " << vGROLstSommet.at(uiBoucle)->SOMLireId() << ": ";
+        cout << vGROLstSommet.at(uiBoucle)->SOMLireData() << endl;
+    }
+    cout << "Liste des arcs : " << endl;
+    for (uiBoucle = 0; uiBoucle < vGROLstArc.size(); uiBoucle++) {
+        vGROLstArc.at(uiBoucle)->ARCAfficher();    
     }
 }

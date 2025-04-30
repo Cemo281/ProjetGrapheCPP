@@ -44,6 +44,9 @@ int main()
     // Verifie si l'arc est modifier dans sommet
 	assert(sommet1->SOMLireArcPart(0)->ARCLireIdArrive() == 7);
 
+	// Test Affichage
+	graphe.GROAfficher();
+
     return 0;
 }
 // Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage

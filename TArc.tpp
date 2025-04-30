@@ -1,4 +1,7 @@
 #include "TArc.hpp"
+#include <iostream>
+
+using namespace std;
 
 /*************************************************
 * TArc
@@ -117,4 +120,20 @@ template <typename TData> void TArc<TData>::ARCInverser()
     unsigned int uiTemp = uiARCIdDepart;
     uiARCIdDepart = uiARCIdArrive;
     uiARCIdArrive = uiTemp;
+}
+
+/*************************************************
+* METHODE : ARCAfficher
+* ************************************************
+* Entree : Rien
+* Necessite : Rien
+* Sortie : Rien
+* Entraine : Affiches l'arc dans la console, son sommet de depart,
+*               son sommet d'arrivee ainsi que sa donnee
+* ***********************************************
+*/
+template <typename TData> void TArc<TData>::ARCAfficher()
+{
+    cout << "Arc " << uiARCIdDepart << " -> " << uiARCIdArrive << ": ";
+    cout << ARCData << endl;
 }
