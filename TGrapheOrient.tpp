@@ -148,3 +148,20 @@ template <typename TData> bool TGrapheOrient<TData>::GROARCEstDansGraphe(TArc<TD
     }
     return false;
 }
+
+/***************************************************************************************************************************
+* METHODE : GROInverser
+* Entree : Rien
+* Sortie : Rien
+* Entraine : Inverse le graphe oriente, c'est à dire inverse tous ses arcs et ses sommets
+* ***************************************************************************************************************************
+*/
+template<typename TData> void TGrapheOrient<TData>::GROInverser() {
+    unsigned int uiBoucle;
+    for (uiBoucle = 0; uiBoucle < vGROLstArc.size(); uiBoucle++) {
+        vGROLstArc.at(uiBoucle)->ARCInverser();
+    }
+    for (uiBoucle = 0; uiBoucle < vGROLstSommet.size(); uiBoucle++) {
+        vGROLstSommet.at(uiBoucle)->SOMInverser();
+    }
+}

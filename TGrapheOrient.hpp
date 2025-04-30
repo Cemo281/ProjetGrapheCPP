@@ -169,6 +169,15 @@ template<typename TData> class TGrapheOrient
 		* **************************************************************************************************************************
 		*/
 		bool GROARCEstDansGraphe(TArc<TData>* ptArc);
+
+		/***************************************************************************************************************************
+		* METHODE : GROInverser
+		* Entree : Rien
+		* Sortie : Rien
+		* Entraine : Inverse le graphe oriente, c'est à dire inverse tous ses arcs et ses sommets
+		* ***************************************************************************************************************************
+		*/
+		void GROInverser();
 };
 #include "TGrapheOrient.tpp"
 
