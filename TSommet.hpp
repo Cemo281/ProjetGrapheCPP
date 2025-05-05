@@ -62,10 +62,9 @@ public:
     * Entraine : Cree un sommet a partir de son id
     *************************************************
     */
-    TSommet(unsigned int uiId, TData Data)
+    TSommet(unsigned int uiId)
     { 
         uiSOMId = uiId; 
-        SOMData = Data;
     }
 
     /************************************************
@@ -89,7 +88,7 @@ public:
     * Entraine : Retournes l'id du sommet
     *************************************************
     */
-    unsigned int SOMLireId();
+    unsigned int SOMLireId() const;
 
     /************************************************
     * METHODE : SOMModifierId
@@ -111,7 +110,7 @@ public:
     * Entraine : Lit la donnee du sommet
     *************************************************
     */
-    TData SOMLireData();
+    TData SOMLireData() const;
 
     /************************************************
     * METHODE : SOMModifierData

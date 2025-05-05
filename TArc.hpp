@@ -58,7 +58,7 @@ public:
     *            deux sommets
     *************************************************
     */
-    TArc(unsigned int uiIdDepart, unsigned int uiIdArrive, TData Data);
+    TArc(unsigned int uiIdDepart, unsigned int uiIdArrive);
 
 	/**************************************************
     * ~TArc
@@ -81,7 +81,7 @@ public:
     * Entraine : Retournes l'id de l'arc de Depart
     *************************************************
     */
-    unsigned int ARCLireIdDepart();
+    unsigned int ARCLireIdDepart() const;
 
     /*************************************************
     * METHODE : ARCLireIdArrive
@@ -92,7 +92,7 @@ public:
     * Entraine : Retournes l'id de l'arc de Depart
     *************************************************
     */
-    unsigned int ARCLireIdArrive();
+    unsigned int ARCLireIdArrive() const;
 
     /*************************************************
     * METHODE : ARCLireData
@@ -103,7 +103,7 @@ public:
     * Entraine : Retournes la donnee de l'arc
     *************************************************
     */
-	TData ARCLireData();
+	TData ARCLireData() const;
 
     /*************************************************
     * METHODE : ARCModifierIdArrive

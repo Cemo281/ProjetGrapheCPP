@@ -1,54 +1,144 @@
 // ProjetGrapheCPP.cpp : Ce fichier contient la fonction 'main'. L'exécution du programme commence et se termine à cet endroit.
 //
 
+using namespace std;
+
 #include <iostream>
+#include <fstream>
+#include <sstream>
+#include <string>
 #include "TArc.hpp"
 #include "TSommet.hpp"
 #include "TGrapheOrient.hpp"
 #include <assert.h>
 
 int main()
-{    
-    // Test Arc
-	TArc<int> arc1(1, 2, 5);
-	assert(arc1.ARCLireIdDepart() == 1);
-	assert(arc1.ARCLireIdArrive() == 2);
-	assert(arc1.ARCLireData() == 5);
+{
+	TGrapheOrient<void*>* Graphe = new TGrapheOrient<void*>;
+	// Test getline()
+	string sLigne;
+	ifstream FILE("C:/Users/alice/OneDrive/Desktop/fichier.txt");
+	string sNbSom;
+	string sNbArc;
+	int iNbSom;
+	int iNbArc;
+	string sValSom;
+	string sSomDepart;
+	string sSomArrive;
 
-	// Test Sommet
-	TSommet<int>* sommet1 = new TSommet<int>();
-	sommet1->SOMModifierId(1);
-	sommet1->SOMModifierData(10);
-	assert(sommet1->SOMLireId() == 1);
-	assert(sommet1->SOMLireData() == 10);
+	TSommet<void*>* SOMTmp;
+	TArc<void*>* ARCTmp;
 
-	// Test Arc Partant
-	TArc<int>* arcPartant = new TArc<int>(1, 2, 5);
-	sommet1->SOMAjouterArcPart(arcPartant);	
-	assert(sommet1->SOMEstDansLstPart(arcPartant) == true);
+	cout << "========= DEBUT DE CREATION DU GRAPHE =========" << endl;
+	cout << endl;
+	getline(FILE, sLigne); // lire la première ligne
+	int pos = sLigne.find("="); // trouver la position du "="
+	sLigne.erase(0, pos + 1); // supprimer tout ce qui est avant le "="
+	sLigne.erase(remove(sLigne.begin(), sLigne.end(), ' '), sLigne.end()); // retirer tout les espaces
+	sNbSom = sLigne; // stocker le nombre de sommet
 
-	// Test Arc Arrivant
-	TArc<int>* arcArrivant = new TArc<int>(2, 1, 5);
-	sommet1->SOMAjouterArcArr(arcArrivant);
-	assert(sommet1->SOMEstDansLstArrivant(arcArrivant) == true);
 
-	// Modification arc dans le sommet le modifie aussi dans le graphe
-	TGrapheOrient<int> graphe;
-	graphe.GROAjouterSommet(sommet1);
-	graphe.GROAjouterArc(arcPartant);
+	getline(FILE, sLigne); // lire la deuxième ligne
+	pos = sLigne.find("="); // trouver la position du "="
+	sLigne.erase(0, pos + 1); // supprimer tout ce qui est avant le "="
+	sLigne.erase(remove(sLigne.begin(), sLigne.end(), ' '), sLigne.end());// trouver la position du "="
+	sNbArc = sLigne; // stocker le nombre d'arc
 
-	arcPartant->ARCModifierIdArrive(7);
-	assert(graphe.GROLireSommet(0)->SOMLireId() == 1);
-	assert(graphe.GROLireArc(0)->ARCLireIdArrive() == 7);
+	// les convertir en entiers
+	iNbSom = stoi(sNbSom);
+	iNbArc = stoi(sNbArc);
 
-    // Verifie si l'arc est modifier dans sommet
-	assert(sommet1->SOMLireArcPart(0)->ARCLireIdArrive() == 7);
+	getline(FILE, sLigne); // lire la troisième ligne
+	pos = sLigne.find("="); // trouver la position du "="
+	sLigne.erase(0, pos + 1); // supprimer tout ce qui est avant le "="
+	sLigne.erase(remove(sLigne.begin(), sLigne.end(), ' '), sLigne.end()); // retirer tout les espaces
 
-	// Test Affichage
-	graphe.GROAfficher();
+	cout << "========= DEBUT DE CREATION DES SOMMETS =========" << endl;
+	cout << endl;
+	// Sommet
+	if (sLigne == "[") {
+		while (sLigne != "]") {
+			getline(FILE, sLigne); // lire la ligne suivante
+			if (sLigne == "]") {
+				break; // sortir de la boucle si on atteint la fin de la liste
+			}
+			else {
+				pos = sLigne.find("="); // trouver la position du "="
+				sLigne.erase(0, pos + 1); // supprimer tout ce qui est avant le "="
+				sLigne.erase(remove(sLigne.begin(), sLigne.end(), ' '), sLigne.end()); // retirer tout les espaces
+				sValSom = sLigne; // stocker la valeur du sommet
+				cout << "Sommet : " << sValSom << endl; // afficher la valeur du sommet
+			}
+			SOMTmp = new TSommet<void*>(stoi(sValSom));
+			Graphe->GROAjouterSommet(SOMTmp);
+		}
+	}
+	cout << endl;
+	cout << "========= CREATION DES SOMMETS TERMINE =========" << endl;
+	cout << endl;
 
-    return 0;
+	getline(FILE, sLigne); // lire la quatrième ligne
+	pos = sLigne.find("="); // trouver la position du "="
+	sLigne.erase(0, pos + 1); // supprimer tout ce qui est avant le "="
+	sLigne.erase(remove(sLigne.begin(), sLigne.end(), ' '), sLigne.end()); // retirer tout les espaces
+
+	cout << "========= DEBUT DE CREATION DES ARCS =========" << endl;
+	cout << endl;
+
+	// Arc
+	if (sLigne == "[") {
+		while (sLigne != "]") {
+			getline(FILE, sLigne); // lire la ligne suivante
+			sLigne.erase(remove(sLigne.begin(), sLigne.end(), ' '), sLigne.end()); // retirer tout les espaces
+			if (sLigne == "]") {
+				break; // sortir de la boucle si on atteint la fin de la liste
+			}
+			else {
+
+				pos = sLigne.find(","); // trouver la position du "="
+
+				sSomDepart = sLigne.substr(0, pos); // extraire la partie avant la virgule
+				sSomArrive = sLigne.substr(pos + 1); // extraire la partie après la virgule
+				
+				pos = sSomDepart.find("="); // trouver la position du "="
+				sSomDepart.erase(0, pos + 1); // supprimer tout ce qui est avant le "="
+
+				pos = sSomArrive.find("="); // trouver la position du "="
+				sSomArrive.erase(0, pos + 1); // supprimer tout ce qui est avant le "="
+
+				cout << "Sommet de depart : " << sSomDepart << " Sommet d'arrive : " << sSomArrive << endl; // afficher la valeur du sommet
+
+				ARCTmp = new TArc<void*>(stoi(sSomDepart), stoi(sSomArrive));
+				if (Graphe->GROARCEstDansGraphe(ARCTmp) == false) {
+					Graphe->GROAjouterArc(ARCTmp);
+				}
+				else {
+					cout << "L'arc existe deja dans le graphe" << endl;
+				}
+
+			}
+		}
+		cout << endl;
+		cout << "========= CREATION DES ARCS TERMINE =========" << endl;
+		cout << endl;
+		cout << "========= CREATION DU GRAPHE TERMINEE =========" << endl;
+		cout << endl;
+		cout << "========= AFFICHAGE DU GRAPHE =========" << endl;
+		cout << endl;
+		Graphe->GROAfficher();
+
+		delete Graphe;
+		FILE.close();
+
+		bool test;
+		TArc<void*>* ptArc = new TArc<void*>(1, 2);
+		TArc<void*>* ptArc2 = new TArc<void*>(1, 2);
+		test = (ptArc==ptArc2);
+		assert(test == true);
+		return 0;
+	}
 }
+
 // Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage
 // Déboguer le programme : F5 ou menu Déboguer > Démarrer le débogage
 

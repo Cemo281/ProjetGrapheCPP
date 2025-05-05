@@ -17,8 +17,8 @@ template<typename TData> TGrapheOrient<TData>::TGrapheOrient(const TGrapheOrient
 {
     unsigned int uiBoucle;
 
-    vGROLstArc = vector<TArc<TData>>();
-    vGROLstSommet = new vector<TSommet<TData>>();
+    vector<TArc<TData>*> vecArc();
+    vector<TSommet<TData>*> vecSom();
     for (uiBoucle = 0; uiBoucle < GROParam.vGROLstArc.size(); uiBoucle++) {
         vGROLstArc.push_back(GROParam.vGROLstArc.at(uiBoucle));
     }
@@ -141,7 +141,7 @@ template <typename TData> bool TGrapheOrient<TData>::GROSOMEstDansGraphe(TSommet
 template <typename TData> bool TGrapheOrient<TData>::GROARCEstDansGraphe(TArc<TData>* ptArc) {
     int uiBoucle;
 
-    for (uiBoucle = 0; uiBoucle < vGROLstArc; uiBoucle++) {
+    for (uiBoucle = 0; uiBoucle < vGROLstArc.size(); uiBoucle++) {
         if (vGROLstArc.at(uiBoucle) == ptArc) {
             return true;
         }
@@ -182,7 +182,11 @@ template<typename TData> void TGrapheOrient<TData>::GROAfficher() {
     cout << "Liste des sommets : " << endl;
     for (uiBoucle = 0; uiBoucle < vGROLstSommet.size(); uiBoucle++) {
         cout << "Sommet " << vGROLstSommet.at(uiBoucle)->SOMLireId() << ": ";
-        cout << vGROLstSommet.at(uiBoucle)->SOMLireData() << endl;
+
+        if (vGROLstSommet.at(uiBoucle)->SOMLireData() != nullptr) {
+            cout << vGROLstSommet.at(uiBoucle)->SOMLireData();
+        }
+        cout << endl;
     }
     cout << "Liste des arcs : " << endl;
     for (uiBoucle = 0; uiBoucle < vGROLstArc.size(); uiBoucle++) {

@@ -14,11 +14,10 @@ using namespace std;
 *            deux sommets
 *************************************************
 */
-template <typename TData> TArc<TData>::TArc(unsigned int uiIdDepart, unsigned int uiIdArrive, TData Data)
+template <typename TData> TArc<TData>::TArc(unsigned int uiIdDepart, unsigned int uiIdArrive)
 {
     uiARCIdDepart = uiIdDepart;
     uiARCIdArrive = uiIdArrive;
-    ARCData = Data;
 }
 
 /*************************************************
@@ -30,7 +29,7 @@ template <typename TData> TArc<TData>::TArc(unsigned int uiIdDepart, unsigned in
 * Entraine : Retournes l'id de l'arc de Depart
 *************************************************
 */
-template <typename TData> unsigned int TArc<TData>::ARCLireIdDepart() { return uiARCIdDepart; }
+template <typename TData> unsigned int TArc<TData>::ARCLireIdDepart() const { return uiARCIdDepart; }
 
 /*************************************************
 * METHODE : ARCLireIdArrive
@@ -41,7 +40,7 @@ template <typename TData> unsigned int TArc<TData>::ARCLireIdDepart() { return u
 * Entraine : Retournes l'id de l'arc de Depart
 *************************************************
 */
-template <typename TData> unsigned int TArc<TData>::ARCLireIdArrive() { return uiARCIdArrive; }
+template <typename TData> unsigned int TArc<TData>::ARCLireIdArrive() const { return uiARCIdArrive; }
   
 /*************************************************
 * METHODE : ARCLireData
@@ -52,7 +51,7 @@ template <typename TData> unsigned int TArc<TData>::ARCLireIdArrive() { return u
 * Entraine : Retournes la donnee de l'arc
 *************************************************
 */
-template <typename TData> TData TArc<TData>::ARCLireData() { return ARCData; }
+template <typename TData> TData TArc<TData>::ARCLireData() const { return ARCData; }
 
 /*************************************************
 * METHODE : ARCModifierIdArrive
@@ -135,5 +134,8 @@ template <typename TData> void TArc<TData>::ARCInverser()
 template <typename TData> void TArc<TData>::ARCAfficher()
 {
     cout << "Arc " << uiARCIdDepart << " -> " << uiARCIdArrive << ": ";
-    cout << ARCData << endl;
+    if (ARCData != nullptr) {
+            ARCData;
+    }
+    cout << endl;
 }

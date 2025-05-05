@@ -13,7 +13,7 @@ using namespace std;
 * Entraine : Retournes l'id du sommet
 *************************************************
 */
-template <typename TData> unsigned int TSommet<TData>::SOMLireId() { return uiSOMId; }
+template <typename TData> unsigned int TSommet<TData>::SOMLireId() const { return uiSOMId; }
 
 /************************************************
 * METHODE : SOMModifierId
@@ -35,7 +35,7 @@ template <typename TData> void TSommet<TData>::SOMModifierId(unsigned int uiNvId
 * Entraine : Lit la donnee du sommet
 *************************************************
 */
-template <typename TData> TData TSommet<TData>::SOMLireData() { return SOMData; }
+template <typename TData> TData TSommet<TData>::SOMLireData() const { return SOMData; }
 
 /************************************************
 * METHODE : SOMModifierData
