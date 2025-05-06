@@ -68,6 +68,17 @@ public:
     }
 
     /************************************************
+    * METHODE : TSommet
+    * ***********************************************
+    * Entree : SOMParam, un sommet a copier
+    * Necessite : Rien
+    * Sortie : Une copie du sommet
+    * Entraine : Cree un sommet a partir d'un autre sommet
+    *************************************************
+    */
+    TSommet(const TSommet<TData>& SOMParam);
+
+    /************************************************
     * METHODE : ~TSommet
     * ***********************************************
     * Entree : Rien
@@ -238,7 +249,7 @@ public:
     * Entree : Rien
     * Necessite : Rien
     * Sortie : Rien
-	* Entraine : Inverse le sommet c'est à dire qu'il 
+	* Entraine : Inverse le sommet c'est ï¿½ dire qu'il 
     *			place tout les sommet arrivant dans ceux partant et vice versa
     * ***********************************************
     */

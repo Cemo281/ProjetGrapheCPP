@@ -5,7 +5,7 @@
 * Patron de Classe :TGrapheNonOrient
 * **************************************************
 * ROLE : Cette classe permet de gerer et modifier un graphe non oriente 
-			qui herite de la classe TGrapheOrient
+*			qui herite de la classe TGrapheOrient
 * **************************************************
 * VERSION : 1.0
 * AUTEUR : OZDEMIR ALI-CEM

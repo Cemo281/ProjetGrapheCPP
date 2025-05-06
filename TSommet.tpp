@@ -5,6 +5,35 @@
 using namespace std;
 
 /************************************************
+* METHODE : TSommet
+* ***********************************************
+* Entree : SOMParam, un sommet a copier
+* Necessite : Rien
+* Sortie : Une copie du sommet
+* Entraine : Cree un sommet a partir d'un autre sommet
+*************************************************
+*/
+template<typename TData> TSommet<TData>::TSommet(const TSommet<TData>& SOMParam) {
+	TArc<TData>* ptARCTmp;
+
+	uiSOMId = SOMParam.uiSOMId;
+	SOMData = SOMParam.SOMData;
+	// Copie des arcs partant du sommet
+	for (unsigned int iBoucle = 0; iBoucle < SOMParam.vSOMLstArcPartant.size(); iBoucle++)
+	{
+		ptARCTmp = new TArc<TData>(*(SOMParam.vSOMLstArcPartant.at(iBoucle)));
+		vSOMLstArcPartant.push_back(ptARCTmp);
+	}
+	// Copie des arcs arrivant au sommet
+	for (unsigned int iBoucle = 0; iBoucle < SOMParam.vSOMLstArcArrivant.size(); iBoucle++)
+	{
+		ptARCTmp = new TArc<TData>(*(SOMParam.vSOMLstArcArrivant.at(iBoucle)));
+		vSOMLstArcArrivant.push_back(ptARCTmp);
+	}
+
+}
+
+/************************************************
 * METHODE : SOMLireId
 * ***********************************************
 * Entree : Rien
@@ -51,7 +80,7 @@ template <typename TData> void TSommet<TData>::SOMModifierData(TData nvData) { S
 /************************************************
 * METHODE : SOMAjouterArcPart
 * ***********************************************
-* Entree : pArcPart, l'arc a ajouter
+* Entree : ptArcPart, l'arc a ajouter
 * Necessite : Rien
 * Sortie : Rien
 * Entraine : Ajoutes un arc a la liste des
@@ -214,7 +243,7 @@ template <typename TData> bool TSommet<TData>::SOMEstDansLstArrivant(TArc<TData>
 * Entree : Rien
 * Necessite : Rien
 * Sortie : Rien
-* Entraine : Inverse le sommet c'est à dire qu'il 
+* Entraine : Inverse le sommet c'est ï¿½ dire qu'il 
 *			place tout les sommet arrivant dans ceux partant et vice versa
 * *****************************************************************
 */

@@ -68,7 +68,7 @@ template<typename TData> class TGrapheOrient
 		* Entraine: Creer un graphe oriente a partir d'un fichier .txt
 		***************************************************************************************************************************
 		*/
-		// TGrapheOrient(ifstream &Fichier);
+		TGrapheOrient(ifstream &Fichier);
 
 		/**************************************************************************************************************************
 		* TGrapheOrient
@@ -132,10 +132,21 @@ template<typename TData> class TGrapheOrient
 		* Entree: ptSommet,un pointeur vers le sommet a ajouter
 		* Necessite : Rien
 		* Sortie: Rien
-		* Entraine: Ajoute le sommet au graphe orient�
+		* Entraine: Ajoute le sommet au graphe oriente
 		****************************************************************************************************************************
 		*/
 		void GROAjouterSommet(TSommet<TData>* ptSommet);
+
+		/***************************************************************************************************************************
+		* METHODE : GROSupprimerSommet()
+		* **************************************************************************************************************************
+		* Entree: ptSommet,un pointeur vers le sommet a supprimer
+		* Necessite : Rien
+		* Sortie: Rien
+		* Entraine: Supprime le sommet du graphe oriente
+		****************************************************************************************************************************
+		*/
+		void GROSupprimerSommet(TSommet<TData>* ptSommet);
 
 		/**************************************************************************************************************************
 		* METHODE : GROLireArc
@@ -179,7 +190,7 @@ template<typename TData> class TGrapheOrient
 		* Entraine : Inverse le graphe oriente, c'est à dire inverse tous ses arcs et ses sommets
 		* ***************************************************************************************************************************
 		*/
-		void GROInverser();
+		TGrapheOrient<TData>* GROInverser();
 
 		/***************************************************************************************************************************
 		* METHODE : GROAfficher
@@ -191,6 +202,39 @@ template<typename TData> class TGrapheOrient
 		* ***************************************************************************************************************************
 		*/
 		void GROAfficher();
+
+		/***************************************************************************************************************************
+		* METHODE : GROFinaliser
+		* **************************************************************************************************************************
+		* Entree : Rien
+		* Necessite : Rien
+		* Sortie : Rien
+		* Entraine : Affiches le graphe oriente dans la console
+		* ***************************************************************************************************************************
+		*/
+		void GROFinaliser();
+
+		/***************************************************************************************************************************
+		* METHODE : GROTailleLstArc
+		* **************************************************************************************************************************
+		* Entree : Rien
+		* Necessite : Rien
+		* Sortie : Rien
+		* Entraine : Retourne la taille de la liste d'arcs
+		* ***************************************************************************************************************************
+		*/
+		unsigned int GROTailleLstArc() const { return vGROLstArc.size(); }
+
+		/***************************************************************************************************************************
+		* METHODE : GROTailleLstSommet
+		* **************************************************************************************************************************
+		* Entree : Rien
+		* Necessite : Rien
+		* Sortie : Rien
+		* Entraine : Retourne la taille de la liste de sommet
+		* ***************************************************************************************************************************
+		*/
+		unsigned int GROTailleLstSommet() const { return vGROLstSommet.size(); }
 };
 #include "TGrapheOrient.tpp"
 

@@ -101,7 +101,7 @@ template <typename TData> void TArc<TData>::ARCModifierData(TData &nvData) { ARC
 */
 template <typename TData> bool TArc<TData>::operator==(const TArc* ptArc) const
 {
-    if (uiARCIdDepart == ptArc->uiARCIdDepart && uiARCIdArrive == ptArc->uiARCIdArrive && ARCData == ptArc->ARCData) return true;
+    if (uiARCIdDepart == ptArc->ARCLireIdDepart() && uiARCIdArrive == ptArc->ARCLireIdArrive() && ARCData == ptArc->ARCLireData()) return true;
     return false;
 }
 
@@ -116,9 +116,9 @@ template <typename TData> bool TArc<TData>::operator==(const TArc* ptArc) const
 */
 template <typename TData> void TArc<TData>::ARCInverser()
 {
-    unsigned int uiTemp = uiARCIdDepart;
+    unsigned int uiARCTemp = uiARCIdDepart;
     uiARCIdDepart = uiARCIdArrive;
-    uiARCIdArrive = uiTemp;
+    uiARCIdArrive = uiARCTemp;
 }
 
 /*************************************************

@@ -127,10 +127,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Parser.cpp" />
+    <ClCompile Include="CParser.cpp" />
     <ClCompile Include="ProjetGrapheCPP.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CParser.hpp" />
     <ClInclude Include="TGrapheNonOrient.hpp" />
     <ClInclude Include="TArc.hpp" />
     <ClInclude Include="TSommet.hpp" />

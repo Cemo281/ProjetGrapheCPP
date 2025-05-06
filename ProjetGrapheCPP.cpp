@@ -11,132 +11,35 @@ using namespace std;
 #include "TSommet.hpp"
 #include "TGrapheOrient.hpp"
 #include <assert.h>
-
+#include "CParser.hpp"
 int main()
-{
-	TGrapheOrient<void*>* Graphe = new TGrapheOrient<void*>;
-	// Test getline()
-	string sLigne;
+{	
 	ifstream FILE("C:/Users/alice/OneDrive/Desktop/fichier.txt");
-	string sNbSom;
-	string sNbArc;
-	int iNbSom;
-	int iNbArc;
-	string sValSom;
-	string sSomDepart;
-	string sSomArrive;
-
-	TSommet<void*>* SOMTmp;
-	TArc<void*>* ARCTmp;
-
-	cout << "========= DEBUT DE CREATION DU GRAPHE =========" << endl;
-	cout << endl;
-	getline(FILE, sLigne); // lire la première ligne
-	int pos = sLigne.find("="); // trouver la position du "="
-	sLigne.erase(0, pos + 1); // supprimer tout ce qui est avant le "="
-	sLigne.erase(remove(sLigne.begin(), sLigne.end(), ' '), sLigne.end()); // retirer tout les espaces
-	sNbSom = sLigne; // stocker le nombre de sommet
-
-
-	getline(FILE, sLigne); // lire la deuxième ligne
-	pos = sLigne.find("="); // trouver la position du "="
-	sLigne.erase(0, pos + 1); // supprimer tout ce qui est avant le "="
-	sLigne.erase(remove(sLigne.begin(), sLigne.end(), ' '), sLigne.end());// trouver la position du "="
-	sNbArc = sLigne; // stocker le nombre d'arc
-
-	// les convertir en entiers
-	iNbSom = stoi(sNbSom);
-	iNbArc = stoi(sNbArc);
-
-	getline(FILE, sLigne); // lire la troisième ligne
-	pos = sLigne.find("="); // trouver la position du "="
-	sLigne.erase(0, pos + 1); // supprimer tout ce qui est avant le "="
-	sLigne.erase(remove(sLigne.begin(), sLigne.end(), ' '), sLigne.end()); // retirer tout les espaces
-
-	cout << "========= DEBUT DE CREATION DES SOMMETS =========" << endl;
-	cout << endl;
-	// Sommet
-	if (sLigne == "[") {
-		while (sLigne != "]") {
-			getline(FILE, sLigne); // lire la ligne suivante
-			if (sLigne == "]") {
-				break; // sortir de la boucle si on atteint la fin de la liste
-			}
-			else {
-				pos = sLigne.find("="); // trouver la position du "="
-				sLigne.erase(0, pos + 1); // supprimer tout ce qui est avant le "="
-				sLigne.erase(remove(sLigne.begin(), sLigne.end(), ' '), sLigne.end()); // retirer tout les espaces
-				sValSom = sLigne; // stocker la valeur du sommet
-				cout << "Sommet : " << sValSom << endl; // afficher la valeur du sommet
-			}
-			SOMTmp = new TSommet<void*>(stoi(sValSom));
-			Graphe->GROAjouterSommet(SOMTmp);
-		}
+	if (!FILE.is_open()) {
+		cout << "Erreur d'ouverture du fichier." << endl;
+		return 1;
 	}
-	cout << endl;
-	cout << "========= CREATION DES SOMMETS TERMINE =========" << endl;
-	cout << endl;
+	CParser Parser;
+	TGrapheOrient<void*>* Graphe = Parser.ParseGraph(FILE);
 
-	getline(FILE, sLigne); // lire la quatrième ligne
-	pos = sLigne.find("="); // trouver la position du "="
-	sLigne.erase(0, pos + 1); // supprimer tout ce qui est avant le "="
-	sLigne.erase(remove(sLigne.begin(), sLigne.end(), ' '), sLigne.end()); // retirer tout les espaces
-
-	cout << "========= DEBUT DE CREATION DES ARCS =========" << endl;
-	cout << endl;
-
-	// Arc
-	if (sLigne == "[") {
-		while (sLigne != "]") {
-			getline(FILE, sLigne); // lire la ligne suivante
-			sLigne.erase(remove(sLigne.begin(), sLigne.end(), ' '), sLigne.end()); // retirer tout les espaces
-			if (sLigne == "]") {
-				break; // sortir de la boucle si on atteint la fin de la liste
-			}
-			else {
-
-				pos = sLigne.find(","); // trouver la position du "="
-
-				sSomDepart = sLigne.substr(0, pos); // extraire la partie avant la virgule
-				sSomArrive = sLigne.substr(pos + 1); // extraire la partie après la virgule
-				
-				pos = sSomDepart.find("="); // trouver la position du "="
-				sSomDepart.erase(0, pos + 1); // supprimer tout ce qui est avant le "="
-
-				pos = sSomArrive.find("="); // trouver la position du "="
-				sSomArrive.erase(0, pos + 1); // supprimer tout ce qui est avant le "="
-
-				cout << "Sommet de depart : " << sSomDepart << " Sommet d'arrive : " << sSomArrive << endl; // afficher la valeur du sommet
-
-				ARCTmp = new TArc<void*>(stoi(sSomDepart), stoi(sSomArrive));
-				if (Graphe->GROARCEstDansGraphe(ARCTmp) == false) {
-					Graphe->GROAjouterArc(ARCTmp);
-				}
-				else {
-					cout << "L'arc existe deja dans le graphe" << endl;
-				}
-
-			}
-		}
-		cout << endl;
-		cout << "========= CREATION DES ARCS TERMINE =========" << endl;
-		cout << endl;
-		cout << "========= CREATION DU GRAPHE TERMINEE =========" << endl;
-		cout << endl;
-		cout << "========= AFFICHAGE DU GRAPHE =========" << endl;
-		cout << endl;
-		Graphe->GROAfficher();
-
-		delete Graphe;
-		FILE.close();
-
-		bool test;
-		TArc<void*>* ptArc = new TArc<void*>(1, 2);
-		TArc<void*>* ptArc2 = new TArc<void*>(1, 2);
-		test = (ptArc==ptArc2);
-		assert(test == true);
-		return 0;
+	if (Graphe == nullptr) {
+		cout << "Erreur de parsing du fichier." << endl;
+		return 1;
 	}
+	Graphe->GROFinaliser();
+
+	cout << "========= AFFICHAGE DU GRAPHE =========" << endl;
+	Graphe->GROAfficher();
+
+	cout << "======================================" << endl;
+	cout << "========= INVERSION DU GRAPHE =========" << endl;
+	TGrapheOrient<void*>* GrapheInverse = Graphe->GROInverser();
+	cout << "========= AFFICHAGE DU GRAPHE INVERSE =========" << endl;
+	GrapheInverse->GROAfficher();
+
+	delete Graphe;
+
+	return 0;
 }
 
 // Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage
