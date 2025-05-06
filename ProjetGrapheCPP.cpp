@@ -25,9 +25,6 @@ int main()
 	Graphe->GROFinaliser();
 	TGrapheOrient<void*>* GrapheInverse = Graphe->GROInverser();
 
-	// Test affichage du graphe
-	Graphe->GROAfficher();
-
 	// Test suppression de sommet dans le graphe
 	TSommet<void*>* ptSommet = Graphe->GROLireSommet(0);
 	Graphe->GROSupprimerSommet(ptSommet);

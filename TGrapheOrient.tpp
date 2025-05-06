@@ -261,7 +261,9 @@ template<typename TData> void TGrapheOrient<TData>::GROAfficher() {
         throw runtime_error("Le graphe est vide");
     }
 
-    cout << "Liste des sommets : " << endl;
+    cout << "=== Liste des sommets ===" << endl;
+    cout << endl;
+
     for (uiBoucle = 0; uiBoucle < vGROLstSommet.size(); uiBoucle++) {
         cout << "Sommet " << vGROLstSommet.at(uiBoucle)->SOMLireId() << ": ";
 
@@ -270,10 +272,17 @@ template<typename TData> void TGrapheOrient<TData>::GROAfficher() {
         }
         cout << endl;
     }
-    cout << "Liste des arcs : " << endl;
+    cout << endl;
+    cout << "==========================" << endl;
+
+    cout << endl;
+    cout << "===== Liste des Arcs =====" << endl;
+
     for (uiBoucle = 0; uiBoucle < vGROLstArc.size(); uiBoucle++) {
         vGROLstArc.at(uiBoucle)->ARCAfficher();    
     }
+    cout << endl;
+    cout << "==========================" << endl;
 }
 
 /***************************************************************************************************************************

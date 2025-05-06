@@ -124,6 +124,8 @@ TGrapheOrient<void*>* CParser::ParseGraph(ifstream& FILE) {
 				iSomDepart = stoi(sSomDepart);
 				iSomArrive = stoi(sSomArrive);
 
+
+
 				ARCTmp = new TArc<void*>(iSomDepart, iSomArrive);
 				if (Graphe->GROARCEstDansGraphe(ARCTmp) == false) {
 					Graphe->GROAjouterArc(ARCTmp);
