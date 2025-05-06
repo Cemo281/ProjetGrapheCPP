@@ -43,7 +43,6 @@ template<typename TData> class TGrapheOrient
 		* Necessite : Rien
 		* Sortie: Rien
 		* Entraine: Initialise un graphe orient� vide
-		
 		***************************************************************************************************************************
 		*/
 		TGrapheOrient() = default;
@@ -114,6 +113,17 @@ template<typename TData> class TGrapheOrient
 		***************************************************************************************************************************
 		*/
 		void GROAjouterArc(TArc<TData>* ptArc);
+
+		/**************************************************************************************************************************
+		* METHODE : GROSupprimerArc()
+		* *************************************************************************************************************************
+		* Entree: ptArc, un pointeur vers l'arc a supprimer
+		* Necessite : Rien
+		* Sortie: Rien
+		* Entraine: Supprimes l'arc du graphe oriente
+		***************************************************************************************************************************
+		*/
+		void GROSupprimerArc(TArc<TData>* ptArc);
 
 		/**************************************************************************************************************************
 		* METHODE : GROLireArc

@@ -19,6 +19,7 @@ template<typename TData> TGrapheOrient<TData>::TGrapheOrient(const TGrapheOrient
 
     TArc<TData>* ptARCTmp;
     TSommet<TData>* ptSOMTmp;
+
     tGROData = GROParam.tGROData;
 
     for (uiBoucle = 0; uiBoucle < GROParam.vGROLstArc.size(); uiBoucle++) {
@@ -78,9 +79,27 @@ template<typename TData> void TGrapheOrient<TData>::GROAjouterSommet(TSommet<TDa
 template<typename TData> void TGrapheOrient<TData>::GROSupprimerSommet(TSommet<TData>* ptSommet) {
     unsigned int uiBoucle;
 
+    // Verifier si le sommet est dans le graphe
+    if (this->GROSOMEstDansGraphe(ptSommet) == false) {
+        return;
+    }
+
+    for (uiBoucle = 0; uiBoucle < vGROLstArc.size(); uiBoucle++) {
+        // Suppressions des arcs qui partent du sommet
+        if (vGROLstArc.at(uiBoucle)->ARCLireIdDepart() == ptSommet->SOMLireId()) {
+            vGROLstArc.erase(vGROLstArc.begin() + uiBoucle);
+            uiBoucle--;
+        // Suppressuibs des arcs arrivant au sommet
+        } else if (vGROLstArc.at(uiBoucle)->ARCLireIdArrive() == ptSommet->SOMLireId()) {
+            vGROLstArc.erase(vGROLstArc.begin() + uiBoucle);
+            uiBoucle--;   
+        }
+    }
+
+    // Supprimer le sommet de la liste des sommets
     for (uiBoucle = 0; uiBoucle < vGROLstSommet.size(); uiBoucle++) {
         if (*(vGROLstSommet.at(uiBoucle)) == ptSommet) {
-            vGROLstSommet.erase(uiBoucle);
+            vGROLstSommet.erase(vGROLstSommet.begin() + uiBoucle);
             return;
         }
     }
@@ -97,6 +116,29 @@ template<typename TData> void TGrapheOrient<TData>::GROSupprimerSommet(TSommet<T
 */
 template <typename TData> void TGrapheOrient<TData>::GROAjouterArc(TArc<TData>* ptArc) {
     vGROLstArc.push_back(ptArc);
+}
+
+/**************************************************************************************************************************
+* METHODE : GROSupprimerArc()
+* *************************************************************************************************************************
+* Entree: ptArc, un pointeur vers l'arc a supprimer
+* Necessite : Rien
+* Sortie: Rien
+* Entraine: Supprimes l'arc du graphe oriente
+***************************************************************************************************************************
+*/
+template <typename TData> void TGrapheOrient<TData>::GROSupprimerArc(TArc<TData>* ptArc) {
+    unsigned int uiBoucle;
+    // Verifier si l'arc est dans le graphe
+    if (this->GROARCEstDansGraphe(ptArc) == false) {
+        return;
+    }
+    for (uiBoucle = 0; uiBoucle < vGROLstArc.size(); uiBoucle++) {
+        if (*(vGROLstArc.at(uiBoucle)) == ptArc) {
+            vGROLstArc.erase(vGROLstArc.begin() + uiBoucle);
+            return;
+        }
+    }
 }
 
 /**************************************************************************************************************************
@@ -192,14 +234,15 @@ template <typename TData> bool TGrapheOrient<TData>::GROARCEstDansGraphe(TArc<TD
 */
 template<typename TData> TGrapheOrient<TData>* TGrapheOrient<TData>::GROInverser() {
     unsigned int uiBoucle;
-    TGrapheOrient<TData>* ptGROInverse = new TGrapheOrient<TData>(this);
+    TGrapheOrient<TData>* ptGROInverse = new TGrapheOrient<TData>(*this);
 
     for (uiBoucle = 0; uiBoucle < vGROLstArc.size(); uiBoucle++) {
-        vGROLstArc.at(uiBoucle)->ARCInverser();
+        ptGROInverse->vGROLstArc.at(uiBoucle)->ARCInverser();
     }
     for (uiBoucle = 0; uiBoucle < vGROLstSommet.size(); uiBoucle++) {
-        vGROLstSommet.at(uiBoucle)->SOMInverser();
+        ptGROInverse->vGROLstSommet.at(uiBoucle)->SOMInverser();
     }
+    return ptGROInverse;
 }
 
 /***************************************************************************************************************************

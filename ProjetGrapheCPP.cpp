@@ -14,7 +14,7 @@ using namespace std;
 #include "CParser.hpp"
 int main()
 {	
-	ifstream FILE("C:/Users/alice/OneDrive/Desktop/fichier.txt");
+	ifstream FILE("C:/Users/alice/OneDrive/Desktop/PARSER.txt");
 	if (!FILE.is_open()) {
 		cout << "Erreur d'ouverture du fichier." << endl;
 		return 1;
@@ -22,21 +22,20 @@ int main()
 	CParser Parser;
 	TGrapheOrient<void*>* Graphe = Parser.ParseGraph(FILE);
 
-	if (Graphe == nullptr) {
-		cout << "Erreur de parsing du fichier." << endl;
-		return 1;
-	}
 	Graphe->GROFinaliser();
+	TGrapheOrient<void*>* GrapheInverse = Graphe->GROInverser();
 
-	cout << "========= AFFICHAGE DU GRAPHE =========" << endl;
+	// Test affichage du graphe
 	Graphe->GROAfficher();
 
-	cout << "======================================" << endl;
-	cout << "========= INVERSION DU GRAPHE =========" << endl;
-	TGrapheOrient<void*>* GrapheInverse = Graphe->GROInverser();
-	cout << "========= AFFICHAGE DU GRAPHE INVERSE =========" << endl;
-	GrapheInverse->GROAfficher();
+	// Test suppression de sommet dans le graphe
+	TSommet<void*>* ptSommet = Graphe->GROLireSommet(0);
+	Graphe->GROSupprimerSommet(ptSommet);
 
+	// Afficher Graphe après suppression
+	Graphe->GROAfficher();
+
+	delete GrapheInverse;
 	delete Graphe;
 
 	return 0;
