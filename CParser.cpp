@@ -19,11 +19,8 @@
 #include "CParser.hpp"
 #include <iostream>
 #include <fstream>
-#include <sstream>
 #include <string>
 #include <vector>
-#include <iterator>
-#include <algorithm>
 #include <exception>
 
 using namespace std;
@@ -31,13 +28,28 @@ using namespace std;
 /*********************************
 * Parser
 * ********************************
-* Entree : Le nom du fichier a parser
-* Necessite : Respecter le format du fichier
+* Entree : PARFichier, le fichier a parser
+* Necessite : Le fichier doit etre de la forme suivante:
+*	NBSommets=<Nombre_de_Sommets_du_graphe>
+*	NBArcs=< Nombre_d_arcs_du_graphe >
+*	Sommets=[
+*	Numero=<Numéro_sommet >
+*	Numero=<Numéro_sommet>
+*	…
+*	Numero=<Numéro_sommet>
+*	]
+*	Arcs=[
+*	Debut=<Sommet_départ_arc>, Fin=<Sommet_arrivée_arc>
+*	Debut=<Sommet_départ_arc>, Fin=<Sommet_arrivée_arc>
+*	…
+*	Debut=<Sommet_départ_arc>, Fin=<Sommet_arrivée_arc>
+*	]
+* Les sommets doivent etre avant les arcs.
 * Sortie : Un Graphe
 * Entraine : Retourne un graphe
 * *********************************
 */
-TGrapheOrient<void*>* CParser::ParseGraph(ifstream& FILE) {
+TGrapheOrient<void*>* CParser::ParseGraph(ifstream& PARFichier) {
 	TGrapheOrient<void*>* Graphe = new TGrapheOrient<void*>;
 
 	string sLigne;                 // pour stocker la ligne lue
@@ -50,39 +62,39 @@ TGrapheOrient<void*>* CParser::ParseGraph(ifstream& FILE) {
 	TSommet<void*>* SOMTmp;        // pour stocker le sommet temporaire
 	TArc<void*>* ARCTmp;		   // pour stocker l'arc temporaire	
 
-	getline(FILE, sLigne); // lire la premiere ligne
+	getline(PARFichier, sLigne);   // lire la premiere ligne
 	sLigne.erase(remove(sLigne.begin(), sLigne.end(), ' '), sLigne.end()); // retirer tout les espaces
-	int pos = sLigne.find("="); // trouver la position du "="
-	sLigne.erase(0, pos + 1); // supprimer tout ce qui est avant le "="
-	sNbSom = sLigne; // stocker le nombre de sommet
+	int pos = sLigne.find("=");    // trouver la position du "="
+	sLigne.erase(0, pos + 1);      // supprimer tout ce qui est avant le "="
+	sNbSom = sLigne;               // stocker le nombre de sommet
 
-	getline(FILE, sLigne); // lire la deuxieme ligne
+	getline(PARFichier, sLigne);   // lire la deuxieme ligne
 	sLigne.erase(remove(sLigne.begin(), sLigne.end(), ' '), sLigne.end()); // retirer tout les espaces
-	pos = sLigne.find("="); // trouver la position du "="
-	sLigne.erase(0, pos + 1); // supprimer tout ce qui est avant le "="
-	sNbArc = sLigne; // stocker le nombre d'arc
+	pos = sLigne.find("=");        // trouver la position du "="
+	sLigne.erase(0, pos + 1);      // supprimer tout ce qui est avant le "="
+	sNbArc = sLigne;               // stocker le nombre d'arc
 
 	// les convertir en entiers
 	iNbSom = stoi(sNbSom);
 	iNbArc = stoi(sNbArc);
 
-	getline(FILE, sLigne); // lire la ligne des sommets
+	getline(PARFichier, sLigne);    // lire la ligne des sommets
 	sLigne.erase(remove(sLigne.begin(), sLigne.end(), ' '), sLigne.end()); // retirer tout les espaces
-	pos = sLigne.find("="); // trouver la position du "="
-	sLigne.erase(0, pos + 1); // supprimer tout ce qui est avant le "="
+	pos = sLigne.find("=");         // trouver la position du "="
+	sLigne.erase(0, pos + 1);       // supprimer tout ce qui est avant le "="
 
 	// Sommet
 	if (sLigne == "[") {
 		while (sLigne != "]") {
-			getline(FILE, sLigne); // lire la ligne suivante
+			getline(PARFichier, sLigne); // lire la ligne suivante
 			if (sLigne == "]") {
-				break; // sortir de la boucle si on atteint la fin de la liste de sommet a creer
+				break;  // sortir de la boucle si on atteint la fin de la liste de sommet a creer
 			}
 			else {
-				pos = sLigne.find("="); // trouver la position du "="
+				pos = sLigne.find("=");   // trouver la position du "="
 				sLigne.erase(0, pos + 1); // supprimer tout ce qui est avant le "="
 				sLigne.erase(remove(sLigne.begin(), sLigne.end(), ' '), sLigne.end()); // retirer tout les espaces
-				sValSom = sLigne; // stocker la valeur du sommet
+				sValSom = sLigne;         // stocker la valeur du sommet
 			}
 
 			SOMTmp = new TSommet<void*>(stoi(sValSom));
@@ -95,7 +107,7 @@ TGrapheOrient<void*>* CParser::ParseGraph(ifstream& FILE) {
 		throw runtime_error("Erreur : Il n'y a pas de sommet");
 	}
 
-	getline(FILE, sLigne);    // lire la ligne des arcs
+	getline(PARFichier, sLigne);    // lire la ligne des arcs
 	pos = sLigne.find("=");   // trouver la position du "="
 	sLigne.erase(0, pos + 1); // supprimer tout ce qui est avant le "="
 	sLigne.erase(remove(sLigne.begin(), sLigne.end(), ' '), sLigne.end()); // retirer tout les espaces
@@ -103,7 +115,7 @@ TGrapheOrient<void*>* CParser::ParseGraph(ifstream& FILE) {
 	// Arc
 	if (sLigne == "[") {
 		while (sLigne != "]") {
-			getline(FILE, sLigne); // lire la ligne suivante
+			getline(PARFichier, sLigne); // lire la ligne suivante
 			sLigne.erase(remove(sLigne.begin(), sLigne.end(), ' '), sLigne.end()); // retirer tout les espaces
 			if (sLigne == "]") {
 				break; // sortir de la boucle si on atteint la fin de la liste
@@ -132,7 +144,7 @@ TGrapheOrient<void*>* CParser::ParseGraph(ifstream& FILE) {
 				}
 			}
 		}
-		FILE.close();
+		PARFichier.close();
 	}
 
 	if (Graphe->GROTailleLstArc() != iNbArc && Graphe->GROTailleLstSommet() != iNbSom) {

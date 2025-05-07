@@ -30,9 +30,9 @@ template<typename TData> class TArc
 {
     // ATTRIBUTS
 private:
-    unsigned int uiARCIdDepart;
-    unsigned int uiARCIdArrive;
-	TData ARCData; // Donnees de l'arc
+    unsigned int uiARCIdDepart;     // Id du sommets de depart
+    unsigned int uiARCIdArrive;     // Id du sommets d'arrive
+	TData ARCData;                  // Donnee de l'arc
     
     // CONSTRUCTEURS ET DESTRUCTEURS
 public:
@@ -78,7 +78,7 @@ public:
     * Entree : Rien
     * Necessite : Rien
     * Sortie : uiARCIdDepart, naturel
-    * Entraine : Retournes l'id de l'arc de Depart
+    * Entraine : Retournes l'id du sommet de Depart
     *************************************************
     */
     unsigned int ARCLireIdDepart() const;
@@ -89,7 +89,7 @@ public:
     * Entree : Rien
     * Necessite : Rien
     * Sortie : uiARCIdArrive, naturel
-    * Entraine : Retournes l'id de l'arc de Depart
+    * Entraine : Retournes l'id du sommet d'Arrivee
     *************************************************
     */
     unsigned int ARCLireIdArrive() const;
@@ -109,10 +109,10 @@ public:
     * METHODE : ARCModifierIdArrive
     * ***********************************************
     * Entree : uiNvIdArrive, naturel, l'id du nouvel
-                arc d'arrive
+    *            arc d'arrive
     * Necessite : Rien
     * Sortie : Rien
-    * Entraine : Modifie l'arc d'arrive
+    * Entraine : Modifie le sommet d'arrive
     *************************************************
     */
     void ARCModifierIdArrive(unsigned int uiNvIdArrive);
@@ -124,7 +124,7 @@ public:
     *            arc de depart
     * Necessite : Rien
     * Sortie : Rien
-    * Entraine : Modifie l'arc de depart
+    * Entraine : Modifie le sommet de depart
     *************************************************
     */
     void ARCModifierIdDepart(unsigned int uiNvIdDepart);
@@ -132,18 +132,18 @@ public:
     /*************************************************
 	* METHODE : ARCModifierData
     * ***********************************************
-	* Entree : newData, TData, la nouvelle donnee
+	* Entree : tNvData, TData, la nouvelle donnee
     * Necessite : Rien
     * Sortie : Rien
 	* Entraine : Modifie la donnee de l'arc
     *************************************************
     */
-	void ARCModifierData(TData &nvData);
+	void ARCModifierData(TData &tNvData);
 
 	/*************************************************
 	* METHODE : operator==
     * ************************************************
-	* Entree : un arc
+	* Entree : ptArc, un pointeur vers l'arc
 	* Necessite : Rien
 	* Sortie : Booleen
 	* Entraine : Compare si deux arcs sont egaux

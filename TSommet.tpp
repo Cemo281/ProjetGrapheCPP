@@ -4,10 +4,23 @@
 
 using namespace std;
 
+ /************************************************
+* METHODE : TSommet
+* ***********************************************
+* Entree : uiId, naturel, l'id du sommet
+* Necessite : Rien
+* Sortie : Rien
+* Entraine : Cree un sommet a partir d'un id
+*************************************************
+*/
+template <typename TData> TSommet<TData>::TSommet(unsigned int uiId) {
+	uiSOMId = uiId;
+}
+
 /************************************************
 * METHODE : TSommet
 * ***********************************************
-* Entree : SOMParam, un sommet a copier
+* Entree : SOMParam, le sommet a copier
 * Necessite : Rien
 * Sortie : Une copie du sommet
 * Entraine : Cree un sommet a partir d'un autre sommet
@@ -38,7 +51,7 @@ template<typename TData> TSommet<TData>::TSommet(const TSommet<TData>& SOMParam)
 * ***********************************************
 * Entree : Rien
 * Necessite : Rien
-* Sortie : Rien
+* Sortie : uiSOMId, naturel
 * Entraine : Retournes l'id du sommet
 *************************************************
 */
@@ -60,8 +73,8 @@ template <typename TData> void TSommet<TData>::SOMModifierId(unsigned int uiNvId
 * ***********************************************
 * Entree : Rien
 * Nicessite : Rien
-* Sortie : Rien
-* Entraine : Lit la donnee du sommet
+* Sortie : tSOMData, TData
+* Entraine : Retournes la donnee du sommet
 *************************************************
 */
 template <typename TData> TData TSommet<TData>::SOMLireData() const { return SOMData; }
@@ -83,7 +96,7 @@ template <typename TData> void TSommet<TData>::SOMModifierData(TData nvData) { S
 * Entree : ptArcPart, l'arc a ajouter
 * Necessite : Rien
 * Sortie : Rien
-* Entraine : Ajoutes un arc a la liste des
+* Entraine : Ajoutes un arc de la liste des
 *               arcs partant du sommet
 *************************************************
 */
@@ -124,12 +137,12 @@ template <typename TData> TArc<TData>* TSommet<TData>::SOMLireArcArr(unsigned in
 }
 
 /************************************************
-* METHODE : SOMAjouterArcPart
+* METHODE : SOMSupprimerArcPart
 * ***********************************************
-* Entree : pArcPart, l'arc a ajouter
+* Entree : ptArcPart, un pointeur vers l'arc a supprimer
 * Necessite : Rien
 * Sortie : Rien
-* Entraine : Ajoutes un arc a la liste des
+* Entraine : Supprimes l' arc de la liste des
 *               arcs partant du sommet
 *************************************************
 */
@@ -147,10 +160,10 @@ template <typename TData> void TSommet<TData>::SOMSupprimerArcPart(TArc<TData>* 
 /************************************************
 * METHODE : SOMAjouterArcArr
 * ***********************************************
-* Entree : pArcArr, l'arc a ajouter
+* Entree : ptArcArr, un pointeur vers l'arc a ajouter
 * Necessite : Rien
 * Sortie : Rien
-* Entraine : Ajoutes un arc a la liste des
+* Entraine : Ajoutes un arc de la liste des
 *               arcs arrivant au sommet
 *************************************************
 */
@@ -159,10 +172,10 @@ template <typename TData> void TSommet<TData>::SOMAjouterArcArr(TArc<TData>* ptA
 /************************************************
 * METHODE : SOMSupprimerArcArr
 * ***********************************************
-* Entree : ptArcArr, l'arc a ajouter
+* Entree : ptArcArr, l'arc a supprimer
 * Necessite : Rien
 * Sortie : Rien
-* Entraine : Ajoutes un arc a la liste des
+* Entraine : Supprimes l'arc de la liste des
 *               arcs arrivant au sommet
 *************************************************
 */
@@ -181,8 +194,8 @@ template <typename TData> void TSommet<TData>::SOMSupprimerArcArr(TArc<TData>* p
 * METHODE : operateur==
 * ***********************************************
 * Entree : ptSommet, un pointeur vers un sommet
-* Necessite : rien
-* Sortie : un booleen
+* Necessite : Rien
+* Sortie : Un booleen
 * Entraine : Compare si deux pointeurs vers un sommet sont egaux
 *               True si ils sont egaux,
 *               False sinon
@@ -196,9 +209,9 @@ template <typename TData> bool TSommet<TData>::operator==(const TSommet* ptSomme
 /************************************************
 * METHODE : SOMEstDansLstPart
 * ***********************************************
-* Entree : ptArcPart, un pointeur vers l'arc partant du sommet
-* Necessite : rien
-* Sortie : un booleen
+* Entree : ptArcPart, un pointeur vers un arc
+* Necessite : Rien
+* Sortie : Un booleen
 * Entraine : Verifie si le sommet existe deja dans 
 *                la liste des sommets partant
 * ***********************************************
@@ -218,9 +231,9 @@ template <typename TData> bool TSommet<TData>::SOMEstDansLstPart(TArc<TData>* pt
 /************************************************
 * METHODE : SOMEstDansLstArrivant
 * ***********************************************
-* Entree : ptArcArr, un pointeur vers l'arc arrivant au sommet
-* Necessite : rien
-* Sortie : un booleen
+* Entree : ptArcArr, un pointeur vers un arc
+* Necessite : Rien
+* Sortie : Un booleen
 * Entraine : Verifie si le sommet existe deja 
 				dans la liste des sommets arrivant
 * *************************************************
@@ -243,7 +256,7 @@ template <typename TData> bool TSommet<TData>::SOMEstDansLstArrivant(TArc<TData>
 * Entree : Rien
 * Necessite : Rien
 * Sortie : Rien
-* Entraine : Inverse le sommet c'est � dire qu'il 
+* Entraine : Inverse le sommet c'est a dire qu'il 
 *			place tout les sommet arrivant dans ceux partant et vice versa
 * *****************************************************************
 */

@@ -35,10 +35,10 @@ template<typename TData> class TSommet
 {
     // ATTRIBUTS
 private:
-    unsigned int uiSOMId;
-    vector<TArc<TData>*> vSOMLstArcPartant;
-    vector<TArc<TData>*> vSOMLstArcArrivant;
-    TData SOMData; // Donnees du sommet
+    unsigned int uiSOMId;                       // Id du sommet
+    vector<TArc<TData>*> vSOMLstArcPartant;     // Liste des arcs partant du sommet
+    vector<TArc<TData>*> vSOMLstArcArrivant;    // Liste des arcs arrivant au sommet
+    TData SOMData;                              // Donnees du sommet
 
     // CONSTRUCTEURS ET DESTRUCTEURS
 public:
@@ -59,18 +59,15 @@ public:
     * Entree : uiId, naturel, l'id du sommet
     * Necessite : Rien
     * Sortie : Rien
-    * Entraine : Cree un sommet a partir de son id
+    * Entraine : Cree un sommet a partir d'un id
     *************************************************
     */
-    TSommet(unsigned int uiId)
-    { 
-        uiSOMId = uiId; 
-    }
+    TSommet(unsigned int uiId);
 
     /************************************************
     * METHODE : TSommet
     * ***********************************************
-    * Entree : SOMParam, un sommet a copier
+    * Entree : SOMParam, le sommet a copier
     * Necessite : Rien
     * Sortie : Une copie du sommet
     * Entraine : Cree un sommet a partir d'un autre sommet
@@ -84,7 +81,7 @@ public:
     * Entree : Rien
     * Necessite : Rien
     * Sortie : Rien
-    * Entraine : Detruis un sommet
+    * Entraine : Detruis le sommet
     *************************************************
     */
     ~TSommet() = default;
@@ -95,7 +92,7 @@ public:
     * ***********************************************
     * Entree : Rien
     * Necessite : Rien
-    * Sortie : Rien
+    * Sortie : uiSOMId, naturel
     * Entraine : Retournes l'id du sommet
     *************************************************
     */
@@ -117,8 +114,8 @@ public:
     * ***********************************************
     * Entree : Rien
     * Necessite : Rien
-    * Sortie : Rien
-    * Entraine : Lit la donnee du sommet
+    * Sortie : tSOMData, TData
+    * Entraine : Retournes la donnee du sommet
     *************************************************
     */
     TData SOMLireData() const;
@@ -173,10 +170,10 @@ public:
     /************************************************
     * METHODE : SOMSupprimerArcPart
     * ***********************************************
-    * Entree : ptArcPart, l'arc a ajouter
+    * Entree : ptArcPart, l'arc a supprimer
     * Necessite : Rien
     * Sortie : Rien
-    * Entraine : Ajoutes un arc a la liste des
+    * Entraine : Supprimes l'arc arc a la liste des
     *               arcs partant du sommet
     *************************************************
     */
@@ -185,7 +182,7 @@ public:
     /************************************************
     * METHODE : SOMAjouterArcArr
     * ***********************************************
-    * Entree : tArcArr, l'arc a ajouter
+    * Entree : ptArcArr, un pointeur vers l'arc a ajouter
     * Necessite : Rien
     * Sortie : Rien
     * Entraine : Ajoutes un arc a la liste des
@@ -197,10 +194,10 @@ public:
     /************************************************
     * METHODE : SOMSupprimerArcArr
     * ***********************************************
-    * Entree : ptArcPart, l'arc a ajouter
+    * Entree : ptArcPart, l'arc a supprimer
     * Necessite : Rien
     * Sortie : Rien
-    * Entraine : Ajoutes un arc a la liste des
+    * Entraine : Supprimes l'arc a la liste des
     *               arcs arrivant au sommet
     *************************************************
     */
@@ -222,9 +219,9 @@ public:
     /************************************************
     * METHODE : SOMEstDansLstPart
     * ***********************************************
-    * Entree : ptArcPart, un pointeur vers l'arc partant du sommet
-    * Necessite : rien
-    * Sortie : un booleen
+    * Entree : ptArcPart, un pointeur vers un arc
+    * Necessite : Rien
+    * Sortie : Un booleen
 	* Entraine : Verifie si le sommet existe deja dans 
     *                la liste des sommets partant
     * ***********************************************
@@ -234,9 +231,9 @@ public:
     /************************************************
     * METHODE : SomEstDansLstArrivant
     * ***********************************************
-    * Entree : ptArcArr, un pointeur vers l'arc arrivant au sommet
-    * Necessite : rien
-    * Sortie : un booleen
+    * Entree : ptArcArr, un pointeur vers un arc
+    * Necessite : Rien
+    * Sortie : Un booleen
     * Entraine : Verifie si le sommet existe deja 
                     dans la liste des sommets arrivant
     * ***********************************************
@@ -249,7 +246,7 @@ public:
     * Entree : Rien
     * Necessite : Rien
     * Sortie : Rien
-	* Entraine : Inverse le sommet c'est � dire qu'il 
+	* Entraine : Inverse le sommet c'est a dire qu'il 
     *			place tout les sommet arrivant dans ceux partant et vice versa
     * ***********************************************
     */

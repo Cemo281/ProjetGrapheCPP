@@ -31,9 +31,9 @@ template<typename TData> class TGrapheOrient
 {
 	//Attributs:
 	private:
-		vector<TArc<TData>*> vGROLstArc; //liste des Arcs
+		vector<TArc<TData>*> vGROLstArc; 	   //liste des Arcs
 		vector<TSommet<TData>*> vGROLstSommet; //liste des Sommets
-		TData tGROData; //donnees du graphe
+		TData tGROData;  					   //donnees du graphe
 	//Constructeurs et destructeurs:
 	public:
 		/**************************************************************************************************************************
@@ -42,7 +42,7 @@ template<typename TData> class TGrapheOrient
 		* Entree: Rien
 		* Necessite : Rien
 		* Sortie: Rien
-		* Entraine: Initialise un graphe orient� vide
+		* Entraine: Initialise un graphe oriente vide
 		***************************************************************************************************************************
 		*/
 		TGrapheOrient() = default;
@@ -53,7 +53,7 @@ template<typename TData> class TGrapheOrient
 		* Entree: Le graphe oriente a copier
 		* Necessite : Rien
 		* Sortie: Rien
-		* Entraine: Creer un graphe oriente a partir d'un autre graphe oriente
+		* Entraine: Initialise un graphe oriente a partir d'un autre graphe oriente
 		***************************************************************************************************************************
 		*/
 		TGrapheOrient(const TGrapheOrient<TData>& GROParam);
@@ -62,9 +62,9 @@ template<typename TData> class TGrapheOrient
 		* TGrapheOrient
 		* *************************************************************************************************************************
 		* Entree: Fichier, le fichier contenant le graphe oriente
-		* Necessite : Le fichier doit etre valide et bien forme (.txt)
+		* Necessite : Le fichier doit etre valide et bien forme
 		* Sortie: Rien
-		* Entraine: Creer un graphe oriente a partir d'un fichier .txt
+		* Entraine: Initialise un graphe oriente a partir d'un fichier
 		***************************************************************************************************************************
 		*/
 		TGrapheOrient(ifstream &Fichier);
@@ -75,7 +75,7 @@ template<typename TData> class TGrapheOrient
 		* Entree: Rien
 		* Necessite : Rien
 		* Sortie: Rien
-		* Entraine: Detruit un graphe oriente
+		* Entraine: Detruit un graphe orisnte
 		***************************************************************************************************************************
 		*/
 		~TGrapheOrient() = default;
@@ -86,7 +86,7 @@ template<typename TData> class TGrapheOrient
 		* *************************************************************************************************************************
 		* Entree: Rien
 		* Necessite : Rien
-		* Sortie: tData, les donnees du graphe
+		* Sortie: tGROData, TData
 		* Entraine: Retournes les donnees du graphe
 		***************************************************************************************************************************
 		*/
@@ -96,9 +96,9 @@ template<typename TData> class TGrapheOrient
 		* METHODE : GROModifierData
 		* *************************************************************************************************************************
 		* Entree: tNvData, les nouvelles donnees du graphe
-		* Necessite : Les données doivent être du même type que le graphe
-		* Sortie: tData, les donnees du graphe
-		* Entraine: Retournes les donnees du graphe
+		* Necessite : Rien
+		* Sortie: Rien
+		* Entraine: Modifie les donnees du graphe par tNvData
 		***************************************************************************************************************************
 		*/
 		void GROModiferData(TData tNvData);
@@ -106,18 +106,18 @@ template<typename TData> class TGrapheOrient
 		/**************************************************************************************************************************
 		* METHODE : GROAjouterArc()
 		* *************************************************************************************************************************
-		* Entree: ptArc, un pointeur vers l'arc a ajouter
+		* Entree: ptArc, un pointeur vers un arc
 		* Necessite : Rien
 		* Sortie: Rien
-		* Entraine: Ajoute l'arc au graphe orient�
+		* Entraine: Ajoute l'arc au graphe oriente
 		***************************************************************************************************************************
 		*/
 		void GROAjouterArc(TArc<TData>* ptArc);
 
 		/**************************************************************************************************************************
-		* METHODE : GROSupprimerArc()
+		* METHODE : GROSupprimerArc
 		* *************************************************************************************************************************
-		* Entree: ptArc, un pointeur vers l'arc a supprimer
+		* Entree: ptArc, un pointeur vers un arc
 		* Necessite : Rien
 		* Sortie: Rien
 		* Entraine: Supprimes l'arc du graphe oriente
@@ -128,13 +128,13 @@ template<typename TData> class TGrapheOrient
 		/**************************************************************************************************************************
 		* METHODE : GROLireArc
 		* *************************************************************************************************************************
-		* Entree: iPos, la position de l'arc a lire
-		* Necessite : iPos doit etre valide
-		* Sortie: Un pointeur vers l'arc a la position iPosS
-		* Entraine: Renvoie l'arc a la position iPos
+		* Entree: uiPos, la position de l'arc a lire
+		* Necessite : Rien
+		* Sortie: Un pointeur vers l'arc a la position uiPos
+		* Entraine: Renvoie l'arc a la position uiPos
 		***************************************************************************************************************************
 		*/
-		TArc<TData>* GROLireArc(unsigned int iPos) const;
+		TArc<TData>* GROLireArc(unsigned int uiPos) const;
 
 		/***************************************************************************************************************************
 		* METHODE : GROAjouterSommet()
@@ -150,10 +150,10 @@ template<typename TData> class TGrapheOrient
 		/***************************************************************************************************************************
 		* METHODE : GROSupprimerSommet()
 		* **************************************************************************************************************************
-		* Entree: ptSommet,un pointeur vers le sommet a supprimer
+		* Entree: ptSommet,un pointeur vers un sommet
 		* Necessite : Rien
 		* Sortie: Rien
-		* Entraine: Supprime le sommet du graphe oriente
+		* Entraine: Supprimes le sommet du graphe oriente
 		****************************************************************************************************************************
 		*/
 		void GROSupprimerSommet(TSommet<TData>* ptSommet);
@@ -172,18 +172,29 @@ template<typename TData> class TGrapheOrient
 		/***************************************************************************************************************************
 		* METHODE : GROSOMEstDansGraphe
 		* **************************************************************************************************************************
-		* Entree : ptSommet ,un pointeur vers le sommet a ajouter
+		* Entree : ptSommet ,un pointeur un sommet
 		* Necessite : Rien
 		* Sortie : Booleen
-		* Entraine : Verifie si le sommet appartient au graphe orient�
+		* Entraine : Verifie si le sommet appartient au graphe oriente
 		* **************************************************************************************************************************
 		*/
 		bool GROSOMEstDansGraphe(TSommet<TData>* ptSommet);
 
 		/***************************************************************************************************************************
+		* METHODE : GROSOMEstDansGraphe
+		* **************************************************************************************************************************
+		* Entree : uiIdSommet, l'id du sommet
+		* Necessite : Rien
+		* Sortie : Booleen
+		* Entraine : Verifie si le sommet appartient au graphe oriente
+		* **************************************************************************************************************************
+		*/
+		bool GROSOMEstDansGraphe(unsigned int uiIdSommet);
+
+		/***************************************************************************************************************************
 		* METHODE : GROARCEstDansGraphe
 		* **************************************************************************************************************************
-		* Entree : ptArc pinteur vers l'arc � ajouter 
+		* Entree : ptArc, un pointeur vers un arc
 		* Necessite : Rien
 		* Sortie : Booleen
 		* Entraine : Verifie si l'arc appartient au graphe
@@ -196,7 +207,7 @@ template<typename TData> class TGrapheOrient
 		* **************************************************************************************************************************
 		* Entree : Rien
 		* Necessite : Rien
-		* Sortie : Rien
+		* Sortie : Un pointeur vers une copie du graphe oriente mais qui est inverse
 		* Entraine : Inverse le graphe oriente, c'est à dire inverse tous ses arcs et ses sommets
 		* ***************************************************************************************************************************
 		*/
@@ -229,8 +240,8 @@ template<typename TData> class TGrapheOrient
 		* **************************************************************************************************************************
 		* Entree : Rien
 		* Necessite : Rien
-		* Sortie : Rien
-		* Entraine : Retourne la taille de la liste d'arcs
+		* Sortie : Naturel
+		* Entraine : Retournes la taille de la liste d'arcs
 		* ***************************************************************************************************************************
 		*/
 		unsigned int GROTailleLstArc() const { return vGROLstArc.size(); }
@@ -240,8 +251,8 @@ template<typename TData> class TGrapheOrient
 		* **************************************************************************************************************************
 		* Entree : Rien
 		* Necessite : Rien
-		* Sortie : Rien
-		* Entraine : Retourne la taille de la liste de sommet
+		* Sortie : Naturel
+		* Entraine : Retournes la taille de la liste de sommets
 		* ***************************************************************************************************************************
 		*/
 		unsigned int GROTailleLstSommet() const { return vGROLstSommet.size(); }

@@ -53,10 +53,10 @@ public:
 	* Entree: Le graphe non oriente a copier
 	* Necessite : Rien
 	* Sortie: Rien
-	* Entraine: Creer un graphe non oriente a partir d'un autre graphe non oriente
+	* Entraine: Initialise un graphe non oriente a partir d'un autre graphe non oriente
 	***************************************************************************************************************************
 	*/
-	TGrapheNonOrient(const TGrapheNonOrient& GROParam);
+	TGrapheNonOrient(const TGrapheNonOrient& GROParam) = default;
 
 	/**************************************************************************************************************************
 	* ~TGrapheNonOrient
@@ -64,25 +64,33 @@ public:
 	* Entree: Rien
 	* Necessite: Rien
 	* Sortie: Rien
-	* Entraine: Detruit un graphe non oriente
+	* Entraine: Detruis un graphe non oriente
 	* *************************************************************************************************************************
 	*/
 	~TGrapheNonOrient() = default;
 
 	//METHODES
 	/**************************************************************************************************************************
-	* METHODE : GNOAjouterArc()
+	* METHODE : GNOAjouterArc
 	* **************************************************************************************************************************
-	* Entree: ptArc, Un pointeur vers l'arc a ajouter
+	* Entree: ptArc, Un pointeur vers un arc
 	* Necessite: Rien
 	* Sortie: Rien
-	* Entrainee: Ajoute l'arc au graphe non oriente
+	* Entrainee: Ajoute l'arc et son inverse au graphe non oriente
 	* **************************************************************************************************************************
 	*/
 	void GNOAjouterArc(TArc<TData>* ptArc);
 
-
-
+	/**************************************************************************************************************************
+	* METHODE : GNOSupprimerArc
+	* **************************************************************************************************************************
+	* Entree: ptArc, Un pointeur vers un arc
+	* Necessite: Rien
+	* Sortie: Rien
+	* Entrainee: Supprime l'arc et son inverse du graphe non oriente
+	* **************************************************************************************************************************
+	*/
+	void GNOSupprimerArc(TArc<TData>* ptArc);
 };
 
 #endif

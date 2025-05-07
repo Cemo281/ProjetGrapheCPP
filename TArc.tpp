@@ -10,7 +10,7 @@ using namespace std;
 *          uiIdArrive, naturel, sommet d'arrive
 * Necessite : Rien
 * Sortie : Rien
-* Entraine : Creer un arc a partir de l id de
+* Entraine : Creer un arc a partir de l'id de
 *            deux sommets
 *************************************************
 */
@@ -26,7 +26,7 @@ template <typename TData> TArc<TData>::TArc(unsigned int uiIdDepart, unsigned in
 * Entree : Rien
 * Necessite : Rien
 * Sortie : uiARCIdDepart, naturel
-* Entraine : Retournes l'id de l'arc de Depart
+* Entraine : Retournes l'id du sommet de Depart
 *************************************************
 */
 template <typename TData> unsigned int TArc<TData>::ARCLireIdDepart() const { return uiARCIdDepart; }
@@ -37,7 +37,7 @@ template <typename TData> unsigned int TArc<TData>::ARCLireIdDepart() const { re
 * Entree : Rien
 * Necessite : Rien
 * Sortie : uiARCIdArrive, naturel
-* Entraine : Retournes l'id de l'arc de Depart
+* Entraine : Retournes l'id du sommet de Depart
 *************************************************
 */
 template <typename TData> unsigned int TArc<TData>::ARCLireIdArrive() const { return uiARCIdArrive; }
@@ -80,18 +80,18 @@ template <typename TData> void TArc<TData>::ARCModifierIdDepart(unsigned int uiN
 /*************************************************
 * METHODE : ARCModifierData
 * ***********************************************
-* Entree : newData, TData, la nouvelle donnee
+* Entree : tNwData, TData, la nouvelle donnee
 * Necessite : Rien
 * Sortie : Rien
 * Entraine : Modifie la donnee de l'arc
 *************************************************
 */
-template <typename TData> void TArc<TData>::ARCModifierData(TData &nvData) { ARCData = nvData; }
+template <typename TData> void TArc<TData>::ARCModifierData(TData &tNvData) { ARCData = tNvData; }
 
 /*************************************************
 * METHODE : operator==
 * ************************************************
-* Entree : un arc
+* Entree : ptArc, un pointeur vers l'arc
 * Necessite : Rien
 * Sortie : Booleen
 * Entraine : Compare si deux arcs sont egaux

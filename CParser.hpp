@@ -30,13 +30,28 @@ public:
 	/*********************************
 	* Parser
 	* ********************************
-	* Entree : Le nom du fichier a parser
-	* Necessite : Rien
+	* Entree : PARFichier, le fichier a parser
+	* Necessite : Le fichier doit etre de la forme suivante:
+	*	NBSommets=<Nombre_de_Sommets_du_graphe>
+	*	NBArcs=< Nombre_d_arcs_du_graphe >
+	*	Sommets=[
+	*	Numero=<Numéro_sommet >
+	*	Numero=<Numéro_sommet>
+	*	…
+	*	Numero=<Numéro_sommet>
+	*	]
+	*	Arcs=[
+	*	Debut=<Sommet_départ_arc>, Fin=<Sommet_arrivée_arc>
+	*	Debut=<Sommet_départ_arc>, Fin=<Sommet_arrivée_arc>
+	*	…
+	*	Debut=<Sommet_départ_arc>, Fin=<Sommet_arrivée_arc>
+	*	]
+	* Les sommets doivent etre avant les arcs.
 	* Sortie : Un Graphe
 	* Entraine : Retourne un graphe
 	* *********************************
 	*/
-	TGrapheOrient<void*>* ParseGraph(ifstream& FILE);
+	TGrapheOrient<void*>* ParseGraph(ifstream& PARFichier);
 };
 
 #endif
