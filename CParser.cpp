@@ -15,7 +15,7 @@
 */
 #include "TArc.hpp"
 #include "TSommet.hpp"
-#include "TGrapheOrient.hpp"
+#include "TGraphOrient.hpp"
 #include "CParser.hpp"
 #include <iostream>
 #include <fstream>
@@ -49,8 +49,8 @@ using namespace std;
 * Entraine : Retourne un graphe
 * *********************************
 */
-TGrapheOrient<void*>* CParser::ParseGraph(ifstream& PARFichier) {
-	TGrapheOrient<void*>* Graphe = new TGrapheOrient<void*>;
+TGraphOrient<void*>* CParser::ParseGraph(ifstream& PARFichier) {
+	TGraphOrient<void*>* Graphe = new TGraphOrient<void*>;
 
 	string sLigne;                 // pour stocker la ligne lue
 	string sNbSom, sNbArc;         // pour stocker le nombre de sommet et d'arc
@@ -98,18 +98,17 @@ TGrapheOrient<void*>* CParser::ParseGraph(ifstream& PARFichier) {
 			}
 
 			SOMTmp = new TSommet<void*>(stoi(sValSom));
-			if (Graphe->GROSOMEstDansGraphe(SOMTmp) == false) { // verifier si le sommet n'est pas deja dans le graphe
-				Graphe->GROAjouterSommet(SOMTmp);				// ajouter le sommet au graphe
-			}
+			Graphe->GROAjouterSommet(SOMTmp);				// ajouter le sommet au graphe
 		}
 	}
 	else {
+		cout << "Erreur : La liste des sommets n'est pas bien formatee" << endl;
 		throw runtime_error("Erreur : Il n'y a pas de sommet");
 	}
 
-	getline(PARFichier, sLigne);    // lire la ligne des arcs
-	pos = sLigne.find("=");   // trouver la position du "="
-	sLigne.erase(0, pos + 1); // supprimer tout ce qui est avant le "="
+	getline(PARFichier, sLigne);	// lire la ligne des arcs
+	pos = sLigne.find("=");		    // trouver la position du "="
+	sLigne.erase(0, pos + 1);       // supprimer tout ce qui est avant le "="
 	sLigne.erase(remove(sLigne.begin(), sLigne.end(), ' '), sLigne.end()); // retirer tout les espaces
 
 	// Arc
@@ -136,12 +135,8 @@ TGrapheOrient<void*>* CParser::ParseGraph(ifstream& PARFichier) {
 				iSomDepart = stoi(sSomDepart);
 				iSomArrive = stoi(sSomArrive);
 
-
-
 				ARCTmp = new TArc<void*>(iSomDepart, iSomArrive);
-				if (Graphe->GROARCEstDansGraphe(ARCTmp) == false) {
-					Graphe->GROAjouterArc(ARCTmp);
-				}
+				Graphe->GROAjouterArc(ARCTmp);
 			}
 		}
 		PARFichier.close();

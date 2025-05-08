@@ -1,11 +1,11 @@
 #include "TArc.hpp"
 #include "TSommet.hpp"
-#include "TGrapheOrient.hpp"
+#include "TGraphOrient.hpp"
 
 using namespace std;
 
 /**************************************************************************************************************************
-* TGrapheOrient
+* TGraphOrient
 * *************************************************************************************************************************
 * Entree: Le graphe oriente a copier
 * Necessite : Rien
@@ -13,7 +13,7 @@ using namespace std;
 * Entraine: Initialise un graphe oriente a partir d'un autre graphe oriente
 ***************************************************************************************************************************
 */
-template<typename TData> TGrapheOrient<TData>::TGrapheOrient(const TGrapheOrient<TData>& GROParam)
+template<typename TData> TGraphOrient<TData>::TGraphOrient(const TGraphOrient<TData>& GROParam)
 {
     unsigned int uiBoucle;
 
@@ -41,7 +41,7 @@ template<typename TData> TGrapheOrient<TData>::TGrapheOrient(const TGrapheOrient
 * Entraine: Retournes les donnees du graphe
 ***************************************************************************************************************************
 */
-template<typename TData> TData TGrapheOrient<TData>::GROLireData() { return tGROData; }
+template<typename TData> TData TGraphOrient<TData>::GROLireData() const { return tGROData; }
 
 /**************************************************************************************************************************
 * METHODE : GROModifierData
@@ -52,10 +52,10 @@ template<typename TData> TData TGrapheOrient<TData>::GROLireData() { return tGRO
 * Entraine: Modifie les donnees du graphe par tNvData
 ***************************************************************************************************************************
 */
-template<typename TData> void TGrapheOrient<TData>::GROModiferData(TData tNvData) { tGROData = tNvData; }
+template<typename TData> void TGraphOrient<TData>::GROModiferData(TData tNvData) { tGROData = tNvData; }
 
 /***************************************************************************************************************************
-* METHODE : GROAjouterSommet()
+* METHODE : GROAjouterSommet
 * **************************************************************************************************************************
 * Entree: ptSommet, un pointeur vers le sommet a ajouter
 * Necessite : Rien
@@ -63,12 +63,16 @@ template<typename TData> void TGrapheOrient<TData>::GROModiferData(TData tNvData
 * Entraine: Ajoute le sommet au graphe oriente
 ****************************************************************************************************************************
 */
-template<typename TData> void TGrapheOrient<TData>::GROAjouterSommet(TSommet<TData>* ptSommet) {
+template<typename TData> void TGraphOrient<TData>::GROAjouterSommet(TSommet<TData>* ptSommet) {
+    if (this->GROSOMEstDansGraphe(ptSommet) == true) {
+        return;
+    }
+    
     vGROLstSommet.push_back(ptSommet);
 }
 
 /***************************************************************************************************************************
-* METHODE : GROSupprimerSommet()
+* METHODE : GROSupprimerSommet
 * **************************************************************************************************************************
 * Entree: ptSommet, un pointeur vers un sommet
 * Necessite : Rien
@@ -76,7 +80,7 @@ template<typename TData> void TGrapheOrient<TData>::GROAjouterSommet(TSommet<TDa
 * Entraine: Supprimes le sommet du graphe oriente
 ****************************************************************************************************************************
 */
-template<typename TData> void TGrapheOrient<TData>::GROSupprimerSommet(TSommet<TData>* ptSommet) {
+template<typename TData> void TGraphOrient<TData>::GROSupprimerSommet(TSommet<TData>* ptSommet) {
     unsigned int uiBoucle;
 
     // Verifier si le sommet est dans le graphe
@@ -89,7 +93,7 @@ template<typename TData> void TGrapheOrient<TData>::GROSupprimerSommet(TSommet<T
         if (vGROLstArc.at(uiBoucle)->ARCLireIdDepart() == ptSommet->SOMLireId()) {
             vGROLstArc.erase(vGROLstArc.begin() + uiBoucle);
             uiBoucle--;
-        // Suppressuibs des arcs arrivant au sommet
+        // Suppressions des arcs arrivant au sommet
         } else if (vGROLstArc.at(uiBoucle)->ARCLireIdArrive() == ptSommet->SOMLireId()) {
             vGROLstArc.erase(vGROLstArc.begin() + uiBoucle);
             uiBoucle--;   
@@ -103,6 +107,8 @@ template<typename TData> void TGrapheOrient<TData>::GROSupprimerSommet(TSommet<T
             return;
         }
     }
+
+    delete ptSommet;
 }
 
 /**************************************************************************************************************************
@@ -114,7 +120,24 @@ template<typename TData> void TGrapheOrient<TData>::GROSupprimerSommet(TSommet<T
 * Entraine: Ajoute l'arc au graphe oriente
 ***************************************************************************************************************************
 */
-template <typename TData> void TGrapheOrient<TData>::GROAjouterArc(TArc<TData>* ptArc) {
+template <typename TData> void TGraphOrient<TData>::GROAjouterArc(TArc<TData>* ptArc) {
+    if (this->GROARCEstDansGraphe(ptArc) == true) {
+        return;
+    }
+    if (this->GROSOMEstDansGraphe(ptArc->ARCLireIdDepart()) == false && this->GROSOMEstDansGraphe(ptArc->ARCLireIdArrive()) == false) {
+        cout << "Erreur : Arc non ajoute" << endl;
+        cout << "Les sommets " << ptArc->ARCLireIdDepart() << " et " << ptArc->ARCLireIdArrive() << " n'existent pas dans le graphe." << endl;
+        return;
+    } else if (this->GROSOMEstDansGraphe(ptArc->ARCLireIdDepart()) == false) {
+        cout << "Erreur : Arc non ajoute" << endl;
+        cout << "Le sommet " << ptArc->ARCLireIdDepart() << " n'existe pas dans le graphe." << endl;
+        return;
+    } else if (this->GROSOMEstDansGraphe(ptArc->ARCLireIdArrive()) == false) {
+        cout << "Erreur : Arc non ajoute" << endl;
+        cout << "Le sommet " << ptArc->ARCLireIdArrive() << " n'existe pas dans le graphe." << endl;
+        return;
+    }
+
     vGROLstArc.push_back(ptArc);
 }
 
@@ -127,18 +150,32 @@ template <typename TData> void TGrapheOrient<TData>::GROAjouterArc(TArc<TData>* 
 * Entraine: Supprimes l'arc du graphe oriente
 ***************************************************************************************************************************
 */
-template <typename TData> void TGrapheOrient<TData>::GROSupprimerArc(TArc<TData>* ptArc) {
-    unsigned int uiBoucle;
+template <typename TData> void TGraphOrient<TData>::GROSupprimerArc(TArc<TData>* ptArc) {
+    unsigned int uiIndexSommet, uiIndexArc;
     // Verifier si l'arc est dans le graphe
     if (this->GROARCEstDansGraphe(ptArc) == false) {
         return;
     }
-    for (uiBoucle = 0; uiBoucle < vGROLstArc.size(); uiBoucle++) {
-        if (*(vGROLstArc.at(uiBoucle)) == ptArc) {
-            vGROLstArc.erase(vGROLstArc.begin() + uiBoucle);
+
+    for (uiIndexArc = 0; uiIndexArc < vGROLstArc.size(); uiIndexArc++) {
+        if (*(vGROLstArc.at(uiIndexArc)) == ptArc) {
+            vGROLstArc.erase(vGROLstArc.begin() + uiIndexArc);
             return;
         }
     }
+
+    for (uiIndexSommet = 0; uiIndexSommet < vGROLstSommet.size(); uiIndexSommet++) {
+        // On supprime l'arc si il est dans la liste des arcs partant du sommet pour chacun des sommets
+        if (vGROLstSommet.at(uiIndexSommet)->SOMEstDansLstPart(ptArc)) { 
+            vGROLstSommet.at(uiIndexSommet)->SOMSupprimerArcPart(ptArc);
+        }
+        // On supprime l'arc si il est dans la liste des arcs arrivant au sommet pour chacun des sommets
+        if (vGROLstSommet.at(uiIndexSommet)->SOMEstDansLstArrivant(ptArc)) {
+            vGROLstSommet.at(uiIndexSommet)->SOMSupprimerArcArr(ptArc);
+        }
+    }
+
+    delete ptArc;
 }
 
 /**************************************************************************************************************************
@@ -150,12 +187,14 @@ template <typename TData> void TGrapheOrient<TData>::GROSupprimerArc(TArc<TData>
 * Entraine: Renvoie l'arc a la position iPos
 ***************************************************************************************************************************
 */
-template <typename TData> TArc<TData>* TGrapheOrient<TData>::GROLireArc(unsigned int uiPos) const
+template <typename TData> TArc<TData>* TGraphOrient<TData>::GROLireArc(unsigned int uiPos)
 {
-    if (uiPos < vGROLstArc.size())
+    if (uiPos < vGROLstArc.size()) {
         return vGROLstArc.at(uiPos);
-    else
+    }
+    else {
         throw out_of_range("Position invalide dans la liste des arcs.");
+    }
 }
 
 /**************************************************************************************************************************
@@ -167,12 +206,14 @@ template <typename TData> TArc<TData>* TGrapheOrient<TData>::GROLireArc(unsigned
 * Entraine: Renvoie l'arc a la position uiPos
 ***************************************************************************************************************************
 */
-template <typename TData> TSommet<TData>* TGrapheOrient<TData>::GROLireSommet(unsigned int uiPos) const
+template <typename TData> TSommet<TData>* TGraphOrient<TData>::GROLireSommet(unsigned int uiPos)
 {
-    if (uiPos < vGROLstSommet.size())
+    if (uiPos < vGROLstSommet.size()) {
         return vGROLstSommet.at(uiPos);
-    else
+    }
+    else {
         throw out_of_range("Position invalide dans la liste des sommets.");
+    }
 }
 
 /***************************************************************************************************************************
@@ -184,7 +225,7 @@ template <typename TData> TSommet<TData>* TGrapheOrient<TData>::GROLireSommet(un
 * Entraine : Verifie si le sommet appartient au graphe oriente
 * **************************************************************************************************************************
 */
-template <typename TData> bool TGrapheOrient<TData>::GROSOMEstDansGraphe(unsigned int uiIdSommet) {
+template <typename TData> bool TGraphOrient<TData>::GROSOMEstDansGraphe(unsigned int uiIdSommet) {
     unsigned int uiBoucle;
 
     if (vGROLstSommet.size() == 0) {
@@ -209,7 +250,7 @@ template <typename TData> bool TGrapheOrient<TData>::GROSOMEstDansGraphe(unsigne
 * Entraine : Verifie si le sommet appartient au graphe oriente
 * **************************************************************************************************************************
 */
-template <typename TData> bool TGrapheOrient<TData>::GROSOMEstDansGraphe(TSommet<TData>* ptSommet) {
+template <typename TData> bool TGraphOrient<TData>::GROSOMEstDansGraphe(TSommet<TData>* ptSommet) {
     unsigned int uiBoucle;
 
     if (vGROLstSommet.size() == 0) {
@@ -233,8 +274,8 @@ template <typename TData> bool TGrapheOrient<TData>::GROSOMEstDansGraphe(TSommet
 * Entraine : Verifie si l'arc appartient au graphe
 ***************************************************************************************************************************
 */
-template <typename TData> bool TGrapheOrient<TData>::GROARCEstDansGraphe(TArc<TData>* ptArc) {
-    int uiBoucle;
+template <typename TData> bool TGraphOrient<TData>::GROARCEstDansGraphe(TArc<TData>* ptArc) {
+    unsigned int uiBoucle;
 
     if (vGROLstArc.size() == 0) {
         return false;
@@ -257,9 +298,9 @@ template <typename TData> bool TGrapheOrient<TData>::GROARCEstDansGraphe(TArc<TD
 * Entraine : Inverse le graphe oriente, c'est à dire inverse tous ses arcs et ses sommets
 * ***************************************************************************************************************************
 */
-template<typename TData> TGrapheOrient<TData>* TGrapheOrient<TData>::GROInverser() {
+template<typename TData> TGraphOrient<TData>* TGraphOrient<TData>::GROInverser() {
     unsigned int uiBoucle;
-    TGrapheOrient<TData>* ptGROInverse = new TGrapheOrient<TData>(*this);
+    TGraphOrient<TData>* ptGROInverse = new TGraphOrient<TData>(*this);
 
     for (uiBoucle = 0; uiBoucle < vGROLstArc.size(); uiBoucle++) {
         ptGROInverse->vGROLstArc.at(uiBoucle)->ARCInverser();
@@ -279,15 +320,14 @@ template<typename TData> TGrapheOrient<TData>* TGrapheOrient<TData>::GROInverser
 * Entraine : Affiches le graphe oriente dans la console
 * ***************************************************************************************************************************
 */
-template<typename TData> void TGrapheOrient<TData>::GROAfficher() {
+template<typename TData> void TGraphOrient<TData>::GROAfficher() {
     unsigned int uiBoucle;
 
     if (vGROLstArc.size() == 0 || vGROLstSommet.size() == 0) {
         throw runtime_error("Le graphe est vide");
     }
 
-    cout << "=== Liste des sommets ===" << endl;
-    cout << endl;
+    cout << "=== Liste des sommets ===" << endl << endl;
 
     for (uiBoucle = 0; uiBoucle < vGROLstSommet.size(); uiBoucle++) {
         cout << "Sommet " << vGROLstSommet.at(uiBoucle)->SOMLireId() << ": ";
@@ -298,16 +338,14 @@ template<typename TData> void TGrapheOrient<TData>::GROAfficher() {
         cout << endl;
     }
     cout << endl;
-    cout << "==========================" << endl;
-
-    cout << endl;
-    cout << "===== Liste des Arcs =====" << endl;
+    cout << "==========================" << endl << endl;
+    cout << "===== Liste des Arcs =====" << endl << endl;
 
     for (uiBoucle = 0; uiBoucle < vGROLstArc.size(); uiBoucle++) {
         vGROLstArc.at(uiBoucle)->ARCAfficher();    
     }
     cout << endl;
-    cout << "==========================" << endl;
+    cout << "==========================" << endl << endl;
 }
 
 /***************************************************************************************************************************
@@ -319,7 +357,7 @@ template<typename TData> void TGrapheOrient<TData>::GROAfficher() {
 * Entraine : Affiches le graphe oriente dans la console
 * ***************************************************************************************************************************
 */
-template<typename TData> void TGrapheOrient<TData>::GROFinaliser() {
+template<typename TData> void TGraphOrient<TData>::GROFinaliser() {
     unsigned int uiIndexSommet, uiIndexArc;
     TArc<TData>* ptArc;
     TSommet<TData>* ptSommet;

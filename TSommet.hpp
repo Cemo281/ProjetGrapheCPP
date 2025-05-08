@@ -251,6 +251,17 @@ public:
     * ***********************************************
     */
 	void SOMInverser();
+
+	/************************************************
+	* METHODE : SOMAfficher
+	* ***********************************************
+	* Entree : Rien
+	* Necessite : Rien
+	* Sortie : Rien
+	* Entraine : Affiches le sommet dans la console
+	* ***********************************************
+	*/
+	void SOMAfficher();
 };
 #include "TSommet.tpp"
 

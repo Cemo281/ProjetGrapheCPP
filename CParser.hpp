@@ -22,7 +22,7 @@
 */
 #include "TArc.hpp"
 #include "TSommet.hpp"
-#include "TGrapheOrient.hpp"
+#include "TGraphOrient.hpp"
 
 class CParser
 {
@@ -51,7 +51,7 @@ public:
 	* Entraine : Retourne un graphe
 	* *********************************
 	*/
-	TGrapheOrient<void*>* ParseGraph(ifstream& PARFichier);
+	TGraphOrient<void*>* ParseGraph(ifstream& PARFichier);
 };
 
 #endif

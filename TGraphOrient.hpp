@@ -2,7 +2,7 @@
 #define INCLUDE_GRAPHO_H 3
 
 /****************************************************
-* Patron de Classe :TGrapheOrient
+* Patron de Classe :TGraphOrient
 * **************************************************
 * ROLE : Cette classe permet de gerer et modifier un graphe oriente
 * **************************************************
@@ -27,7 +27,7 @@ using namespace std;
 * Pas de variable globale de declaree
 */
 
-template<typename TData> class TGrapheOrient
+template<typename TData> class TGraphOrient
 {
 	//Attributs:
 	private:
@@ -37,7 +37,7 @@ template<typename TData> class TGrapheOrient
 	//Constructeurs et destructeurs:
 	public:
 		/**************************************************************************************************************************
-		* TGrapheOrient
+		* TGraphOrient
 		* *************************************************************************************************************************
 		* Entree: Rien
 		* Necessite : Rien
@@ -45,10 +45,10 @@ template<typename TData> class TGrapheOrient
 		* Entraine: Initialise un graphe oriente vide
 		***************************************************************************************************************************
 		*/
-		TGrapheOrient() = default;
+		TGraphOrient() = default;
 
 		/**************************************************************************************************************************
-		* TGrapheOrient
+		* TGraphOrient
 		* *************************************************************************************************************************
 		* Entree: Le graphe oriente a copier
 		* Necessite : Rien
@@ -56,10 +56,10 @@ template<typename TData> class TGrapheOrient
 		* Entraine: Initialise un graphe oriente a partir d'un autre graphe oriente
 		***************************************************************************************************************************
 		*/
-		TGrapheOrient(const TGrapheOrient<TData>& GROParam);
+		TGraphOrient(const TGraphOrient<TData>& GROParam);
 
 		/**************************************************************************************************************************
-		* TGrapheOrient
+		* TGraphOrient
 		* *************************************************************************************************************************
 		* Entree: Fichier, le fichier contenant le graphe oriente
 		* Necessite : Le fichier doit etre valide et bien forme
@@ -67,10 +67,10 @@ template<typename TData> class TGrapheOrient
 		* Entraine: Initialise un graphe oriente a partir d'un fichier
 		***************************************************************************************************************************
 		*/
-		TGrapheOrient(ifstream &Fichier);
+		TGraphOrient(ifstream &Fichier);
 
 		/**************************************************************************************************************************
-		* TGrapheOrient
+		* TGraphOrient
 		* *************************************************************************************************************************
 		* Entree: Rien
 		* Necessite : Rien
@@ -78,7 +78,7 @@ template<typename TData> class TGrapheOrient
 		* Entraine: Detruit un graphe orisnte
 		***************************************************************************************************************************
 		*/
-		~TGrapheOrient() = default;
+		virtual ~TGraphOrient() = default;
 
 	//METHODES:
 		/**************************************************************************************************************************
@@ -90,7 +90,7 @@ template<typename TData> class TGrapheOrient
 		* Entraine: Retournes les donnees du graphe
 		***************************************************************************************************************************
 		*/
-		TData GROLireData();
+		TData GROLireData() const;
 
 		/**************************************************************************************************************************
 		* METHODE : GROModifierData
@@ -104,7 +104,7 @@ template<typename TData> class TGrapheOrient
 		void GROModiferData(TData tNvData);
 
 		/**************************************************************************************************************************
-		* METHODE : GROAjouterArc()
+		* METHODE : GROAjouterArc
 		* *************************************************************************************************************************
 		* Entree: ptArc, un pointeur vers un arc
 		* Necessite : Rien
@@ -112,7 +112,7 @@ template<typename TData> class TGrapheOrient
 		* Entraine: Ajoute l'arc au graphe oriente
 		***************************************************************************************************************************
 		*/
-		void GROAjouterArc(TArc<TData>* ptArc);
+		virtual void GROAjouterArc(TArc<TData>* ptArc);
 
 		/**************************************************************************************************************************
 		* METHODE : GROSupprimerArc
@@ -123,7 +123,7 @@ template<typename TData> class TGrapheOrient
 		* Entraine: Supprimes l'arc du graphe oriente
 		***************************************************************************************************************************
 		*/
-		void GROSupprimerArc(TArc<TData>* ptArc);
+		virtual void GROSupprimerArc(TArc<TData>* ptArc);
 
 		/**************************************************************************************************************************
 		* METHODE : GROLireArc
@@ -134,7 +134,7 @@ template<typename TData> class TGrapheOrient
 		* Entraine: Renvoie l'arc a la position uiPos
 		***************************************************************************************************************************
 		*/
-		TArc<TData>* GROLireArc(unsigned int uiPos) const;
+		virtual TArc<TData>* GROLireArc(unsigned int uiPos);
 
 		/***************************************************************************************************************************
 		* METHODE : GROAjouterSommet()
@@ -167,7 +167,7 @@ template<typename TData> class TGrapheOrient
 		* Entraine: Renvoie l'arc a la position uiPos
 		***************************************************************************************************************************
 		*/
-		TSommet<TData>* GROLireSommet(unsigned int uiPos) const;
+		TSommet<TData>* GROLireSommet(unsigned int uiPos);
 
 		/***************************************************************************************************************************
 		* METHODE : GROSOMEstDansGraphe
@@ -211,7 +211,7 @@ template<typename TData> class TGrapheOrient
 		* Entraine : Inverse le graphe oriente, c'est à dire inverse tous ses arcs et ses sommets
 		* ***************************************************************************************************************************
 		*/
-		TGrapheOrient<TData>* GROInverser();
+		TGraphOrient<TData>* GROInverser();
 
 		/***************************************************************************************************************************
 		* METHODE : GROAfficher
@@ -222,7 +222,7 @@ template<typename TData> class TGrapheOrient
 		* Entraine : Affiches le graphe oriente dans la console
 		* ***************************************************************************************************************************
 		*/
-		void GROAfficher();
+		virtual void GROAfficher();
 
 		/***************************************************************************************************************************
 		* METHODE : GROFinaliser
@@ -257,6 +257,6 @@ template<typename TData> class TGrapheOrient
 		*/
 		unsigned int GROTailleLstSommet() const { return vGROLstSommet.size(); }
 };
-#include "TGrapheOrient.tpp"
+#include "TGraphOrient.tpp"
 
 #endif

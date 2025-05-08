@@ -138,7 +138,7 @@ public:
 	* Entraine : Modifie la donnee de l'arc
     *************************************************
     */
-	void ARCModifierData(TData &tNvData);
+	void ARCModifierData(TData tNvData);
 
 	/*************************************************
 	* METHODE : operator==

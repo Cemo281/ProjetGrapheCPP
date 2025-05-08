@@ -127,8 +127,8 @@ template <typename TData> void TArc<TData>::ARCInverser()
 * Entree : Rien
 * Necessite : Rien
 * Sortie : Rien
-* Entraine : Affiches l'arc dans la console, son sommet de depart,
-*               son sommet d'arrivee ainsi que sa donnee
+* Entraine : Affiches l'arc dans la console sous la forme suivante :
+*            Arc <idDepart> -> <idArrive> : <data>
 * ***********************************************
 */
 template <typename TData> void TArc<TData>::ARCAfficher()

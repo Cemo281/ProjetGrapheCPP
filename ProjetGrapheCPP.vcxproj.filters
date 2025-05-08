@@ -29,10 +29,10 @@
     <ClInclude Include="TSommet.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="TGrapheOrient.hpp">
+    <ClInclude Include="TGraphOrient.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="TGrapheNonOrient.hpp">
+    <ClInclude Include="TGraph.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="CParser.hpp">
@@ -46,7 +46,10 @@
     <None Include="TArc.tpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </None>
-    <None Include="TGrapheOrient.tpp">
+    <None Include="TGraphOrient.tpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </None>
+    <None Include="TGraph.tpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </None>
   </ItemGroup>

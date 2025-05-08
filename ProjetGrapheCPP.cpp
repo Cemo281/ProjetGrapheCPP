@@ -9,28 +9,41 @@ using namespace std;
 #include <string>
 #include "TArc.hpp"
 #include "TSommet.hpp"
-#include "TGrapheOrient.hpp"
+#include "TGraphOrient.hpp"
+#include "TGraph.hpp"
 #include <assert.h>
 #include "CParser.hpp"
-int main()
-{	
-	ifstream FILE("C:/Users/alice/OneDrive/Desktop/PARSER.txt");
+#include <exception>
+
+int main(int argc, char* argv[])
+{
+	if (argc != 2) {
+		cout << "Erreur : Aucun ou trop de fichier fourni" << endl;
+		thread_local std::exception e("Erreur : Aucun ou trop de fichier fourni");
+		return 1;
+	}
+	ifstream FILE(argv[1]);
+
 	if (!FILE.is_open()) {
 		cout << "Erreur d'ouverture du fichier." << endl;
 		return 1;
 	}
+
+	cout << "Creation du graphe..." << endl << endl;
+
 	CParser Parser;
-	TGrapheOrient<void*>* Graphe = Parser.ParseGraph(FILE);
+	TGraphOrient<void*>* Graphe = Parser.ParseGraph(FILE);
 
 	Graphe->GROFinaliser();
-	TGrapheOrient<void*>* GrapheInverse = Graphe->GROInverser();
 
-	// Test suppression de sommet dans le graphe
-	TSommet<void*>* ptSommet = Graphe->GROLireSommet(0);
-	Graphe->GROSupprimerSommet(ptSommet);
-
-	// Afficher Graphe après suppression
+	cout << "===== GRAPHE ORIENTE =====" << endl << endl;
 	Graphe->GROAfficher();
+	
+	cout << "Inversion du graphe..." << endl << endl;
+	TGraphOrient<void*>* GrapheInverse = Graphe->GROInverser();
+
+	cout << "===== GRAPHE INVERSE =====" << endl << endl;
+	GrapheInverse->GROAfficher();
 
 	delete GrapheInverse;
 	delete Graphe;

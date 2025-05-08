@@ -263,3 +263,25 @@ template <typename TData> bool TSommet<TData>::SOMEstDansLstArrivant(TArc<TData>
 template <typename TData> void TSommet<TData>::SOMInverser() {
 	vSOMLstArcPartant.swap(vSOMLstArcArrivant);
 }
+
+/************************************************
+* METHODE : SOMAfficher
+* ***********************************************
+* Entree : Rien
+* Necessite : Rien
+* Sortie : Rien
+* Entraine : Affiches le sommet dans la console sous la forme suivante :
+* 			Sommet <id> : <data>
+* ***********************************************
+*/
+template <typename TData> void TSommet<TData>::SOMAfficher() {
+	cout << "Sommet " << uiSOMId << " : ";
+	if (SOMData != NULL)
+	{
+		cout << SOMData << endl;
+	}
+	else
+	{
+		cout << "Aucune donnee" << endl;
+	}
+}
