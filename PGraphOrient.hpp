@@ -12,8 +12,8 @@
 * *************************************************
 * INCLUSIONS EXTERNES :
 */
-#include "TSommet.hpp"
-#include "TArc.hpp"
+#include "PSommet.hpp"
+#include "PArc.hpp"
 #include <vector>
 #include <exception>
 
@@ -27,17 +27,17 @@ using namespace std;
 * Pas de variable globale de declaree
 */
 
-template<typename TData> class TGraphOrient
+template<typename TData> class PGraphOrient
 {
 	//Attributs:
 	private:
-		vector<TArc<TData>*> vGROLstArc; 	   //liste des Arcs
-		vector<TSommet<TData>*> vGROLstSommet; //liste des Sommets
-		TData tGROData;  					   //donnees du graphe
+		vector<PArc<TData>*> vGRALstArc; 	   //liste des Arcs
+		vector<PSommet<TData>*> vGRALstSommet; //liste des Sommets
+		TData tGRAData;  					   //donnees du graphe
 	//Constructeurs et destructeurs:
 	public:
 		/**************************************************************************************************************************
-		* TGraphOrient
+		* PGraphOrient
 		* *************************************************************************************************************************
 		* Entree: Rien
 		* Necessite : Rien
@@ -45,10 +45,10 @@ template<typename TData> class TGraphOrient
 		* Entraine: Initialise un graphe oriente vide
 		***************************************************************************************************************************
 		*/
-		TGraphOrient() = default;
+		PGraphOrient() = default;
 
 		/**************************************************************************************************************************
-		* TGraphOrient
+		* PGraphOrient
 		* *************************************************************************************************************************
 		* Entree: Le graphe oriente a copier
 		* Necessite : Rien
@@ -56,21 +56,10 @@ template<typename TData> class TGraphOrient
 		* Entraine: Initialise un graphe oriente a partir d'un autre graphe oriente
 		***************************************************************************************************************************
 		*/
-		TGraphOrient(const TGraphOrient<TData>& GROParam);
+		PGraphOrient(const PGraphOrient<TData>& GRAParam);
 
 		/**************************************************************************************************************************
-		* TGraphOrient
-		* *************************************************************************************************************************
-		* Entree: Fichier, le fichier contenant le graphe oriente
-		* Necessite : Le fichier doit etre valide et bien forme
-		* Sortie: Rien
-		* Entraine: Initialise un graphe oriente a partir d'un fichier
-		***************************************************************************************************************************
-		*/
-		TGraphOrient(ifstream &Fichier);
-
-		/**************************************************************************************************************************
-		* TGraphOrient
+		* PGraphOrient
 		* *************************************************************************************************************************
 		* Entree: Rien
 		* Necessite : Rien
@@ -78,22 +67,22 @@ template<typename TData> class TGraphOrient
 		* Entraine: Detruit un graphe orisnte
 		***************************************************************************************************************************
 		*/
-		virtual ~TGraphOrient() = default;
+		virtual ~PGraphOrient() = default;
 
 	//METHODES:
 		/**************************************************************************************************************************
-		* METHODE : GROLireData
+		* METHODE : GRALireData
 		* *************************************************************************************************************************
 		* Entree: Rien
 		* Necessite : Rien
-		* Sortie: tGROData, TData
+		* Sortie: tGRAData, TData
 		* Entraine: Retournes les donnees du graphe
 		***************************************************************************************************************************
 		*/
-		TData GROLireData() const;
+		TData GRALireData() const;
 
 		/**************************************************************************************************************************
-		* METHODE : GROModifierData
+		* METHODE : GRAModifierData
 		* *************************************************************************************************************************
 		* Entree: tNvData, les nouvelles donnees du graphe
 		* Necessite : Rien
@@ -101,10 +90,10 @@ template<typename TData> class TGraphOrient
 		* Entraine: Modifie les donnees du graphe par tNvData
 		***************************************************************************************************************************
 		*/
-		void GROModiferData(TData tNvData);
+		void GRAModiferData(TData tNvData);
 
 		/**************************************************************************************************************************
-		* METHODE : GROAjouterArc
+		* METHODE : GRAAjouterArc
 		* *************************************************************************************************************************
 		* Entree: ptArc, un pointeur vers un arc
 		* Necessite : Rien
@@ -112,10 +101,10 @@ template<typename TData> class TGraphOrient
 		* Entraine: Ajoute l'arc au graphe oriente
 		***************************************************************************************************************************
 		*/
-		virtual void GROAjouterArc(TArc<TData>* ptArc);
+		virtual void GRAAjouterArc(PArc<TData>* ptArc);
 
 		/**************************************************************************************************************************
-		* METHODE : GROSupprimerArc
+		* METHODE : GRASupprimerArc
 		* *************************************************************************************************************************
 		* Entree: ptArc, un pointeur vers un arc
 		* Necessite : Rien
@@ -123,10 +112,10 @@ template<typename TData> class TGraphOrient
 		* Entraine: Supprimes l'arc du graphe oriente
 		***************************************************************************************************************************
 		*/
-		virtual void GROSupprimerArc(TArc<TData>* ptArc);
+		virtual void GRASupprimerArc(PArc<TData>* ptArc);
 
 		/**************************************************************************************************************************
-		* METHODE : GROLireArc
+		* METHODE : GRALireArc
 		* *************************************************************************************************************************
 		* Entree: uiPos, la position de l'arc a lire
 		* Necessite : Rien
@@ -134,10 +123,10 @@ template<typename TData> class TGraphOrient
 		* Entraine: Renvoie l'arc a la position uiPos
 		***************************************************************************************************************************
 		*/
-		virtual TArc<TData>* GROLireArc(unsigned int uiPos);
+		virtual PArc<TData>* GRALireArc(unsigned int uiPos);
 
 		/***************************************************************************************************************************
-		* METHODE : GROAjouterSommet()
+		* METHODE : GRAAjouterSommet()
 		* **************************************************************************************************************************
 		* Entree: ptSommet,un pointeur vers le sommet a ajouter
 		* Necessite : Rien
@@ -145,10 +134,10 @@ template<typename TData> class TGraphOrient
 		* Entraine: Ajoute le sommet au graphe oriente
 		****************************************************************************************************************************
 		*/
-		void GROAjouterSommet(TSommet<TData>* ptSommet);
+		void GRAAjouterSommet(PSommet<TData>* ptSommet);
 
 		/***************************************************************************************************************************
-		* METHODE : GROSupprimerSommet()
+		* METHODE : GRASupprimerSommet()
 		* **************************************************************************************************************************
 		* Entree: ptSommet,un pointeur vers un sommet
 		* Necessite : Rien
@@ -156,10 +145,10 @@ template<typename TData> class TGraphOrient
 		* Entraine: Supprimes le sommet du graphe oriente
 		****************************************************************************************************************************
 		*/
-		void GROSupprimerSommet(TSommet<TData>* ptSommet);
+		void GRASupprimerSommet(PSommet<TData>* ptSommet);
 
 		/**************************************************************************************************************************
-		* METHODE : GROLireArc
+		* METHODE : GRALireArc
 		* *************************************************************************************************************************
 		* Entree: uiPos, la position de l'arc a lire
 		* Necessite : uiPos doit etre valide
@@ -167,10 +156,10 @@ template<typename TData> class TGraphOrient
 		* Entraine: Renvoie l'arc a la position uiPos
 		***************************************************************************************************************************
 		*/
-		TSommet<TData>* GROLireSommet(unsigned int uiPos);
+		PSommet<TData>* GRALireSommet(unsigned int uiPos);
 
 		/***************************************************************************************************************************
-		* METHODE : GROSOMEstDansGraphe
+		* METHODE : GRASOMEstDansGraphe
 		* **************************************************************************************************************************
 		* Entree : ptSommet ,un pointeur un sommet
 		* Necessite : Rien
@@ -178,10 +167,10 @@ template<typename TData> class TGraphOrient
 		* Entraine : Verifie si le sommet appartient au graphe oriente
 		* **************************************************************************************************************************
 		*/
-		bool GROSOMEstDansGraphe(TSommet<TData>* ptSommet);
+		bool GRASOMEstDansGraphe(PSommet<TData>* ptSommet);
 
 		/***************************************************************************************************************************
-		* METHODE : GROSOMEstDansGraphe
+		* METHODE : GRASOMEstDansGraphe
 		* **************************************************************************************************************************
 		* Entree : uiIdSommet, l'id du sommet
 		* Necessite : Rien
@@ -189,21 +178,21 @@ template<typename TData> class TGraphOrient
 		* Entraine : Verifie si le sommet appartient au graphe oriente
 		* **************************************************************************************************************************
 		*/
-		bool GROSOMEstDansGraphe(unsigned int uiIdSommet);
+		bool GRASOMEstDansGraphe(unsigned int uiIdSommet);
 
 		/***************************************************************************************************************************
-		* METHODE : GROARCEstDansGraphe
+		* METHODE : GRAARCEstDansGraphe
 		* **************************************************************************************************************************
-		* Entree : ptArc, un pointeur vers un arc
+		* Entree : pPArc, un pointeur vers un arc
 		* Necessite : Rien
 		* Sortie : Booleen
 		* Entraine : Verifie si l'arc appartient au graphe
 		* **************************************************************************************************************************
 		*/
-		bool GROARCEstDansGraphe(TArc<TData>* ptArc);
+		bool GRAARCEstDansGraphe(PArc<TData>* ptArc);
 
 		/***************************************************************************************************************************
-		* METHODE : GROInverser
+		* METHODE : GRAInverser
 		* **************************************************************************************************************************
 		* Entree : Rien
 		* Necessite : Rien
@@ -211,10 +200,10 @@ template<typename TData> class TGraphOrient
 		* Entraine : Inverse le graphe oriente, c'est à dire inverse tous ses arcs et ses sommets
 		* ***************************************************************************************************************************
 		*/
-		TGraphOrient<TData>* GROInverser();
+		PGraphOrient<TData>* GRAInverser();
 
 		/***************************************************************************************************************************
-		* METHODE : GROAfficher
+		* METHODE : GRAAfficher
 		* **************************************************************************************************************************
 		* Entree : Rien
 		* Necessite : Rien
@@ -222,10 +211,10 @@ template<typename TData> class TGraphOrient
 		* Entraine : Affiches le graphe oriente dans la console
 		* ***************************************************************************************************************************
 		*/
-		virtual void GROAfficher();
+		virtual void GRAAfficher();
 
 		/***************************************************************************************************************************
-		* METHODE : GROFinaliser
+		* METHODE : GRAFinaliser
 		* **************************************************************************************************************************
 		* Entree : Rien
 		* Necessite : Rien
@@ -233,10 +222,10 @@ template<typename TData> class TGraphOrient
 		* Entraine : Affiches le graphe oriente dans la console
 		* ***************************************************************************************************************************
 		*/
-		void GROFinaliser();
+		void GRAFinaliser();
 
 		/***************************************************************************************************************************
-		* METHODE : GROTailleLstArc
+		* METHODE : GRATailleLstArc
 		* **************************************************************************************************************************
 		* Entree : Rien
 		* Necessite : Rien
@@ -244,10 +233,10 @@ template<typename TData> class TGraphOrient
 		* Entraine : Retournes la taille de la liste d'arcs
 		* ***************************************************************************************************************************
 		*/
-		unsigned int GROTailleLstArc() const { return vGROLstArc.size(); }
+		unsigned int GRATailleLsPArc() const { return vGRALstArc.size(); }
 
 		/***************************************************************************************************************************
-		* METHODE : GROTailleLstSommet
+		* METHODE : GRATailleLstSommet
 		* **************************************************************************************************************************
 		* Entree : Rien
 		* Necessite : Rien
@@ -255,8 +244,8 @@ template<typename TData> class TGraphOrient
 		* Entraine : Retournes la taille de la liste de sommets
 		* ***************************************************************************************************************************
 		*/
-		unsigned int GROTailleLstSommet() const { return vGROLstSommet.size(); }
+		unsigned int GRATailleLsPSommet() const { return vGRALstSommet.size(); }
 };
-#include "TGraphOrient.tpp"
+#include "PGraphOrient.tpp"
 
 #endif

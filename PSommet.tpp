@@ -1,11 +1,11 @@
-#include "TSommet.hpp"
-#include "TArc.hpp"
+#include "PSommet.hpp"
+#include "PArc.hpp"
 #include <vector>
 
 using namespace std;
 
  /************************************************
-* METHODE : TSommet
+* METHODE : PSommet
 * ***********************************************
 * Entree : uiId, naturel, l'id du sommet
 * Necessite : Rien
@@ -13,12 +13,12 @@ using namespace std;
 * Entraine : Cree un sommet a partir d'un id
 *************************************************
 */
-template <typename TData> TSommet<TData>::TSommet(unsigned int uiId) {
+template <typename TData> PSommet<TData>::PSommet(unsigned int uiId) {
 	uiSOMId = uiId;
 }
 
 /************************************************
-* METHODE : TSommet
+* METHODE : PSommet
 * ***********************************************
 * Entree : SOMParam, le sommet a copier
 * Necessite : Rien
@@ -26,21 +26,21 @@ template <typename TData> TSommet<TData>::TSommet(unsigned int uiId) {
 * Entraine : Cree un sommet a partir d'un autre sommet
 *************************************************
 */
-template<typename TData> TSommet<TData>::TSommet(const TSommet<TData>& SOMParam) {
-	TArc<TData>* ptARCTmp;
+template<typename TData> PSommet<TData>::PSommet(const PSommet<TData>& SOMParam) {
+	PArc<TData>* ptARCTmp;
 
 	uiSOMId = SOMParam.uiSOMId;
 	SOMData = SOMParam.SOMData;
 	// Copie des arcs partant du sommet
 	for (unsigned int iBoucle = 0; iBoucle < SOMParam.vSOMLstArcPartant.size(); iBoucle++)
 	{
-		ptARCTmp = new TArc<TData>(*(SOMParam.vSOMLstArcPartant.at(iBoucle)));
+		ptARCTmp = new PArc<TData>(*(SOMParam.vSOMLstArcPartant.at(iBoucle)));
 		vSOMLstArcPartant.push_back(ptARCTmp);
 	}
 	// Copie des arcs arrivant au sommet
 	for (unsigned int iBoucle = 0; iBoucle < SOMParam.vSOMLstArcArrivant.size(); iBoucle++)
 	{
-		ptARCTmp = new TArc<TData>(*(SOMParam.vSOMLstArcArrivant.at(iBoucle)));
+		ptARCTmp = new PArc<TData>(*(SOMParam.vSOMLstArcArrivant.at(iBoucle)));
 		vSOMLstArcArrivant.push_back(ptARCTmp);
 	}
 
@@ -55,7 +55,7 @@ template<typename TData> TSommet<TData>::TSommet(const TSommet<TData>& SOMParam)
 * Entraine : Retournes l'id du sommet
 *************************************************
 */
-template <typename TData> unsigned int TSommet<TData>::SOMLireId() const { return uiSOMId; }
+template <typename TData> unsigned int PSommet<TData>::SOMLireId() const { return uiSOMId; }
 
 /************************************************
 * METHODE : SOMModifierId
@@ -66,7 +66,7 @@ template <typename TData> unsigned int TSommet<TData>::SOMLireId() const { retur
 * Entraine : Cree un sommet
 *************************************************
 */
-template <typename TData> void TSommet<TData>::SOMModifierId(unsigned int uiNvId) { uiSOMId = uiNvId; }
+template <typename TData> void PSommet<TData>::SOMModifierId(unsigned int uiNvId) { uiSOMId = uiNvId; }
 
 /************************************************
 * METHODE : SOMLireData
@@ -77,7 +77,7 @@ template <typename TData> void TSommet<TData>::SOMModifierId(unsigned int uiNvId
 * Entraine : Retournes la donnee du sommet
 *************************************************
 */
-template <typename TData> TData TSommet<TData>::SOMLireData() const { return SOMData; }
+template <typename TData> TData PSommet<TData>::SOMLireData() const { return SOMData; }
 
 /************************************************
 * METHODE : SOMModifierData
@@ -88,7 +88,7 @@ template <typename TData> TData TSommet<TData>::SOMLireData() const { return SOM
 * Entraine : Modifie la donnee du sommet
 * *************************************************
 */
-template <typename TData> void TSommet<TData>::SOMModifierData(TData nvData) { SOMData = nvData; }
+template <typename TData> void PSommet<TData>::SOMModifierData(TData nvData) { SOMData = nvData; }
 
 /************************************************
 * METHODE : SOMAjouterArcPart
@@ -100,7 +100,7 @@ template <typename TData> void TSommet<TData>::SOMModifierData(TData nvData) { S
 *               arcs partant du sommet
 *************************************************
 */
-template <typename TData> void TSommet<TData>::SOMAjouterArcPart(TArc<TData>* ptArcPart) { vSOMLstArcPartant.push_back(ptArcPart); }
+template <typename TData> void PSommet<TData>::SOMAjouterArcPart(PArc<TData>* ptArcPart) { vSOMLstArcPartant.push_back(ptArcPart); }
 
 /************************************************
 * METHODE : SOMLireArcPart
@@ -112,7 +112,7 @@ template <typename TData> void TSommet<TData>::SOMAjouterArcPart(TArc<TData>* pt
 				partant du sommet
 *************************************************
 */
-template <typename TData> TArc<TData>* TSommet<TData>::SOMLireArcPart(unsigned int uiPos) {
+template <typename TData> PArc<TData>* PSommet<TData>::SOMLireArcPart(unsigned int uiPos) {
 	if (uiPos < vSOMLstArcPartant.size())
 		return vSOMLstArcPartant.at(uiPos);
 	else
@@ -129,7 +129,7 @@ template <typename TData> TArc<TData>* TSommet<TData>::SOMLireArcPart(unsigned i
  *               arrivant au sommet
  *************************************************
 */
-template <typename TData> TArc<TData>* TSommet<TData>::SOMLireArcArr(unsigned int uiPos) {
+template <typename TData> PArc<TData>* PSommet<TData>::SOMLireArcArr(unsigned int uiPos) {
 	if (uiPos < vSOMLstArcArrivant.size())
 		return vSOMLstArcArrivant.at(uiPos);
 	else
@@ -146,7 +146,7 @@ template <typename TData> TArc<TData>* TSommet<TData>::SOMLireArcArr(unsigned in
 *               arcs partant du sommet
 *************************************************
 */
-template <typename TData> void TSommet<TData>::SOMSupprimerArcPart(TArc<TData>* ptArcPart) {
+template <typename TData> void PSommet<TData>::SOMSupprimerArcPart(PArc<TData>* ptArcPart) {
 	for (int iBoucle = 0; iBoucle < vSOMLstArcPartant.size(); iBoucle++)
 	{
 		if (vSOMLstArcPartant.at(iBoucle) == ptArcPart)
@@ -167,7 +167,7 @@ template <typename TData> void TSommet<TData>::SOMSupprimerArcPart(TArc<TData>* 
 *               arcs arrivant au sommet
 *************************************************
 */
-template <typename TData> void TSommet<TData>::SOMAjouterArcArr(TArc<TData>* ptArcArr) { vSOMLstArcArrivant.push_back(ptArcArr); }
+template <typename TData> void PSommet<TData>::SOMAjouterArcArr(PArc<TData>* ptArcArr) { vSOMLstArcArrivant.push_back(ptArcArr); }
 
 /************************************************
 * METHODE : SOMSupprimerArcArr
@@ -179,7 +179,7 @@ template <typename TData> void TSommet<TData>::SOMAjouterArcArr(TArc<TData>* ptA
 *               arcs arrivant au sommet
 *************************************************
 */
-template <typename TData> void TSommet<TData>::SOMSupprimerArcArr(TArc<TData>* ptArcArr) {
+template <typename TData> void PSommet<TData>::SOMSupprimerArcArr(PArc<TData>* ptArcArr) {
 	for (int iBoucle = 0; iBoucle < vSOMLstArcArrivant.size(); iBoucle++)
 	{
 		if (vSOMLstArcArrivant.at(iBoucle) == ptArcArr)
@@ -201,7 +201,7 @@ template <typename TData> void TSommet<TData>::SOMSupprimerArcArr(TArc<TData>* p
 *               False sinon
 * ***********************************************
 */
-template <typename TData> bool TSommet<TData>::operator==(const TSommet* ptSommet) const
+template <typename TData> bool PSommet<TData>::operator==(const PSommet* ptSommet) const
 {
 	return uiSOMId == ptSommet->uiSOMId && SOMData == ptSommet->SOMData;
 }
@@ -216,7 +216,7 @@ template <typename TData> bool TSommet<TData>::operator==(const TSommet* ptSomme
 *                la liste des sommets partant
 * ***********************************************
 */
-template <typename TData> bool TSommet<TData>::SOMEstDansLstPart(TArc<TData>* ptArcPart) {
+template <typename TData> bool PSommet<TData>::SOMEstDansLstPart(PArc<TData>* ptArcPart) {
 	int iBoucle;
 	for (iBoucle = 0; iBoucle < vSOMLstArcPartant.size(); iBoucle++)
 	{
@@ -238,7 +238,7 @@ template <typename TData> bool TSommet<TData>::SOMEstDansLstPart(TArc<TData>* pt
 				dans la liste des sommets arrivant
 * *************************************************
 */
-template <typename TData> bool TSommet<TData>::SOMEstDansLstArrivant(TArc<TData>* ptArcArr) {
+template <typename TData> bool PSommet<TData>::SOMEstDansLstArrivant(PArc<TData>* ptArcArr) {
 	int iBoucle;
 	for (iBoucle = 0; iBoucle < vSOMLstArcArrivant.size(); iBoucle++)
 	{
@@ -260,7 +260,7 @@ template <typename TData> bool TSommet<TData>::SOMEstDansLstArrivant(TArc<TData>
 *			place tout les sommet arrivant dans ceux partant et vice versa
 * *****************************************************************
 */
-template <typename TData> void TSommet<TData>::SOMInverser() {
+template <typename TData> void PSommet<TData>::SOMInverser() {
 	vSOMLstArcPartant.swap(vSOMLstArcArrivant);
 }
 
@@ -274,7 +274,7 @@ template <typename TData> void TSommet<TData>::SOMInverser() {
 * 			Sommet <id> : <data>
 * ***********************************************
 */
-template <typename TData> void TSommet<TData>::SOMAfficher() {
+template <typename TData> void PSommet<TData>::SOMAfficher() {
 	cout << "Sommet " << uiSOMId << " : ";
 	if (SOMData != NULL)
 	{

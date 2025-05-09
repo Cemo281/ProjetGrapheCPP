@@ -192,16 +192,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CParser.hpp" />
-    <ClInclude Include="TGraph.hpp" />
-    <ClInclude Include="TArc.hpp" />
-    <ClInclude Include="TSommet.hpp" />
-    <ClInclude Include="TGraphOrient.hpp" />
+    <ClInclude Include="PGraph.hpp" />
+    <ClInclude Include="PArc.hpp" />
+    <ClInclude Include="PSommet.hpp" />
+    <ClInclude Include="PGraphOrient.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="TArc.tpp" />
-    <None Include="TGraph.tpp" />
-    <None Include="TGraphOrient.tpp" />
-    <None Include="TSommet.tpp" />
+    <None Include="PArc.tpp" />
+    <None Include="PGraph.tpp" />
+    <None Include="PGraphOrient.tpp" />
+    <None Include="PSommet.tpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

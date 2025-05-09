@@ -5,7 +5,7 @@
 * Patron de Classe :TGraph
 * **************************************************
 * ROLE : Cette classe permet de gerer et modifier un graphe non oriente 
-*			qui herite de la classe TGraphOrient
+*			qui herite de la classe PGraphOrient
 * **************************************************
 * VERSION : 1.0
 * AUTEUR : OZDEMIR ALI-CEM
@@ -13,9 +13,9 @@
 * *************************************************
 * INCLUSIONS EXTERNES :
 */
-#include "TGraphOrient.hpp"
-#include "TSommet.hpp"
-#include "TArc.hpp"
+#include "PGraphOrient.hpp"
+#include "PSommet.hpp"
+#include "PArc.hpp"
 #include <vector>
 
 using namespace std;
@@ -28,7 +28,7 @@ using namespace std;
 * Pas de variable globale de declaree
 */
 
-template<typename TData> class TGraph : public TGraphOrient<TData>
+template<typename TData> class PGraph : public PGraphOrient<TData>
 {
 	//Attributs
 private:
@@ -36,14 +36,14 @@ private:
 
 public:
 	//Constructeurs et destructeurs
-		TGraph() = default; //Constructeur par defaut	
+		PGraph() = default; //Constructeur par defaut	
 
-		explicit TGraph(const TGraphOrient<TData>& GROParam) : TGraphOrient<TData>(GROParam) {}
+		explicit PGraph(const PGraphOrient<TData>& GRAParam) : PGraphOrient<TData>(GRAParam) {}
 
 
 	//METHODES
 		/**************************************************************************************************************************
-		* METHODE : GROAjouterArc
+		* METHODE : GRAAjouterArc
 		* *************************************************************************************************************************
 		* Entree: ptArc, un pointeur vers un arc
 		* Necessite : Rien
@@ -51,10 +51,10 @@ public:
 		* Entraine: Ajoute l'arc au graphe non oriente et son inverse
 		***************************************************************************************************************************
 		*/
-		void GROAjouterArc(TArc<TData>* ptArc) override;
+		void GRAAjouterArc(PArc<TData>* ptArc) override;
 
 		/**************************************************************************************************************************
-		* METHODE : GROSupprimerArc
+		* METHODE : GRASupprimerArc
 		* **************************************************************************************************************************
 		* Entree: ptArc, Un pointeur vers un arc
 		* Necessite: Rien
@@ -62,10 +62,10 @@ public:
 		* Entrainee: Supprime l'arc et son inverse du graphe non oriente
 		* **************************************************************************************************************************
 		*/
-		void GROSupprimerArc(TArc<TData>* ptArc) override;
+		void GRASupprimerArc(PArc<TData>* ptArc) override;
 
 		/***************************************************************************************************************************
-		* METHODE : GROAfficher
+		* METHODE : GRAAfficher
 		* **************************************************************************************************************************
 		* Entree : Rien
 		* Necessite : Rien
@@ -73,9 +73,9 @@ public:
 		* Entraine : Affiches le graphe non oriente dans la console
 		* ***************************************************************************************************************************
 		*/
-		 void GROAfficher() override;
+		 void GRAAfficher() override;
 };
 
-#include "TGraph.tpp"
+#include "PGraph.tpp"
 
 #endif

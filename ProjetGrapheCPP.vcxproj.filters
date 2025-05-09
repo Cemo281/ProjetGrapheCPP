@@ -23,16 +23,16 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="TArc.hpp">
+    <ClInclude Include="PArc.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="TSommet.hpp">
+    <ClInclude Include="PSommet.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="TGraphOrient.hpp">
+    <ClInclude Include="PGraphOrient.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="TGraph.hpp">
+    <ClInclude Include="PGraph.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="CParser.hpp">
@@ -40,16 +40,16 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="TSommet.tpp">
+    <None Include="PSommet.tpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </None>
-    <None Include="TArc.tpp">
+    <None Include="PArc.tpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </None>
-    <None Include="TGraphOrient.tpp">
+    <None Include="PGraphOrient.tpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </None>
-    <None Include="TGraph.tpp">
+    <None Include="PGraph.tpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </None>
   </ItemGroup>

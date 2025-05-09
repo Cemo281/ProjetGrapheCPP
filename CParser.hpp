@@ -20,9 +20,9 @@
 * *************************************************
 * INCLUSIONS EXTERNES :
 */
-#include "TArc.hpp"
-#include "TSommet.hpp"
-#include "TGraphOrient.hpp"
+#include "PArc.hpp"
+#include "PSommet.hpp"
+#include "PGraphOrient.hpp"
 
 class CParser
 {
@@ -51,7 +51,7 @@ public:
 	* Entraine : Retourne un graphe
 	* *********************************
 	*/
-	TGraphOrient<void*>* ParseGraph(ifstream& PARFichier);
+	PGraphOrient<void*>* ParseGraph(ifstream& PARFichier);
 };
 
 #endif

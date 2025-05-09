@@ -1,10 +1,10 @@
-#include "TArc.hpp"
+#include "PArc.hpp"
 #include <iostream>
 
 using namespace std;
 
 /*************************************************
-* TArc
+* PArc
 * ***********************************************
 * Entree : uiIdDepart, naturel, sommet de depart
 *          uiIdArrive, naturel, sommet d'arrive
@@ -14,7 +14,7 @@ using namespace std;
 *            deux sommets
 *************************************************
 */
-template <typename TData> TArc<TData>::TArc(unsigned int uiIdDepart, unsigned int uiIdArrive)
+template <typename TData> PArc<TData>::PArc(unsigned int uiIdDepart, unsigned int uiIdArrive)
 {
     uiARCIdDepart = uiIdDepart;
     uiARCIdArrive = uiIdArrive;
@@ -29,7 +29,7 @@ template <typename TData> TArc<TData>::TArc(unsigned int uiIdDepart, unsigned in
 * Entraine : Retournes l'id du sommet de Depart
 *************************************************
 */
-template <typename TData> unsigned int TArc<TData>::ARCLireIdDepart() const { return uiARCIdDepart; }
+template <typename TData> unsigned int PArc<TData>::ARCLireIdDepart() const { return uiARCIdDepart; }
 
 /*************************************************
 * METHODE : ARCLireIdArrive
@@ -40,7 +40,7 @@ template <typename TData> unsigned int TArc<TData>::ARCLireIdDepart() const { re
 * Entraine : Retournes l'id du sommet de Depart
 *************************************************
 */
-template <typename TData> unsigned int TArc<TData>::ARCLireIdArrive() const { return uiARCIdArrive; }
+template <typename TData> unsigned int PArc<TData>::ARCLireIdArrive() const { return uiARCIdArrive; }
   
 /*************************************************
 * METHODE : ARCLireData
@@ -51,7 +51,7 @@ template <typename TData> unsigned int TArc<TData>::ARCLireIdArrive() const { re
 * Entraine : Retournes la donnee de l'arc
 *************************************************
 */
-template <typename TData> TData TArc<TData>::ARCLireData() const { return ARCData; }
+template <typename TData> TData PArc<TData>::ARCLireData() const { return ARCData; }
 
 /*************************************************
 * METHODE : ARCModifierIdArrive
@@ -63,7 +63,7 @@ template <typename TData> TData TArc<TData>::ARCLireData() const { return ARCDat
 * Entraine : Modifie l'arc d'arrive
 *************************************************
 */
-template <typename TData> void TArc<TData>::ARCModifierIdArrive(unsigned int uiNvIdArrive) { uiARCIdArrive = uiNvIdArrive; }
+template <typename TData> void PArc<TData>::ARCModifierIdArrive(unsigned int uiNvIdArrive) { uiARCIdArrive = uiNvIdArrive; }
 
 /*************************************************
 * METHODE : ARCModifierIdDepart
@@ -75,7 +75,7 @@ template <typename TData> void TArc<TData>::ARCModifierIdArrive(unsigned int uiN
 * Entraine : Modifie l'arc de depart
 *************************************************
 */
-template <typename TData> void TArc<TData>::ARCModifierIdDepart(unsigned int uiNvIdDepart) { uiARCIdDepart = uiNvIdDepart; }
+template <typename TData> void PArc<TData>::ARCModifierIdDepart(unsigned int uiNvIdDepart) { uiARCIdDepart = uiNvIdDepart; }
 
 /*************************************************
 * METHODE : ARCModifierData
@@ -86,7 +86,7 @@ template <typename TData> void TArc<TData>::ARCModifierIdDepart(unsigned int uiN
 * Entraine : Modifie la donnee de l'arc
 *************************************************
 */
-template <typename TData> void TArc<TData>::ARCModifierData(TData &tNvData) { ARCData = tNvData; }
+template <typename TData> void PArc<TData>::ARCModifierData(TData tNvData) { ARCData = tNvData; }
 
 /*************************************************
 * METHODE : operator==
@@ -99,7 +99,7 @@ template <typename TData> void TArc<TData>::ARCModifierData(TData &tNvData) { AR
 *               Faux sinon
 * ***********************************************
 */
-template <typename TData> bool TArc<TData>::operator==(const TArc* ptArc) const
+template <typename TData> bool PArc<TData>::operator==(const PArc* ptArc) const
 {
     if (uiARCIdDepart == ptArc->ARCLireIdDepart() && uiARCIdArrive == ptArc->ARCLireIdArrive() && ARCData == ptArc->ARCLireData()) return true;
     return false;
@@ -114,7 +114,7 @@ template <typename TData> bool TArc<TData>::operator==(const TArc* ptArc) const
 * Entraine : Inverse l'arc
 * ***********************************************
 */
-template <typename TData> void TArc<TData>::ARCInverser()
+template <typename TData> void PArc<TData>::ARCInverser()
 {
     unsigned int uiARCTemp = uiARCIdDepart;
     uiARCIdDepart = uiARCIdArrive;
@@ -131,7 +131,7 @@ template <typename TData> void TArc<TData>::ARCInverser()
 *            Arc <idDepart> -> <idArrive> : <data>
 * ***********************************************
 */
-template <typename TData> void TArc<TData>::ARCAfficher()
+template <typename TData> void PArc<TData>::ARCAfficher()
 {
     cout << "Arc " << uiARCIdDepart << " -> " << uiARCIdArrive << ": ";
     if (ARCData != nullptr) {

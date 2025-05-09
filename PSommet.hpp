@@ -7,7 +7,7 @@
 #define INCLUDE_SOMMET_H 1
 
 /****************************************************
-* Classe : TSommet
+* Classe : PSommet
 * **************************************************
 * ROLE : Cette classe permet gerer et modifier un sommet
 * **************************************************
@@ -17,7 +17,7 @@
 * *************************************************
 * INCLUSIONS EXTERNES :
 */
-#include "TArc.hpp"
+#include "PArc.hpp"
 #include <vector>
 #include <assert.h>
 
@@ -31,19 +31,19 @@ using namespace std;
 * Pas de variable globale de declaree
 */
 
-template<typename TData> class TSommet
+template<typename TData> class PSommet
 {
     // ATTRIBUTS
 private:
     unsigned int uiSOMId;                       // Id du sommet
-    vector<TArc<TData>*> vSOMLstArcPartant;     // Liste des arcs partant du sommet
-    vector<TArc<TData>*> vSOMLstArcArrivant;    // Liste des arcs arrivant au sommet
+    vector<PArc<TData>*> vSOMLstArcPartant;     // Liste des arcs partant du sommet
+    vector<PArc<TData>*> vSOMLstArcArrivant;    // Liste des arcs arrivant au sommet
     TData SOMData;                              // Donnees du sommet
 
     // CONSTRUCTEURS ET DESTRUCTEURS
 public:
     /************************************************
-    * METHODE : TSommet
+    * METHODE : PSommet
     * ***********************************************
     * Entree : Rien
     * Necessite : Rien
@@ -51,10 +51,10 @@ public:
     * Entraine : Cree un sommet
     *************************************************
     */
-	TSommet() = default;
+	PSommet() = default;
 
     /************************************************
-    * METHODE : TSommet
+    * METHODE : PSommet
     * ***********************************************
     * Entree : uiId, naturel, l'id du sommet
     * Necessite : Rien
@@ -62,10 +62,10 @@ public:
     * Entraine : Cree un sommet a partir d'un id
     *************************************************
     */
-    TSommet(unsigned int uiId);
+    PSommet(unsigned int uiId);
 
     /************************************************
-    * METHODE : TSommet
+    * METHODE : PSommet
     * ***********************************************
     * Entree : SOMParam, le sommet a copier
     * Necessite : Rien
@@ -73,7 +73,7 @@ public:
     * Entraine : Cree un sommet a partir d'un autre sommet
     *************************************************
     */
-    TSommet(const TSommet<TData>& SOMParam);
+    PSommet(const PSommet<TData>& SOMParam);
 
     /************************************************
     * METHODE : ~TSommet
@@ -84,7 +84,7 @@ public:
     * Entraine : Detruis le sommet
     *************************************************
     */
-    ~TSommet() = default;
+    ~PSommet() = default;
 
 	// METHODES
     /************************************************
@@ -134,14 +134,14 @@ public:
     /************************************************
     * METHODE : SOMAjouterArcPart
     * ***********************************************
-    * Entree : tArcPart, l'arc a ajouter
+    * Entree : PArcPart, l'arc a ajouter
     * Necessite : Rien
     * Sortie : Rien
     * Entraine : Ajoutes un arc a la liste des
     *               arcs partant du sommet
     *************************************************
     */
-    void SOMAjouterArcPart(TArc<TData>* ptArcPart);
+    void SOMAjouterArcPart(PArc<TData>* ptArcPart);
 
     /************************************************
 	* METHODE : SOMLireArcPart
@@ -153,7 +153,7 @@ public:
                     partant du sommet
     *************************************************
     */
-	TArc<TData>* SOMLireArcPart(unsigned int uiPos);
+	PArc<TData>* SOMLireArcPart(unsigned int uiPos);
 
     /************************************************
     * METHODE : SOMLireArcArr
@@ -165,7 +165,7 @@ public:
 	*               arrivant au sommet
     *************************************************
 	*/
-    TArc<TData>* SOMLireArcArr(unsigned int uiPos);
+    PArc<TData>* SOMLireArcArr(unsigned int uiPos);
 
     /************************************************
     * METHODE : SOMSupprimerArcPart
@@ -177,7 +177,7 @@ public:
     *               arcs partant du sommet
     *************************************************
     */
-    void SOMSupprimerArcPart(TArc<TData>* ptArcPart);
+    void SOMSupprimerArcPart(PArc<TData>* ptArcPart);
 
     /************************************************
     * METHODE : SOMAjouterArcArr
@@ -189,7 +189,7 @@ public:
     *               arcs arrivant au sommet
     *************************************************
     */
-    void SOMAjouterArcArr(TArc<TData>* ptArcArr);
+    void SOMAjouterArcArr(PArc<TData>* ptArcArr);
 
     /************************************************
     * METHODE : SOMSupprimerArcArr
@@ -201,7 +201,7 @@ public:
     *               arcs arrivant au sommet
     *************************************************
     */
-    void SOMSupprimerArcArr(TArc<TData>* ptArcPart);
+    void SOMSupprimerArcArr(PArc<TData>* ptArcPart);
 
 	/************************************************
     * METHODE : operateur==
@@ -214,7 +214,7 @@ public:
 	*               False sinon
 	* ***********************************************
 	*/
-    bool operator==(const TSommet* ptSommet) const;
+    bool operator==(const PSommet* ptSommet) const;
 
     /************************************************
     * METHODE : SOMEstDansLstPart
@@ -226,7 +226,7 @@ public:
     *                la liste des sommets partant
     * ***********************************************
     */
-	bool SOMEstDansLstPart(TArc<TData>* ptArcPart);
+	bool SOMEstDansLstPart(PArc<TData>* ptArcPart);
 
     /************************************************
     * METHODE : SomEstDansLstArrivant
@@ -238,7 +238,7 @@ public:
                     dans la liste des sommets arrivant
     * ***********************************************
     */
-	bool SOMEstDansLstArrivant(TArc<TData>* ptArcArr);
+	bool SOMEstDansLstArrivant(PArc<TData>* ptArcArr);
 
     /*************************************************
     * METHODE : SOMInverser
@@ -263,6 +263,6 @@ public:
 	*/
 	void SOMAfficher();
 };
-#include "TSommet.tpp"
+#include "PSommet.tpp"
 
 #endif

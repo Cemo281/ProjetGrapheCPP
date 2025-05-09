@@ -7,10 +7,10 @@ using namespace std;
 #include <fstream>
 #include <sstream>
 #include <string>
-#include "TArc.hpp"
-#include "TSommet.hpp"
-#include "TGraphOrient.hpp"
-#include "TGraph.hpp"
+#include "PArc.hpp"
+#include "PSommet.hpp"
+#include "PGraphOrient.hpp"
+#include "PGraph.hpp"
 #include <assert.h>
 #include "CParser.hpp"
 #include <exception>
@@ -32,18 +32,18 @@ int main(int argc, char* argv[])
 	cout << "Creation du graphe..." << endl << endl;
 
 	CParser Parser;
-	TGraphOrient<void*>* Graphe = Parser.ParseGraph(FILE);
+	PGraphOrient<void*>* Graphe = Parser.ParseGraph(FILE);
 
-	Graphe->GROFinaliser();
+	Graphe->GRAFinaliser();
 
 	cout << "===== GRAPHE ORIENTE =====" << endl << endl;
-	Graphe->GROAfficher();
+	Graphe->GRAAfficher();
 	
 	cout << "Inversion du graphe..." << endl << endl;
-	TGraphOrient<void*>* GrapheInverse = Graphe->GROInverser();
+	PGraphOrient<void*>* GrapheInverse = Graphe->GRAInverser();
 
 	cout << "===== GRAPHE INVERSE =====" << endl << endl;
-	GrapheInverse->GROAfficher();
+	GrapheInverse->GRAAfficher();
 
 	delete GrapheInverse;
 	delete Graphe;

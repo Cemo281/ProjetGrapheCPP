@@ -7,7 +7,7 @@
 #define INCLUDE_ARC_H 2
 
 /****************************************************
-* Classe : TArc
+* Classe : PArc
 * **************************************************
 * ROLE : Cette classe permet gerer et modifier un arc
 * **************************************************
@@ -26,7 +26,7 @@
 * Pas de variable globale de declaree
 */
 
-template<typename TData> class TArc
+template<typename TData> class PArc
 {
     // ATTRIBUTS
 private:
@@ -37,7 +37,7 @@ private:
     // CONSTRUCTEURS ET DESTRUCTEURS
 public:
     /*************************************************
-    * TArc
+    * PArc
     * ***********************************************
     * Entree : Rien
     * Necessite : Rien
@@ -45,10 +45,10 @@ public:
     * Entraine : Cree un arc
     *************************************************
     */
-    TArc() = default;
+    PArc() = default;
 
     /*************************************************
-    * TArc
+    * PArc
     * ***********************************************
     * Entree : uiIdDepart, naturel, sommet de depart
     *          uiIdArrive, naturel, sommet d'arrive
@@ -58,7 +58,7 @@ public:
     *            deux sommets
     *************************************************
     */
-    TArc(unsigned int uiIdDepart, unsigned int uiIdArrive);
+    PArc(unsigned int uiIdDepart, unsigned int uiIdArrive);
 
 	/**************************************************
     * ~TArc
@@ -69,7 +69,7 @@ public:
 	* Entraine : Detruis un arc
     * ************************************************
     */
-    ~TArc() = default;
+    ~PArc() = default;
 
     // METHODES
     /*************************************************
@@ -151,7 +151,7 @@ public:
     *               False sinon
 	* ***********************************************
     */
-	bool operator==(const TArc* ptArc) const;
+	bool operator==(const PArc* ptArc) const;
 
     /*************************************************
     * METHODE : ARCInverser
@@ -176,6 +176,6 @@ public:
     */
     void ARCAfficher();
 };
-#include "TArc.tpp"
+#include "PArc.tpp"
 
 #endif
