@@ -19,15 +19,9 @@ int main(int argc, char* argv[])
 {
 	if (argc != 2) {
 		cout << "Erreur : Aucun ou trop de fichier fourni" << endl;
-		thread_local std::exception e("Erreur : Aucun ou trop de fichier fourni");
 		return 1;
 	}
 	ifstream FILE(argv[1]);
-
-	if (!FILE.is_open()) {
-		cout << "Erreur d'ouverture du fichier." << endl;
-		return 1;
-	}
 
 	cout << "Creation du graphe..." << endl << endl;
 

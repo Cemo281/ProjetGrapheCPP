@@ -56,8 +56,8 @@ PGraphOrient<void*>* CParser::ParseGraph(ifstream& PARFichier) {
 	string sNbSom, sNbArc;         // pour stocker le nombre de sommet et d'arc
 	string sValSom;				   // pour stocker la valeur du sommet
 	string sSomDepart, sSomArrive; // pour stocker le sommet de depart et d'arrive
-	int iNbSom, iNbArc;			   // pour convertir le nombre de sommet et d'arc en entier 
-	int iSomDepart, iSomArrive;    // pour convertir les sommets de depart et d'arrive en entier
+	unsigned int uiNbSom, uiNbArc;			   // pour convertir le nombre de sommet et d'arc en entier 
+	unsigned int uiSomDepart, uiSomArrive;    // pour convertir les sommets de depart et d'arrive en entier
 
 	PSommet<void*>* SOMTmp;        // pour stocker le sommet temporaire
 	PArc<void*>* ARCTmp;		   // pour stocker l'arc temporaire	
@@ -75,8 +75,8 @@ PGraphOrient<void*>* CParser::ParseGraph(ifstream& PARFichier) {
 	sNbArc = sLigne;               // stocker le nombre d'arc
 
 	// les convertir en entiers
-	iNbSom = stoi(sNbSom);
-	iNbArc = stoi(sNbArc);
+	uiNbSom = stoi(sNbSom);
+	uiNbArc = stoi(sNbArc);
 
 	getline(PARFichier, sLigne);    // lire la ligne des sommets
 	sLigne.erase(remove(sLigne.begin(), sLigne.end(), ' '), sLigne.end()); // retirer tout les espaces
@@ -102,8 +102,7 @@ PGraphOrient<void*>* CParser::ParseGraph(ifstream& PARFichier) {
 		}
 	}
 	else {
-		cout << "Erreur : La liste des sommets n'est pas bien formatee" << endl;
-		throw runtime_error("Erreur : Il n'y a pas de sommet");
+		throw runtime_error("Erreur : La liste des sommets n'est pas bien formatee");
 	}
 
 	getline(PARFichier, sLigne);	// lire la ligne des arcs
@@ -132,26 +131,24 @@ PGraphOrient<void*>* CParser::ParseGraph(ifstream& PARFichier) {
 				pos = sSomArrive.find("=");   // trouver la position du "="
 				sSomArrive.erase(0, pos + 1); // supprimer tout ce qui est avant le "="
 				
-				iSomDepart = stoi(sSomDepart);
-				iSomArrive = stoi(sSomArrive);
+				// Convertis les sommets en entier
+				uiSomDepart = stoi(sSomDepart); 
+				uiSomArrive = stoi(sSomArrive); 
 
-				ARCTmp = new PArc<void*>(iSomDepart, iSomArrive);
+				ARCTmp = new PArc<void*>(uiSomDepart, uiSomArrive);
 				Graphe->GRAAjouterArc(ARCTmp);
 			}
 		}
 		PARFichier.close();
 	}
 
-	if (Graphe->GRATailleLsPArc() != iNbArc && Graphe->GRATailleLsPSommet() != iNbSom) {
-		cout << "Le nombre d'arcs et de sommet ne correspond pas aux nombres indique dans le fichier" << endl;
+	if (Graphe->GRATailleLsPArc() != uiNbArc && Graphe->GRATailleLsPSommet() != uiNbSom) {
 		throw invalid_argument("Erreur : Le nombre d'arcs et de sommet ne correspond pas aux nombres indique dans le fichier");
 	}
-	else if (Graphe->GRATailleLsPArc() != iNbArc) {
-		cout << "Le nombre d'arcs ne correspond pas au nombre indique dans le fichier" << endl;
+	else if (Graphe->GRATailleLsPArc() != uiNbArc) {
 		throw invalid_argument("Erreur : Le nombre d'arcs ne correspond pas au nombre indique dans le fichier");
 	}
-	else if (Graphe->GRATailleLsPSommet() != iNbSom) {
-		cout << "Le nombre de sommet ne correspond pas au nombre indique dans le fichier" << endl;
+	else if (Graphe->GRATailleLsPSommet() != uiNbSom) {
 		throw invalid_argument("Erreur : Le nombre de sommet ne correspond pas au nombre indique dans le fichier");
 	}
 

@@ -124,14 +124,17 @@ template <typename TData> void PGraphOrient<TData>::GRAAjouterArc(PArc<TData>* p
     if (this->GRAARCEstDansGraphe(ptArc) == true) {
         return;
     }
+    // Verifier si les deux sommets de l'arc sont dans le graphe
     if (this->GRASOMEstDansGraphe(ptArc->ARCLireIdDepart()) == false && this->GRASOMEstDansGraphe(ptArc->ARCLireIdArrive()) == false) {
         cout << "Erreur : Arc non ajoute" << endl;
         cout << "Les sommets " << ptArc->ARCLireIdDepart() << " et " << ptArc->ARCLireIdArrive() << " n'existent pas dans le graphe." << endl;
         return;
+    // Verifier si le sommet de depart est dans le graphe
     } else if (this->GRASOMEstDansGraphe(ptArc->ARCLireIdDepart()) == false) {
         cout << "Erreur : Arc non ajoute" << endl;
         cout << "Le sommet " << ptArc->ARCLireIdDepart() << " n'existe pas dans le graphe." << endl;
         return;
+    // Verifier si le sommet de depart est dans le graphe
     } else if (this->GRASOMEstDansGraphe(ptArc->ARCLireIdArrive()) == false) {
         cout << "Erreur : Arc non ajoute" << endl;
         cout << "Le sommet " << ptArc->ARCLireIdArrive() << " n'existe pas dans le graphe." << endl;
@@ -156,14 +159,13 @@ template <typename TData> void PGraphOrient<TData>::GRASupprimerArc(PArc<TData>*
     if (this->GRAARCEstDansGraphe(ptArc) == false) {
         return;
     }
-
+    // Supprimer l'arc de la liste des arcs
     for (uiIndexArc = 0; uiIndexArc < vGRALstArc.size(); uiIndexArc++) {
         if (*(vGRALstArc.at(uiIndexArc)) == ptArc) {
             vGRALstArc.erase(vGRALstArc.begin() + uiIndexArc);
             return;
         }
     }
-
     for (uiIndexSommet = 0; uiIndexSommet < vGRALstSommet.size(); uiIndexSommet++) {
         // On supprime l'arc si il est dans la liste des arcs partant du sommet pour chacun des sommets
         if (vGRALstSommet.at(uiIndexSommet)->SOMEstDansLstPart(ptArc)) { 
@@ -227,11 +229,11 @@ template <typename TData> PSommet<TData>* PGraphOrient<TData>::GRALireSommet(uns
 */
 template <typename TData> bool PGraphOrient<TData>::GRASOMEstDansGraphe(unsigned int uiIdSommet) {
     unsigned int uiBoucle;
-
+    // Si le graphe est vide, on ne peut pas trouver le sommet
     if (vGRALstSommet.size() == 0) {
         return false;
     }
-
+    // Sinon, on parcourt la liste des sommets
     for (uiBoucle = 0; uiBoucle < vGRALstSommet.size(); uiBoucle++) {
         if (vGRALstSommet.at(uiBoucle)->SOMLireId() == uiIdSommet) {
             return true;
@@ -252,11 +254,11 @@ template <typename TData> bool PGraphOrient<TData>::GRASOMEstDansGraphe(unsigned
 */
 template <typename TData> bool PGraphOrient<TData>::GRASOMEstDansGraphe(PSommet<TData>* ptSommet) {
     unsigned int uiBoucle;
-
+    // Si le graphe est vide, on ne peut pas trouver le sommet
     if (vGRALstSommet.size() == 0) {
         return false;
     }
-
+    // Sinon, on parcourt la liste des sommets
     for (uiBoucle = 0; uiBoucle < vGRALstSommet.size(); uiBoucle++) {
         if (*(vGRALstSommet.at(uiBoucle)) == ptSommet) {
             return true;
@@ -276,11 +278,11 @@ template <typename TData> bool PGraphOrient<TData>::GRASOMEstDansGraphe(PSommet<
 */
 template <typename TData> bool PGraphOrient<TData>::GRAARCEstDansGraphe(PArc<TData>* ptArc) {
     unsigned int uiBoucle;
-
+    // Si le graphe est vide, on ne peut pas trouver l'arc
     if (vGRALstArc.size() == 0) {
         return false;
     }
-
+    // Sinon, on parcourt la liste des arcs
     for (uiBoucle = 0; uiBoucle < vGRALstArc.size(); uiBoucle++) {
         if (*(vGRALstArc.at(uiBoucle)) == ptArc) {
             return true;
@@ -300,8 +302,13 @@ template <typename TData> bool PGraphOrient<TData>::GRAARCEstDansGraphe(PArc<TDa
 */
 template<typename TData> PGraphOrient<TData>* PGraphOrient<TData>::GRAInverser() {
     unsigned int uiBoucle;
+    if (vGRALstArc.size() == 0 || vGRALstSommet.size() == 0) {
+        throw runtime_error("Le graphe est vide");
+    }
+    // On cree une copie du graphe oriente
     PGraphOrient<TData>* ptGRAInverse = new PGraphOrient<TData>(*this);
 
+    // On inverse tous les arcs et sommets de la copie
     for (uiBoucle = 0; uiBoucle < vGRALstArc.size(); uiBoucle++) {
         ptGRAInverse->vGRALstArc.at(uiBoucle)->ARCInverser();
     }
@@ -323,7 +330,7 @@ template<typename TData> PGraphOrient<TData>* PGraphOrient<TData>::GRAInverser()
 template<typename TData> void PGraphOrient<TData>::GRAAfficher() {
     unsigned int uiBoucle;
 
-    if (vGRALstArc.size() == 0 || vGRALstSommet.size() == 0) {
+    if (vGRALstArc.size() == 0 && vGRALstSommet.size() == 0) {
         throw runtime_error("Le graphe est vide");
     }
 
@@ -363,7 +370,7 @@ template<typename TData> void PGraphOrient<TData>::GRAFinaliser() {
     PSommet<TData>* ptSommet;
 
     if (vGRALstArc.size() == 0 || vGRALstSommet.size() == 0) {
-        throw runtime_error("Le graphe est vide");
+        throw runtime_error("Erreur : Graph vide");
     }
 
     for (uiIndexArc = 0; uiIndexArc < vGRALstArc.size(); uiIndexArc++) {
@@ -380,4 +387,17 @@ template<typename TData> void PGraphOrient<TData>::GRAFinaliser() {
             }
         }
     }
+}
+
+/***************************************************************************************************************************
+* METHODE : GRACycleHamiltonien
+* **************************************************************************************************************************
+* Entree : Rien
+* Necessite : Rien
+* Sortie : Liste de sommets formant un cycle hamiltonien
+* Entraine : Retournes un cycle hamiltonien du graphe oriente
+* ***************************************************************************************************************************
+*/
+template<typename TData> vector<PSommet<TData>*> PGraphOrient<TData>::GRACycleHamiltonien(PSommet<TData>* ptSOMSource) const {
+    vector<PSommet<TData>*> vCycleHamiltonien;
 }

@@ -233,7 +233,7 @@ template<typename TData> class PGraphOrient
 		* Entraine : Retournes la taille de la liste d'arcs
 		* ***************************************************************************************************************************
 		*/
-		unsigned int GRATailleLsPArc() const { return vGRALstArc.size(); }
+		unsigned int GRATailleLstArc() const { return vGRALstArc.size(); }
 
 		/***************************************************************************************************************************
 		* METHODE : GRATailleLstSommet
@@ -244,7 +244,18 @@ template<typename TData> class PGraphOrient
 		* Entraine : Retournes la taille de la liste de sommets
 		* ***************************************************************************************************************************
 		*/
-		unsigned int GRATailleLsPSommet() const { return vGRALstSommet.size(); }
+		unsigned int GRATailleLstSommet() const { return vGRALstSommet.size(); }
+
+		/***************************************************************************************************************************
+		* METHODE : GRACycleHamiltonien
+		* **************************************************************************************************************************
+		* Entree : Rien
+		* Necessite : Rien
+		* Sortie : Liste de sommets formant un cycle hamiltonien
+		* Entraine : Retournes un cycle hamiltonien du graphe oriente
+		* ***************************************************************************************************************************
+		*/
+		vector<PSommet<TData>*> GRACycleHamiltonien(PSommet<TData>* ptSOMSource) const;
 };
 #include "PGraphOrient.tpp"
 

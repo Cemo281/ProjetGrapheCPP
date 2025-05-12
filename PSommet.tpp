@@ -113,10 +113,14 @@ template <typename TData> void PSommet<TData>::SOMAjouterArcPart(PArc<TData>* pt
 *************************************************
 */
 template <typename TData> PArc<TData>* PSommet<TData>::SOMLireArcPart(unsigned int uiPos) {
-	if (uiPos < vSOMLstArcPartant.size())
+	if (uiPos < vSOMLstArcPartant.size()) 
+	{
 		return vSOMLstArcPartant.at(uiPos);
+	}
 	else
+	{
 		throw out_of_range("Position invalide dans la liste des arcs partant.");
+	}
 }
 
 /************************************************
@@ -218,6 +222,7 @@ template <typename TData> bool PSommet<TData>::operator==(const PSommet* ptSomme
 */
 template <typename TData> bool PSommet<TData>::SOMEstDansLstPart(PArc<TData>* ptArcPart) {
 	int iBoucle;
+
 	for (iBoucle = 0; iBoucle < vSOMLstArcPartant.size(); iBoucle++)
 	{
 		if (vSOMLstArcPartant.at(iBoucle) == ptArcPart)
@@ -282,6 +287,6 @@ template <typename TData> void PSommet<TData>::SOMAfficher() {
 	}
 	else
 	{
-		cout << "Aucune donnee" << endl;
+		cout << " " << endl;
 	}
 }
