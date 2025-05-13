@@ -2,6 +2,7 @@
 #include "PSommet.hpp"
 #include "PGraphOrient.hpp"
 #include <queue>
+#include <set>
 
 using namespace std;
 
@@ -418,7 +419,35 @@ template <typename TData> unsigned int PGraphOrient<TData>::GRATailleLstSommet()
 * ***************************************************************************************************************************
 */
 template<typename TData> vector<PSommet<TData>*> PGraphOrient<TData>::GRACycleHamiltonien(PSommet<TData>* ptSOMSource) const {
-    vector<PSommet<TData>*> vCycleHamiltonien;
+    vector<PSommet<TData>*> path;
+    unsigned int uiBoucle;
+    PSommet<TData>* ptSOMTmp, * ptSOMEloigne;
+    set<PSommet<TData>*> setSommetaVisite;
+
+    if (!this->GRASOMEstDansGraphe(ptSOMSource)) {
+        cout << "Le Sommet source n'appartient pas au graph" << endl;
+        return path;
+    }
+
+    // Trouver le sommet le plus éloigné du sommet source
+    ptSOMEloigne = this->Dijkstra(ptSOMSource);
+
+    // Initialiser la liste de sommets a visiter
+    for (uiBoucle = 0; uiBoucle < vGRALstSommet.size(); uiBoucle++) {
+        ptSOMTmp = vGRALstSommet.at(uiBoucle);
+        if (ptSOMTmp != ptSOMSource && ptSOMTmp != ptSOMEloigne) {
+            setSommetaVisite.insert(ptSOMTmp);
+        }
+    }
+
+    path.push_back(ptSOMSource);
+    path.push_back(ptSOMEloigne);
+
+    while (path.size() < this->GRATailleLstSommet()) {
+        for (uiBoucle = 0; uiBoucle < setSommetaVisite.size(); uiBoucle++) {
+            ptSOMTmp = setSommetaVisite.at(uiBoucle);
+        }
+    }
 }
 
 /**************************************************************************************************************************
@@ -426,7 +455,7 @@ template<typename TData> vector<PSommet<TData>*> PGraphOrient<TData>::GRACycleHa
 * *************************************************************************************************************************
 * Entree : ptSommetDepart, un pointeur vers le sommet de depart
 * Necessite : Rien
-* Sortie : Le sommet le plus eloigne du sommet de depart
+* Sortie : Un pointeur vers le sommet le plus eloigne du sommet de depart
 * Entraine : Retournes le sommet le plus eloigne du sommet de depart
 * **************************************************************************************************************************
 */
@@ -435,9 +464,10 @@ template <typename TData> PSommet<TData>* PGraphOrient<TData>::Dijkstra(PSommet<
     PSommet<TData>* ptSommetU, *ptSommetV, *ptSommetPlusEloigne;
     PArc<TData>* ptArc;
     TData tPoidsAccumule;
-    for (unsigned int uiBoucle = 0; uiBoucle < vGRALstSommet.size(); uiBoucle++) {
+    unsigned int uiIndexArcPart, uiIndexSommet, uiBoucle;
+    for (uiBoucle = 0; uiBoucle < vGRALstSommet.size(); uiBoucle++) {
         if (vGRALstSommet.at(uiBoucle) != ptSommetDepart) {
-            vGRALstSommet.at(uiBoucle)->SOMModifierData(INT_MAX);
+            vGRALstSommet.at(uiBoucle)->SOMModifierData(_Max_limit);
         }
     }
 
@@ -447,34 +477,66 @@ template <typename TData> PSommet<TData>* PGraphOrient<TData>::Dijkstra(PSommet<
     ptSommetDepart->SOMModifierData(0);
     qSommet.push(ptSommetDepart);
     tPoidsAccumule = 0;
-    unsigned int uiIndexArcPart;
+
     
+    // Tant que la file de priorité n'est pas vide
     while (!qSommet.empty()) {
+        // Extraire le sommet avec la plus grande distance accumulée
         ptSommetU = qSommet.top();
         qSommet.pop();
 
+        // Parcourir tous les arcs partant de ce sommet
         for (uiIndexArcPart = 0; uiIndexArcPart < ptSommetU->SOMLireTailleArcPartant(); uiIndexArcPart++) {
             ptArc = ptSommetU->SOMLireArcPart(uiIndexArcPart);
-            for (unsigned int uiIndexSommet = 0; uiIndexSommet < vGRALstSommet.size(); uiIndexSommet++) {
+
+            // Trouver le sommet d'arrivée de l'arc
+            for (uiIndexSommet = 0; uiIndexSommet < vGRALstSommet.size(); uiIndexSommet++) {
                 if (ptArc->ARCLireIdArrive() == vGRALstSommet.at(uiIndexSommet)->SOMLireId()) {
                     ptSommetV = vGRALstSommet.at(uiIndexSommet);
                     break;
                 }
             }
+
+            // Si le sommet d'arrivée est trouvé
             if (ptSommetV != nullptr) {
+                // Calculer le poids accumulé pour atteindre ce sommet
                 tPoidsAccumule = ptSommetU->SOMLireData() + ptArc->ARCLireData();
+
+                // Si le poids accumulé est inférieur à la distance actuelle du sommet d'arrivée
                 if (tPoidsAccumule < ptSommetV->SOMLireData()) {
+                    // Mettre à jour la distance pour atteindre ce sommet
                     ptSommetV->SOMModifierData(tPoidsAccumule);
+
+                    // Ajouter le sommet d'arrivée à la file de priorité
                     qSommet.push(ptSommetV);
                 }
             }
         }
 
-        // Mettre à jour le sommet le plus éloigné
+        // Mettre à jour le sommet le plus éloigné si nécessaire
         if (ptSommetU->SOMLireData() > ptSommetPlusEloigne->SOMLireData()) {
             ptSommetPlusEloigne = ptSommetU;
         }
     }
 
+    // Retourner le sommet le plus éloigné trouvé
+    cout << ptSommetPlusEloigne->SOMLireData() << endl;
     return ptSommetPlusEloigne;
 }
+
+/***************************************************************************************************************************
+* METHODE : GRAMaxData
+* **************************************************************************************************************************
+* Entree : ptSommet, un pointeur vers un sommet
+*		   sLstSommet,  un set de sommets
+* Necessite : Tout les sommets appartiennent au graph, 
+*				ptSommet n'existe pas dans la liste de sommets donné en parametre
+* Sortie : Rien
+* Entraine : Calcul la data maximal entre ptSommet et chaque sommet de la liste,
+*               met a jour la data de ptSommet pour qu'elle soit la plus grande
+* **************************************************************************************************************************
+*/
+template <typename TData> void PGraphOrient<TData>::GRAMaxData(PSommet<TData>* ptSommet, set<PSommet<TData>*>& sLstSommet) {
+    return;
+}
+

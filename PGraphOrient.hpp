@@ -14,6 +14,7 @@
 */
 #include "PSommet.hpp"
 #include "PArc.hpp"
+#include <set>
 #include <vector>
 #include <exception>
 
@@ -267,6 +268,20 @@ template<typename TData> class PGraphOrient
 		* **************************************************************************************************************************
 		*/
 		PSommet<TData>* Dijkstra(PSommet<TData>* ptSommetDepart) const;
+
+		/***************************************************************************************************************************
+		* METHODE : GRAMaxData
+		* **************************************************************************************************************************
+		* Entree : ptSommet, un pointeur vers un sommet
+		*		   sLstSommet,  un set de sommets
+		* Necessite : Tout les sommets appartiennent au graph, 
+		*				ptSommet n'existe pas dans la liste de sommets donné en parametre
+		* Sortie : Rien
+		* Entraine : Calcul la data maximal entre ptSommet et chaque sommet de la liste,
+		*               met a jour la data de ptSommet pour qu'elle soit la plus grande
+		* **************************************************************************************************************************
+		*/
+		void GRAMaxData(PSommet<TData>* ptSommet, set<PSommet<TData>*>& sLstSommet);
 };
 #include "PGraphOrient.tpp"
 
