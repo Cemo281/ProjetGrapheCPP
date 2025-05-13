@@ -60,6 +60,20 @@ public:
     */
     PArc(unsigned int uiIdDepart, unsigned int uiIdArrive);
 
+    /*************************************************
+    * PArc
+    * ***********************************************
+    * Entree : uiIdDepart, naturel, sommet de depart
+    *          uiIdArrive, naturel, sommet d'arrive
+    *          tData, TData, la donnee de l'arc
+    * Necessite : Rien
+    * Sortie : Rien
+    * Entraine : Creer un arc a partir de l'id de
+    *            deux sommets et d'une donnee
+    *************************************************
+    */
+    PArc(unsigned int uiIdDepart, unsigned int uiIdArrive, TData tData);
+
 	/**************************************************
     * ~TArc
 	* ************************************************

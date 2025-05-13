@@ -28,19 +28,20 @@ template <typename TData> PSommet<TData>::PSommet(unsigned int uiId) {
 */
 template<typename TData> PSommet<TData>::PSommet(const PSommet<TData>& SOMParam) {
 	PArc<TData>* ptARCTmp;
+	unsigned int uiBoucle;
 
 	uiSOMId = SOMParam.uiSOMId;
 	SOMData = SOMParam.SOMData;
 	// Copie des arcs partant du sommet
-	for (unsigned int iBoucle = 0; iBoucle < SOMParam.vSOMLstArcPartant.size(); iBoucle++)
+	for (uiBoucle = 0; uiBoucle < SOMParam.vSOMLstArcPartant.size(); uiBoucle++)
 	{
-		ptARCTmp = new PArc<TData>(*(SOMParam.vSOMLstArcPartant.at(iBoucle)));
+		ptARCTmp = new PArc<TData>(*(SOMParam.vSOMLstArcPartant.at(uiBoucle)));
 		vSOMLstArcPartant.push_back(ptARCTmp);
 	}
 	// Copie des arcs arrivant au sommet
-	for (unsigned int iBoucle = 0; iBoucle < SOMParam.vSOMLstArcArrivant.size(); iBoucle++)
+	for (uiBoucle = 0; uiBoucle < SOMParam.vSOMLstArcArrivant.size(); uiBoucle++)
 	{
-		ptARCTmp = new PArc<TData>(*(SOMParam.vSOMLstArcArrivant.at(iBoucle)));
+		ptARCTmp = new PArc<TData>(*(SOMParam.vSOMLstArcArrivant.at(uiBoucle)));
 		vSOMLstArcArrivant.push_back(ptARCTmp);
 	}
 
@@ -151,11 +152,13 @@ template <typename TData> PArc<TData>* PSommet<TData>::SOMLireArcArr(unsigned in
 *************************************************
 */
 template <typename TData> void PSommet<TData>::SOMSupprimerArcPart(PArc<TData>* ptArcPart) {
-	for (int iBoucle = 0; iBoucle < vSOMLstArcPartant.size(); iBoucle++)
+	unsigned int uiBoucle;
+
+	for (uiBoucle = 0; uiBoucle < vSOMLstArcPartant.size(); uiBoucle++)
 	{
-		if (vSOMLstArcPartant.at(iBoucle) == ptArcPart)
+		if (vSOMLstArcPartant.at(uiBoucle) == ptArcPart)
 		{
-			vSOMLstArcPartant.erase(vSOMLstArcPartant.begin() + iBoucle);
+			vSOMLstArcPartant.erase(vSOMLstArcPartant.begin() + uiBoucle);
 			return;
 		}
 	}
@@ -184,11 +187,13 @@ template <typename TData> void PSommet<TData>::SOMAjouterArcArr(PArc<TData>* ptA
 *************************************************
 */
 template <typename TData> void PSommet<TData>::SOMSupprimerArcArr(PArc<TData>* ptArcArr) {
-	for (int iBoucle = 0; iBoucle < vSOMLstArcArrivant.size(); iBoucle++)
+	unsigned int uiBoucle;
+
+	for (uiBoucle = 0; uiBoucle < vSOMLstArcArrivant.size(); uiBoucle++)
 	{
-		if (vSOMLstArcArrivant.at(iBoucle) == ptArcArr)
+		if (vSOMLstArcArrivant.at(uiBoucle) == ptArcArr)
 		{
-			vSOMLstArcArrivant.erase(vSOMLstArcArrivant.begin() + iBoucle);
+			vSOMLstArcArrivant.erase(vSOMLstArcArrivant.begin() + uiBoucle);
 			return;
 		}
 	}
@@ -221,11 +226,11 @@ template <typename TData> bool PSommet<TData>::operator==(const PSommet* ptSomme
 * ***********************************************
 */
 template <typename TData> bool PSommet<TData>::SOMEstDansLstPart(PArc<TData>* ptArcPart) {
-	int iBoucle;
+	unsigned int uiBoucle;
 
-	for (iBoucle = 0; iBoucle < vSOMLstArcPartant.size(); iBoucle++)
+	for (uiBoucle = 0; uiBoucle < vSOMLstArcPartant.size(); uiBoucle++)
 	{
-		if (vSOMLstArcPartant.at(iBoucle) == ptArcPart)
+		if (vSOMLstArcPartant.at(uiBoucle) == ptArcPart)
 		{
 			return true;
 		}
@@ -244,10 +249,10 @@ template <typename TData> bool PSommet<TData>::SOMEstDansLstPart(PArc<TData>* pt
 * *************************************************
 */
 template <typename TData> bool PSommet<TData>::SOMEstDansLstArrivant(PArc<TData>* ptArcArr) {
-	int iBoucle;
-	for (iBoucle = 0; iBoucle < vSOMLstArcArrivant.size(); iBoucle++)
+	unsigned int uiBoucle;
+	for (uiBoucle = 0; uiBoucle < vSOMLstArcArrivant.size(); uiBoucle++)
 	{
-		if (vSOMLstArcArrivant.at(iBoucle) == ptArcArr)
+		if (vSOMLstArcArrivant.at(uiBoucle) == ptArcArr)
 		{
 			return true;
 		}

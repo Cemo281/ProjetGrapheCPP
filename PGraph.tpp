@@ -72,8 +72,11 @@ template <typename TData> void PGraph<TData>::GRAAfficher() {
 	cout << "=== Liste des arcs ===" << endl << endl;
 	for (uiBoucle = 0; uiBoucle < this->GRATailleLstArc(); uiBoucle++) {
 		cout << "Arc " << this->GRALireArc(uiBoucle)->ARCLireIdDepart() << " -- " << this->GRALireArc(uiBoucle)->ARCLireIdArrive() << ": ";
-		if (this->GRALireArc(uiBoucle)->ARCLireData() != nullptr) {
-			cout << this->GRALireArc(uiBoucle)->ARCLireData() << endl;
+		if (this->GRALireArc(uiBoucle)->ARCLireData() != 0) {
+			cout << this->GRALireArc(uiBoucle)->ARCLireData();
+		}
+		else {
+			cout << "";
 		}
 		cout << endl;
 		uiBoucle++;

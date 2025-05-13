@@ -17,10 +17,12 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
+	/*
 	if (argc != 2) {
 		cout << "Erreur : Aucun ou trop de fichier fourni" << endl;
 		return 1;
 	}
+
 	ifstream FILE(argv[1]);
 
 	cout << "Creation du graphe..." << endl << endl;
@@ -41,6 +43,50 @@ int main(int argc, char* argv[])
 
 	delete GrapheInverse;
 	delete Graphe;
+	*/
+
+	// Test de la classe PGraph
+	PGraphOrient<int>* Graphe;
+	Graphe = new PGraphOrient<int>();
+
+	// Test de la classe PSommet
+	// Création des sommets
+	PSommet<int>* Sommet1 = new PSommet<int>(1);
+	PSommet<int>* Sommet2 = new PSommet<int>(2);
+	PSommet<int>* Sommet3 = new PSommet<int>(3);
+	PSommet<int>* Sommet4 = new PSommet<int>(4);
+	PSommet<int>* Sommet5 = new PSommet<int>(5);
+
+	// Création des arcs
+	PArc<int>* Arc1 = new PArc<int>(1, 2, 10);
+	PArc<int>* Arc2 = new PArc<int>(1, 3, 15);
+	PArc<int>* Arc3 = new PArc<int>(1, 4, 20);
+	PArc<int>* Arc4 = new PArc<int>(4, 5, 25);
+
+	// Ajout au graphe
+	Graphe->GRAAjouterSommet(Sommet1);
+	Graphe->GRAAjouterSommet(Sommet2);
+	Graphe->GRAAjouterSommet(Sommet3);
+	Graphe->GRAAjouterSommet(Sommet4);
+	Graphe->GRAAjouterSommet(Sommet5);
+
+	Graphe->GRAAjouterArc(Arc1);
+	Graphe->GRAAjouterArc(Arc2);
+	Graphe->GRAAjouterArc(Arc3);
+	Graphe->GRAAjouterArc(Arc4);
+
+	// 🔹 **Sommet le plus éloigné depuis `Sommet1`** → `Sommet5` (Poids total : **45**)
+
+	// Affichage du graphe
+	cout << "===== GRAPHE =====" << endl << endl;
+	Graphe->GRAFinaliser();
+
+	Graphe->GRAAfficher();
+
+	// Test de la fonction de recherche du sommet le plus éloigné
+	PSommet<int>* SommetMax = Graphe->Dijkstra(Sommet1);
+
+	cout << "Sommet le plus éloigné du sommet 1 : " << SommetMax->SOMLireId() << endl;
 
 	return 0;
 }

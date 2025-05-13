@@ -242,7 +242,7 @@ template<typename TData> class PGraphOrient
 		* Necessite : Rien
 		* Sortie : Naturel
 		* Entraine : Retournes la taille de la liste de sommets
-		* ***************************************************************************************************************************
+		* **************************************************************************************************************************
 		*/
 		unsigned int GRATailleLstSommet() const { return vGRALstSommet.size(); }
 
@@ -256,6 +256,17 @@ template<typename TData> class PGraphOrient
 		* ***************************************************************************************************************************
 		*/
 		vector<PSommet<TData>*> GRACycleHamiltonien(PSommet<TData>* ptSOMSource) const;
+
+		/**************************************************************************************************************************
+		* METHODE : Dijkstra
+		* *************************************************************************************************************************
+		* Entree : ptSommetDepart, un pointeur vers le sommet de depart
+		* Necessite : Rien
+		* Sortie : Le sommet le plus eloigne du sommet de depart
+		* Entraine : Retournes le chemin le plus court entre le sommet de depart et tous les autres sommets
+		* **************************************************************************************************************************
+		*/
+		PSommet<TData>* Dijkstra(PSommet<TData>* ptSommetDepart) const;
 };
 #include "PGraphOrient.tpp"
 

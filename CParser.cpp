@@ -142,13 +142,13 @@ PGraphOrient<void*>* CParser::ParseGraph(ifstream& PARFichier) {
 		PARFichier.close();
 	}
 
-	if (Graphe->GRATailleLsPArc() != uiNbArc && Graphe->GRATailleLsPSommet() != uiNbSom) {
+	if (Graphe->GRATailleLstArc() != uiNbArc && Graphe->GRATailleLstSommet() != uiNbSom) {
 		throw invalid_argument("Erreur : Le nombre d'arcs et de sommet ne correspond pas aux nombres indique dans le fichier");
 	}
-	else if (Graphe->GRATailleLsPArc() != uiNbArc) {
+	else if (Graphe->GRATailleLstArc() != uiNbArc) {
 		throw invalid_argument("Erreur : Le nombre d'arcs ne correspond pas au nombre indique dans le fichier");
 	}
-	else if (Graphe->GRATailleLsPSommet() != uiNbSom) {
+	else if (Graphe->GRATailleLstSommet() != uiNbSom) {
 		throw invalid_argument("Erreur : Le nombre de sommet ne correspond pas au nombre indique dans le fichier");
 	}
 

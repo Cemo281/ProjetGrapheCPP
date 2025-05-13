@@ -21,6 +21,25 @@ template <typename TData> PArc<TData>::PArc(unsigned int uiIdDepart, unsigned in
 }
 
 /*************************************************
+* PArc
+* ***********************************************
+* Entree : uiIdDepart, naturel, sommet de depart
+*          uiIdArrive, naturel, sommet d'arrive
+*          tData, TData, la donnee de l'arc
+* Necessite : Rien
+* Sortie : Rien
+* Entraine : Creer un arc a partir de l'id de
+*            deux sommets et d'une donnee
+*************************************************
+*/
+template <typename TData> PArc<TData>::PArc(unsigned int uiIdDepart, unsigned int uiIdArrive, TData tData)
+{
+    uiARCIdDepart = uiIdDepart;
+    uiARCIdArrive = uiIdArrive;
+    ARCData = tData;
+}
+
+/*************************************************
 * METHODE : ARCLireIdDepart
 * ***********************************************
 * Entree : Rien
@@ -134,7 +153,7 @@ template <typename TData> void PArc<TData>::ARCInverser()
 template <typename TData> void PArc<TData>::ARCAfficher()
 {
     cout << "Arc " << uiARCIdDepart << " -> " << uiARCIdArrive << ": ";
-    if (ARCData != nullptr) {
+    if (ARCData != 0) {
             ARCData;
     }
     cout << endl;

@@ -1,6 +1,7 @@
 #include "PArc.hpp"
 #include "PSommet.hpp"
 #include "PGraphOrient.hpp"
+#include <queue>
 
 using namespace std;
 
@@ -337,11 +338,7 @@ template<typename TData> void PGraphOrient<TData>::GRAAfficher() {
     cout << "=== Liste des sommets ===" << endl << endl;
 
     for (uiBoucle = 0; uiBoucle < vGRALstSommet.size(); uiBoucle++) {
-        cout << "Sommet " << vGRALstSommet.at(uiBoucle)->SOMLireId() << ": ";
-
-        if (vGRALstSommet.at(uiBoucle)->SOMLireData() != nullptr) {
-            cout << vGRALstSommet.at(uiBoucle)->SOMLireData();
-        }
+        cout << "Sommet " << vGRALstSommet.at(uiBoucle)->SOMLireId() << ",";
         cout << endl;
     }
     cout << endl;
@@ -400,4 +397,62 @@ template<typename TData> void PGraphOrient<TData>::GRAFinaliser() {
 */
 template<typename TData> vector<PSommet<TData>*> PGraphOrient<TData>::GRACycleHamiltonien(PSommet<TData>* ptSOMSource) const {
     vector<PSommet<TData>*> vCycleHamiltonien;
+}
+
+/**************************************************************************************************************************
+* METHODE : Dijkstra
+* *************************************************************************************************************************
+* Entree : ptSommetDepart, un pointeur vers le sommet de depart
+* Necessite : Rien
+* Sortie : Le sommet le plus eloigne du sommet de depart
+* Entraine : Retournes le sommet le plus eloigne du sommet de depart
+* **************************************************************************************************************************
+*/
+template <typename TData> PSommet<TData>* PGraphOrient<TData>::Dijkstra(PSommet<TData>* ptSommetDepart) const {    
+    priority_queue<PSommet<TData>*, vector<PSommet<TData>*>> qSommet;
+    PSommet<TData>* ptSommetU, *ptSommetV, *ptSommetPlusEloigne;
+    PArc<TData>* ptArc;
+    TData tPoidsAccumule;
+    for (unsigned int uiBoucle = 0; uiBoucle < vGRALstSommet.size(); uiBoucle++) {
+        if (vGRALstSommet.at(uiBoucle) != ptSommetDepart) {
+            vGRALstSommet.at(uiBoucle)->SOMModifierData(INT_MAX);
+        }
+    }
+
+    ptSommetU = nullptr, ptSommetV = nullptr;
+    ptArc = nullptr;
+    ptSommetPlusEloigne = ptSommetDepart;
+    ptSommetDepart->SOMModifierData(0);
+    qSommet.push(ptSommetDepart);
+    tPoidsAccumule = 0;
+    unsigned int uiIndexArcPart;
+    
+    while (!qSommet.empty()) {
+        ptSommetU = qSommet.top();
+        qSommet.pop();
+
+        for (uiIndexArcPart = 0; uiIndexArcPart < ptSommetU->SOMLireTailleArcPartant(); uiIndexArcPart++) {
+            ptArc = ptSommetU->SOMLireArcPart(uiIndexArcPart);
+            for (unsigned int uiIndexSommet = 0; uiIndexSommet < vGRALstSommet.size(); uiIndexSommet++) {
+                if (ptArc->ARCLireIdArrive() == vGRALstSommet.at(uiIndexSommet)->SOMLireId()) {
+                    ptSommetV = vGRALstSommet.at(uiIndexSommet);
+                    break;
+                }
+            }
+            if (ptSommetV != nullptr) {
+                tPoidsAccumule = ptSommetU->SOMLireData() + ptArc->ARCLireData();
+                if (tPoidsAccumule < ptSommetV->SOMLireData()) {
+                    ptSommetV->SOMModifierData(tPoidsAccumule);
+                    qSommet.push(ptSommetV);
+                }
+            }
+        }
+
+        // Mettre à jour le sommet le plus éloigné
+        if (ptSommetU->SOMLireData() > ptSommetPlusEloigne->SOMLireData()) {
+            ptSommetPlusEloigne = ptSommetU;
+        }
+    }
+
+    return ptSommetPlusEloigne;
 }
