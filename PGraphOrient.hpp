@@ -233,7 +233,7 @@ template<typename TData> class PGraphOrient
 		* Entraine : Retournes la taille de la liste d'arcs
 		* ***************************************************************************************************************************
 		*/
-		unsigned int GRATailleLstArc() const { return vGRALstArc.size(); }
+		unsigned int GRATailleLstArc() const;
 
 		/***************************************************************************************************************************
 		* METHODE : GRATailleLstSommet
@@ -244,7 +244,7 @@ template<typename TData> class PGraphOrient
 		* Entraine : Retournes la taille de la liste de sommets
 		* **************************************************************************************************************************
 		*/
-		unsigned int GRATailleLstSommet() const { return vGRALstSommet.size(); }
+		unsigned int GRATailleLstSommet() const;
 
 		/***************************************************************************************************************************
 		* METHODE : GRACycleHamiltonien

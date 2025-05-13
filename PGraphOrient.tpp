@@ -387,6 +387,28 @@ template<typename TData> void PGraphOrient<TData>::GRAFinaliser() {
 }
 
 /***************************************************************************************************************************
+* METHODE : GRATailleLstArc
+* **************************************************************************************************************************
+* Entree : Rien
+* Necessite : Rien
+* Sortie : Naturel
+* Entraine : Retournes la taille de la liste d'arcs
+* ***************************************************************************************************************************
+*/
+template <typename TData> unsigned int PGraphOrient<TData>::GRATailleLstArc() const { return vGRALstArc.size(); }
+
+/***************************************************************************************************************************
+* METHODE : GRATailleLstSommet
+* **************************************************************************************************************************
+* Entree : Rien
+* Necessite : Rien
+* Sortie : Naturel
+* Entraine : Retournes la taille de la liste de sommets
+* **************************************************************************************************************************
+*/
+template <typename TData> unsigned int PGraphOrient<TData>::GRATailleLstSommet() const { return vGRALstSommet.size(); }
+
+/***************************************************************************************************************************
 * METHODE : GRACycleHamiltonien
 * **************************************************************************************************************************
 * Entree : Rien

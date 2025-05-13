@@ -272,7 +272,7 @@ public:
     * Entraine : Retournes la taille de la liste des arcs arrivant
     * *************************************************
     */
-    unsigned int SOMLireTailleArcPartant() const { return vSOMLstArcPartant.size(); }
+    unsigned int SOMLireTailleArcPartant() const;
 
 	/************************************************
 	* operateur<
@@ -284,10 +284,7 @@ public:
     *               compare leur data
 	* ***********************************************
 	*/
-	bool operator<(const PSommet* ptSommet) const
-	{
-		return (SOMData < ptSommet->SOMLireData());
-	}
+    bool operator<(const PSommet* ptSommet) const;
 };
 #include "PSommet.tpp"
 

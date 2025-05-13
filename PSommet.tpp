@@ -295,3 +295,29 @@ template <typename TData> void PSommet<TData>::SOMAfficher() {
 		cout << " " << endl;
 	}
 }
+
+/************************************************
+* METHODE : SOMLireTailleArcArrivant
+* ***********************************************
+* Entree : Rien
+* Necessite : Rien
+* Sortie : Un naturel
+* Entraine : Retournes la taille de la liste des arcs arrivant
+* *************************************************
+*/
+template <typename TData> unsigned int PSommet<TData>::SOMLireTailleArcPartant() const { return vSOMLstArcPartant.size(); }
+
+/************************************************
+* operateur<
+* ***********************************************
+* Entree : ptSommet, un pointeur vers un sommet
+* Necessite : Rien
+* Sortie : Un booleen
+* Entraine : Compare si deux sommets sont egaux, c'est a dire
+*               compare leur data
+* ***********************************************
+*/
+template <typename TData> bool PSommet<TData>::operator<(const PSommet* ptSommet) const
+{
+	return (SOMData < ptSommet->SOMLireData());
+}

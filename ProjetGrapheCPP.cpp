@@ -45,48 +45,53 @@ int main(int argc, char* argv[])
 	delete Graphe;
 	*/
 
-	// Test de la classe PGraph
-	PGraphOrient<int>* Graphe;
-	Graphe = new PGraphOrient<int>();
+	// Création d'un nouveau graphe orienté pour tester Dijkstra
+	PGraphOrient<int>* NouveauGraphe = new PGraphOrient<int>();
 
-	// Test de la classe PSommet
 	// Création des sommets
-	PSommet<int>* Sommet1 = new PSommet<int>(1);
-	PSommet<int>* Sommet2 = new PSommet<int>(2);
-	PSommet<int>* Sommet3 = new PSommet<int>(3);
-	PSommet<int>* Sommet4 = new PSommet<int>(4);
-	PSommet<int>* Sommet5 = new PSommet<int>(5);
+	PSommet<int>* S1 = new PSommet<int>(1);
+	PSommet<int>* S2 = new PSommet<int>(2);
+	PSommet<int>* S3 = new PSommet<int>(3);
+	PSommet<int>* S4 = new PSommet<int>(4);
+	PSommet<int>* S5 = new PSommet<int>(5);
+	PSommet<int>* S6 = new PSommet<int>(6);
 
-	// Création des arcs
-	PArc<int>* Arc1 = new PArc<int>(1, 2, 10);
-	PArc<int>* Arc2 = new PArc<int>(1, 3, 15);
-	PArc<int>* Arc3 = new PArc<int>(1, 4, 20);
-	PArc<int>* Arc4 = new PArc<int>(4, 5, 25);
+	// Création des arcs avec poids
+	PArc<int>* A1 = new PArc<int>(1, 2, 5);
+	PArc<int>* A2 = new PArc<int>(1, 3, 10);
+	PArc<int>* A3 = new PArc<int>(2, 4, 2);
+	PArc<int>* A4 = new PArc<int>(3, 4, 1);
+	PArc<int>* A5 = new PArc<int>(4, 5, 3);
+	PArc<int>* A6 = new PArc<int>(5, 6, 8);
 
-	// Ajout au graphe
-	Graphe->GRAAjouterSommet(Sommet1);
-	Graphe->GRAAjouterSommet(Sommet2);
-	Graphe->GRAAjouterSommet(Sommet3);
-	Graphe->GRAAjouterSommet(Sommet4);
-	Graphe->GRAAjouterSommet(Sommet5);
+	// Ajout des sommets au graphe
+	NouveauGraphe->GRAAjouterSommet(S1);
+	NouveauGraphe->GRAAjouterSommet(S2);
+	NouveauGraphe->GRAAjouterSommet(S3);
+	NouveauGraphe->GRAAjouterSommet(S4);
+	NouveauGraphe->GRAAjouterSommet(S5);
+	NouveauGraphe->GRAAjouterSommet(S6);
 
-	Graphe->GRAAjouterArc(Arc1);
-	Graphe->GRAAjouterArc(Arc2);
-	Graphe->GRAAjouterArc(Arc3);
-	Graphe->GRAAjouterArc(Arc4);
+	// Ajout des arcs au graphe
+	NouveauGraphe->GRAAjouterArc(A1);
+	NouveauGraphe->GRAAjouterArc(A2);
+	NouveauGraphe->GRAAjouterArc(A3);
+	NouveauGraphe->GRAAjouterArc(A4);
+	NouveauGraphe->GRAAjouterArc(A5);
+	NouveauGraphe->GRAAjouterArc(A6);
 
-	// 🔹 **Sommet le plus éloigné depuis `Sommet1`** → `Sommet5` (Poids total : **45**)
+	// Finalisation et affichage du graphe
+	cout << "===== NOUVEAU GRAPHE =====" << endl << endl;
+	NouveauGraphe->GRAFinaliser();
+	NouveauGraphe->GRAAfficher();
 
-	// Affichage du graphe
-	cout << "===== GRAPHE =====" << endl << endl;
-	Graphe->GRAFinaliser();
+	// Test de la fonction Dijkstra
+	PSommet<int>* SommetEloigne = NouveauGraphe->Dijkstra(S1);
 
-	Graphe->GRAAfficher();
+	cout << "Sommet le plus éloigné du sommet 1 : " << SommetEloigne->SOMLireId() << endl;
 
-	// Test de la fonction de recherche du sommet le plus éloigné
-	PSommet<int>* SommetMax = Graphe->Dijkstra(Sommet1);
-
-	cout << "Sommet le plus éloigné du sommet 1 : " << SommetMax->SOMLireId() << endl;
+	// Nettoyage de la mémoire
+	delete NouveauGraphe;
 
 	return 0;
 }
