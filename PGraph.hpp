@@ -36,14 +36,32 @@ private:
 
 public:
 	//Constructeurs et destructeurs
+		/**************************************************************************************************************************
+		* PGraph
+		* *************************************************************************************************************************
+		* Entree: Rien
+		* Necessite : Rien
+		* Sortie: Rien
+		* Entraine: Initialise un graph vide
+		***************************************************************************************************************************
+		*/
 		PGraph() = default; //Constructeur par defaut	
 
-		explicit PGraph(const PGraphOrient<TData>& GRAParam) : PGraphOrient<TData>(GRAParam) {}
+		/**************************************************************************************************************************
+		* PGraphOrient
+		* *************************************************************************************************************************
+		* Entree: GROParam, un graph
+		* Necessite : Rien
+		* Sortie: Rien
+		* Entraine: Créer un graph à partir d'un autre graph
+		***************************************************************************************************************************
+		*/
+		explicit PGraph(const PGraphOrient<TData>& GROParam) : PGraphOrient<TData>(GROParam) {}
 
 
 	//METHODES
 		/**************************************************************************************************************************
-		* METHODE : GRAAjouterArc
+		* METHODE : GROAjouterArc
 		* *************************************************************************************************************************
 		* Entree: ptArc, un pointeur vers un arc
 		* Necessite : Rien
@@ -51,10 +69,10 @@ public:
 		* Entraine: Ajoute l'arc au graphe non oriente et son inverse
 		***************************************************************************************************************************
 		*/
-		void GRAAjouterArc(PArc<TData>* ptArc) override;
+		void GROAjouterArc(PArc<TData>* ptArc) override;
 
 		/**************************************************************************************************************************
-		* METHODE : GRASupprimerArc
+		* METHODE : GROSupprimerArc
 		* **************************************************************************************************************************
 		* Entree: ptArc, Un pointeur vers un arc
 		* Necessite: Rien
@@ -62,10 +80,10 @@ public:
 		* Entrainee: Supprime l'arc et son inverse du graphe non oriente
 		* **************************************************************************************************************************
 		*/
-		void GRASupprimerArc(PArc<TData>* ptArc) override;
+		void GROSupprimerArc(PArc<TData>* ptArc) override;
 
 		/***************************************************************************************************************************
-		* METHODE : GRAAfficher
+		* METHODE : GROAfficher
 		* **************************************************************************************************************************
 		* Entree : Rien
 		* Necessite : Rien
@@ -73,7 +91,7 @@ public:
 		* Entraine : Affiches le graphe non oriente dans la console
 		* ***************************************************************************************************************************
 		*/
-		 void GRAAfficher() override;
+		 void GROAfficher() override;
 };
 
 #include "PGraph.tpp"

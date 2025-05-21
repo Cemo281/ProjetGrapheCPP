@@ -7,8 +7,6 @@
 #ifndef INCLUDE_PARSER_H
 #define INCLUDE_PARSER_H 5
 
-
-
 /****************************************************
 * CLASSE : CParser
 * **************************************************
@@ -23,10 +21,39 @@
 #include "PArc.hpp"
 #include "PSommet.hpp"
 #include "PGraphOrient.hpp"
+#include <string>
+#include <fstream>
+
+using namespace std;
 
 class CParser
 {
+private: 
+	string PARType;  // Afin de stocker le type du graph creer.
+
 public:
+	/*********************************
+	* METHODE : PARLireType
+	* ********************************
+	* Entree: Rien
+	* Necessite: Rien
+	* Sortie: PARType
+	* Entraine: Retourne le type du graph parser
+	* ********************************
+	*/
+	string PARLireType() const { return PARType; }
+
+	/*********************************
+	* METHODE : PARRecupType
+	* ********************************
+	* Entree: PARFichier, le fichier a parser
+	* Necessite: Le fichier doit être bien forme
+	* Sortie: Rien
+	* Entraine: Recupere le type sur la premiere ligne du fichier PARFichier
+	* ********************************
+	*/
+	void PARRecupType(ifstream& PARFichier);
+
 	/*********************************
 	* Parser
 	* ********************************
@@ -51,7 +78,11 @@ public:
 	* Entraine : Retourne un graphe
 	* *********************************
 	*/
-	PGraphOrient<void*>* ParseGraph(ifstream& PARFichier);
+	PGraphOrient<unsigned int>* PARGROEntierNS(ifstream& PARFichier);
+
+	PGraphOrient<double>* PARGROReel(ifstream& PARFichier);
+
+	PGraphOrient<void*>* PARGrapheO(ifstream& PARFichier);
 };
 
 #endif

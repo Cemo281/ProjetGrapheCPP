@@ -50,6 +50,17 @@ public:
     /*************************************************
     * PArc
     * ***********************************************
+    * Entree : ARCParam
+    * Necessite : Rien
+    * Sortie : Rien
+    * Entraine : Cree un nouvel arc en copiant un autre
+    *************************************************
+    */
+    PArc(const PArc<TData>& ARCParam);
+
+    /*************************************************
+    * PArc
+    * ***********************************************
     * Entree : uiIdDepart, naturel, sommet de depart
     *          uiIdArrive, naturel, sommet d'arrive
     * Necessite : Rien
@@ -189,6 +200,17 @@ public:
     * ***********************************************
     */
     void ARCAfficher();
+
+    /*************************************************
+    * OPERATEUR : operator=
+    * ***********************************************
+    * Entree : ARCParam, une référence vers un autre arc
+    * Necessite : Rien
+    * Sortie : Référence vers *this
+    * Entraine : Affecte les valeurs d'un autre arc à celui-ci
+    *************************************************
+    */
+    PArc<TData>& operator=(const PArc<TData>& ARCParam);
 };
 #include "PArc.tpp"
 

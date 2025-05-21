@@ -51,6 +51,14 @@
         "xtr1common": "cpp",
         "xutility": "cpp",
         "deque": "cpp",
-        "queue": "cpp"
+        "queue": "cpp",
+        "algorithm": "cpp",
+        "fstream": "cpp",
+        "map": "cpp",
+        "optional": "cpp",
+        "set": "cpp",
+        "sstream": "cpp",
+        "string": "cpp",
+        "xtree": "cpp"
     }
 }

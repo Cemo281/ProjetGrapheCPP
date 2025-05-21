@@ -40,6 +40,22 @@ template <typename TData> PArc<TData>::PArc(unsigned int uiIdDepart, unsigned in
 }
 
 /*************************************************
+* PArc
+* ***********************************************
+* Entree : ARCParam
+* Necessite : Rien
+* Sortie : Rien
+* Entraine : Cree un nouvel arc en copiant un autre
+*************************************************
+*/
+template <typename TData> PArc<TData>::PArc(const PArc<TData>& ARCParam)
+{
+    uiARCIdDepart = ARCParam.uiARCIdDepart;
+    uiARCIdArrive = ARCParam.uiARCIdArrive;
+    ARCData = ARCParam.ARCData;
+}
+
+/*************************************************
 * METHODE : ARCLireIdDepart
 * ***********************************************
 * Entree : Rien
@@ -154,7 +170,26 @@ template <typename TData> void PArc<TData>::ARCAfficher()
 {
     cout << "Arc " << uiARCIdDepart << " -> " << uiARCIdArrive << ": ";
     if (ARCData != 0) {
-            ARCData;
+        cout << ARCData;
     }
     cout << endl;
+}
+
+/*************************************************
+* OPERATEUR : operator=
+* ***********************************************
+* Entree : ARCParam, une référence vers un autre arc
+* Necessite : Rien
+* Sortie : Référence vers *this
+* Entraine : Affecte les valeurs d'un autre arc à celui-ci
+*************************************************
+*/
+template <typename TData> PArc<TData>& PArc<TData>::operator=(const PArc<TData>& ARCParam)
+{
+    if (this != &ARCParam) {
+        uiARCIdDepart = ARCParam.uiARCIdDepart;
+        uiARCIdArrive = ARCParam.uiARCIdArrive;
+        ARCData = ARCParam.ARCData;
+    }
+    return *this;
 }
